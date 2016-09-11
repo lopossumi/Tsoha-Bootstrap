@@ -7,7 +7,7 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://milo.cs.helsinki.fi)
+* [Linkki sovellukseeni](https://milo.users.cs.helsinki.fi/askare/)
 * [Linkki dokumentaatiooni](https://github.com/lopossumi/askare-tsoha/)
 
 ## Työn aihe
