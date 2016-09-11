@@ -1,7 +1,7 @@
 # askare
 /ˈɑskɑreˣ/
 
-1. A chore (daily routine task), normally used in plural (askaret or askareet).
+1. A chore (daily routine task), normally used in plural (*askaret* or *askareet*).
 
 Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
@@ -12,7 +12,7 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html)
+[Aihekuvaus: Muistilista](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Muistilista.html)
 
 ## TODO: Viikko 1
 [x] Valitse harjoitustyösi aihe (katso aihe-ehdotukset, jos aiheen valinta tuottaa vaikeuksia). (0,5p)
