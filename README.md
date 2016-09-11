@@ -1,6 +1,7 @@
 # askare
 /ˈɑskɑreˣ/
-A chore (daily routine task), normally used in plural (askaret or askareet).
+
+1. A chore (daily routine task), normally used in plural (askaret or askareet).
 
 Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
