@@ -16,22 +16,15 @@ Yleisiä linkkejä:
 
 ## TODO: Viikko 1
 
-[x] Valitse harjoitustyösi aihe (katso aihe-ehdotukset, jos aiheen valinta tuottaa vaikeuksia). (0,5p)
-
-[x] Pystytä versionhallinta. (0,5p)
-
+- [x] Valitse harjoitustyösi aihe (katso aihe-ehdotukset, jos aiheen valinta tuottaa vaikeuksia). (0,5p)
+- [x] Pystytä versionhallinta. (0,5p)
 * Luo repositorio GitHubiin, ja lisää README.md-tiedostoon aiheesi kuvaus tai linkki valmiiseen aiheeseen, linkki sovellukseesi ja linkki dokumentaatioosi (linkki kansiossa doc sijaitsevaan pdf-tiedostoon).
 * Salli Issuet repositoriastasi
-
-[ ] Dokumentoi perusasiat doc-kansioon yhteen pdf-tiedostoon. (1p)
-
+- [ ] Dokumentoi perusasiat doc-kansioon yhteen pdf-tiedostoon. (1p)
 * Lisää johdanto
 * Lisää käyttötapaukset
-
-[x] Pystytä työympäristö. (1p)
-
+- [x] Pystytä työympäristö. (1p)
 * Ota PHP-tuki käyttöön
 * Ota PostgreSQL-tietokantapalvelin käyttöön
 * Luo SSH-avain
-
-[x] Rekisteröidy labtooliin.
+- [x] Rekisteröidy labtooliin.
