@@ -5,10 +5,8 @@
 
 Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
-Yleisiä linkkejä:
-
-* [Linkki sovellukseeni](https://milo.users.cs.helsinki.fi/askare/)
-* [Linkki dokumentaatiooni](https://github.com/lopossumi/askare-tsoha/)
+* [Linkki sovellukseen](https://milo.users.cs.helsinki.fi/askare/)
+* [Linkki dokumentaatioon](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md.pdf)
 
 ## Työn aihe
 
@@ -20,7 +18,7 @@ Yleisiä linkkejä:
 - [x] Pystytä versionhallinta. (0,5p)
 * Luo repositorio GitHubiin, ja lisää README.md-tiedostoon aiheesi kuvaus tai linkki valmiiseen aiheeseen, linkki sovellukseesi ja linkki dokumentaatioosi (linkki kansiossa doc sijaitsevaan pdf-tiedostoon).
 * Salli Issuet repositoriastasi
-- [ ] Dokumentoi perusasiat doc-kansioon yhteen pdf-tiedostoon. (1p)
+- [x] Dokumentoi perusasiat doc-kansioon yhteen pdf-tiedostoon. (1p)
 * Lisää johdanto
 * Lisää käyttötapaukset
 - [x] Pystytä työympäristö. (1p)
