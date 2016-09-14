@@ -1,11 +1,172 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="page-header">
-    <h1>Tervetuloa Tsoha Bootstrappiin!</h1>
-  </div>
 
-  <p>
-    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Tutustu materiaaliin <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">	<span class="glyphicon glyphicon-th-list"></span> askare</a>
+    </div>
+    <!-- left -->
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">My lists</a></li>
+      <li><a href="#">Shared</a></li>
+      <li><a href="#">Friends</a></li> 
+    </ul>
+    
+    <!-- right -->
+    <ul class="nav navbar-nav navbar-right">
+      <li><p class="navbar-btn"><a href="#" class="btn btn-primary">Add todo-list</a></p></li>
+    </ul>
+  </div>
+</nav>
+
+  <table class="table">
+    <!-- header -->
+    <thead>
+      <tr>
+      <th><h2>Kotijutut</h2></th>
+      <th><a href="#" class="btn btn-primary">New task</a></th>
+      <th>Priority</th>
+      <th>Category</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Tehtävälistaus -->
+      <tr>
+      <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a></td>
+        
+        <!-- description -->
+        <td>Käy kaupassa</td>
+        
+        <!-- priority -->
+        <td>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        </td>
+
+        <!-- category -->
+        <td><span class="glyphicon glyphicon-euro"></span></td>
+        
+        <!-- deadline (disabled)
+        <td>2016-09-15 16:00</td>
+        -->
+
+        <!-- edit & remove -->
+        <td>
+        <div class="btn-toolbar">
+        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        </td>
+        
+      </tr>
+            
+      <tr>
+      <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a></td>
+        
+        <!-- description -->
+        <td>Kastele kukat</td>
+        
+        <!-- priority -->
+        <td>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        </td>
+
+        <!-- category -->
+        <td><span class="glyphicon glyphicon-heart"></span></td>
+        
+        <!-- deadline (disabled)
+        <td>2016-09-15 16:00</td>
+        -->
+
+        <!-- edit & remove -->
+        <td>
+        <div class="btn-toolbar">
+        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        </td>
+        
+      </tr>
+      
+    </tbody>
+  </table>
+  
+   <table class="table">
+    <!-- header -->
+    <thead>
+      <tr>
+      <th><h2>Projektit</h2></th>
+      <th><a href="#" class="btn btn-primary">New task</a></th>
+      <th>Priority</th>
+      <th>Category</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Tehtävälistaus -->
+      <tr>
+      <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a></td>
+        
+        <!-- description -->
+        <td>Korjaa vahvistin</td>
+        
+        <!-- priority -->
+        <td>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        </td>
+
+        <!-- category -->
+        <td><span class="glyphicon glyphicon-star"></span></td>
+        
+        <!-- deadline (disabled)
+        <td>2016-09-15 16:00</td>
+        -->
+
+        <!-- edit & remove -->
+        <td>
+        <div class="btn-toolbar">
+        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        </td>
+        
+      </tr>
+            
+      <tr>
+      <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a></td>
+        
+        <!-- description -->
+        <td>Osta juotostinaa</td>
+        
+        <!-- priority -->
+        <td>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        <span class="glyphicon glyphicon-asterisk"></span>
+        </td>
+
+        <!-- category -->
+        <td><span class="glyphicon glyphicon-euro"></span></td>
+        
+        <!-- deadline (disabled)
+        <td>2016-09-15 16:00</td>
+        -->
+
+        <!-- edit & remove -->
+        <td>
+        <div class="btn-toolbar">
+        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        </td>
+        
+      </tr>
+      
+    </tbody>
+  </table>
 {% endblock %}
