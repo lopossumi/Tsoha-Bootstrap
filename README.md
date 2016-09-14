@@ -26,3 +26,16 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 * Ota PostgreSQL-tietokantapalvelin käyttöön
 * Luo SSH-avain
 - [x] Rekisteröidy labtooliin.
+
+## TODO: Viikko 2
+
+- [ ] Suunnittele käyttöliittymäsi ja toteuta niistä staattiset HTML-sivut. Muista lisätä linkit toteuttamiisi sivuihin reposi README.md-tiedostoon. (1,5p)
+* Suunnittele etusivu
+* Suunnittele listaussivut
+* Suunnittele muokkaus- ja esittelysivut
+- [ ] Ota tietokanta käyttöön ja dokumentoi se. (1,5p)
+* Lisää dokumentaatioon järjestelmän tietosisältö osio ja relaatiotietokantakaavio
+* Lisää tietokantataulujen pystytyslauseet create_tables.sql-tiedostoon
+* Lisää tietokantataulujen poistolauseet drop_tables.sql-tiedostoon
+* Lisää testidatan lisäyslauseet add_test_data.sql-tiedostoon
+- [ ] Pushaa kaikki tekämäsi muutokset repoosi!
