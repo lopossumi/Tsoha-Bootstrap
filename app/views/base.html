@@ -37,7 +37,20 @@
 
     <!-- right -->
     <ul class="nav navbar-nav navbar-right">
+	    <!--
       <li><p class="navbar-btn"><a href="#" class="btn btn-primary">Add todo-list</a></p></li>
+	    -->
+      <li><p class="navbar-btn">
+	      <a href="#" class="btn btn-primary" 
+		   data-toggle="popover"
+		   data-content='
+     <form>
+	     <label for="newListName">New list name:</label>
+	     <input id="newListName" type="text"/>
+	     <p><a href="#" class="btn btn-primary">Save</a></p>
+     </form>'
+		   data-html="true"
+		   data-placement="bottom">Add todo-list</a></p></li>
     </ul>
   </div>
   </nav>
@@ -56,6 +69,13 @@
 
       <!-- Oma skriptitiedostomme -->
       <script src="{{base_path}}/assets/js/site.js"></script>
+
+      <!-- Enable popovers -->
+      <script>
+	$(document).ready(function(){
+		$('[data-toggle="popover"]').popover();
+	});
+      </script>
     {% endblock %}
   </body>
 </html>
