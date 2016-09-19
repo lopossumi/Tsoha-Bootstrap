@@ -19,3 +19,37 @@ Lenni Latva-Laho, viherkasvien kauhu, kuulee järjestelmästä ensimmäistä ker
 Ruuhkavuosia elävä pariskunta Unto Unelma-Vävy ja Vieno Vainoke käyttävät järjestelmää yhteiseen taloudenpitoon. Vieno luo kauppalistan ja jakaa sen Untolle, joka kuittaa kauppareissun tehdyksi palatessaan toimistolta.
 
 Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan käyttää sitä autobiografista levykokoelmaansa varten. Ville pitää ohjelman luokittelu- ja järjestelyominaisuuksista, ja merkitsee jokaisen rakkaan vinyylilevynsä omaksi ”tehtäväkseen” luokitellen ne genren ja hankkimispäivämäärän mukaan. Villeä ei haittaa, että ohjelman tietokantaa ei missään tapauksessa ole suunniteltu levykokoelman ylläpitoon.
+
+### Järjestelmän tietosisältö
+
+**Human**
+----
+Username  | varchar(20)  | Käyttäjätunnus
+Password  | varchar(50)  | Salasana
+Fullname  | varchar(100) | Koko nimi (näkyy muille käyttäjille)
+Email     | varchar(100) | Sähköpostiosoite aktivointia varten
+Private   | boolean      | Piilotetaanko käyttäjä ystävähausta
+CreatedAt | datetime     | 
+
+Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
+
+**TaskList**
+----
+Listname | varchar(50) | Listan nimi
+
+Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen luoja säilyy listan omistajana.
+
+**Task**
+----
+Description   | varchar(100) | Tehtävän kuvaus
+Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
+Duedate       | datetime     | Tehtävän deadline
+Priority      | integer      | Tehtävän tärkeysaste (1...4)
+
+Todo-listan alkio, suoritettava tehtävä.
+
+**Category**
+-----
+Description   | varchar(50)  | Kategorian kuvaus
+
+Tehtävälle annettava luokka.
