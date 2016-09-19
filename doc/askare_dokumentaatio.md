@@ -7,7 +7,7 @@ Askare on helppokäyttöinen usean käyttäjän muistilistaohjelma, johon voit l
 
 Ohjelma soveltuu esimerkiksi yksityishenkilöiden muistikirjaksi, perheiden taloudenpitoon ja pienille projekteille.
 
-Järjestelmä käyttää Apache-, PostgreSQL- ja PHP-teknologioita.
+Järjestelmä käyttää Apache-, PostgreSQL- ja PHP-teknologioita ja vaatii selaimelta Javascript-tuen.
 
 ## 2. Yleiskuva järjestelmästä
 Käyttäjät ovat järjestelmän sisällä tasa-arvoisia: kuka tahansa voi luoda, muokata, poistaa ja jakaa askareita.
@@ -22,7 +22,7 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 
 ### Järjestelmän tietosisältö
 
-**Human**
+#### Tietokohde: Human
 
 | Attribuutti | Arvojoukko   | Kuvaus
 | -------     | -----------  | ------------------------------------  |
@@ -35,7 +35,7 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 
 Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
 
-**TaskList**
+#### Tietokohde: TaskList
 
 | Attribuutti | Arvojoukko  | Kuvaus
 | -------     | ----------- | ---------------  |
@@ -43,7 +43,7 @@ Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostios
 
 Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen luoja säilyy listan omistajana.
 
-**Task**
+#### Tietokohde: Task
 
 | Attribuutti   | Arvojoukko   | Kuvaus
 | -------       | -----------  | ---------------  |
@@ -54,10 +54,20 @@ Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen lu
 
 Todo-listan alkio, suoritettava tehtävä.
 
-**Category**
+#### Tietokohde: Category
 
 | Attribuutti   | Arvojoukko   | Kuvaus
 | -------       | -----------  | ---------------  |
 | Description   | varchar(50)  | Kategorian kuvaus
 
 Tehtävälle annettava luokittelumääre.
+
+
+### Järjestelmän käyttöohje
+
+#### Staattiset sivut
+
+Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Painamalla login-nappia pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Voit avata uuden tehtävän luomiseen käytettävän näkymän painamalla "New task" -nappia jommankumman listan kohdalla.
+
+![GitHub Logo](/images/logo.png)
+
