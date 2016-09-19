@@ -6,7 +6,7 @@
 Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
 * [Linkki sovellukseen](https://milo.users.cs.helsinki.fi/askare/)
-* [Linkki dokumentaatioon](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md.pdf)
+* Linkki dokumentaatioon: [MD](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md) [PDF](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md.pdf)
 
 ## Työn aihe
 
@@ -29,13 +29,13 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
 ## TODO: Viikko 2
 
-- [ ] Suunnittele käyttöliittymäsi ja toteuta niistä staattiset HTML-sivut. Muista lisätä linkit toteuttamiisi sivuihin reposi README.md-tiedostoon. (1,5p)
+- [x] Suunnittele käyttöliittymäsi ja toteuta niistä staattiset HTML-sivut. Muista lisätä linkit toteuttamiisi sivuihin reposi README.md-tiedostoon. (1,5p)
 * Suunnittele etusivu
 * Suunnittele listaussivut
 * Suunnittele muokkaus- ja esittelysivut
-- [ ] Ota tietokanta käyttöön ja dokumentoi se. (1,5p)
+- [x] Ota tietokanta käyttöön ja dokumentoi se. (1,5p)
 * Lisää dokumentaatioon järjestelmän tietosisältö osio ja relaatiotietokantakaavio
 * Lisää tietokantataulujen pystytyslauseet create_tables.sql-tiedostoon
 * Lisää tietokantataulujen poistolauseet drop_tables.sql-tiedostoon
 * Lisää testidatan lisäyslauseet add_test_data.sql-tiedostoon
-- [ ] Pushaa kaikki tekämäsi muutokset repoosi!
+- [x] Pushaa kaikki tekämäsi muutokset repoosi!
