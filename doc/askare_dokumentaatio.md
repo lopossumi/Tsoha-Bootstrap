@@ -23,14 +23,16 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 ### Järjestelmän tietosisältö
 
 **Human**
-|----------|--------------|---------------------------------------|
-|Username  | varchar(20)  | Käyttäjätunnus                        |
-|Password  | varchar(50)  | Salasana                              |
-|Fullname  | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
-|Email     | varchar(100) | Sähköpostiosoite aktivointia varten   |
-|Private   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
-|CreatedAt | datetime     |                                       |
-|----------|--------------|---------------------------------------|
+
+| Attribuutti | Arvojoukko | Kuvaus
+| -------   | -----------  | ------------------------------------  |
+| Username  | varchar(20)  | Käyttäjätunnus                        |
+| Password  | varchar(50)  | Salasana                              |
+| Fullname  | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
+| Email     | varchar(100) | Sähköpostiosoite aktivointia varten   |
+| Private   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
+| CreatedAt | datetime     |                                       |
+| --------- | ------------ | -----------------------------------  |
 
 Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
 
