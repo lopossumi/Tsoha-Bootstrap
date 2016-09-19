@@ -24,35 +24,40 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 
 **Human**
 
-| Attribuutti | Arvojoukko | Kuvaus
-| -------   | -----------  | ------------------------------------  |
-| Username  | varchar(20)  | Käyttäjätunnus                        |
-| Password  | varchar(50)  | Salasana                              |
-| Fullname  | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
-| Email     | varchar(100) | Sähköpostiosoite aktivointia varten   |
-| Private   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
-| CreatedAt | datetime     |                                       |
-| --------- | ------------ | -----------------------------------  |
+| Attribuutti | Arvojoukko   | Kuvaus
+| -------     | -----------  | ------------------------------------  |
+| Username    | varchar(20)  | Käyttäjätunnus                        |
+| Password    | varchar(50)  | Salasana                              |
+| Fullname    | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
+| Email       | varchar(100) | Sähköpostiosoite aktivointia varten   |
+| Private     | boolean      | Piilotetaanko käyttäjä ystävähausta   |
+| CreatedAt   | datetime     |                                       |
 
 Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
 
 **TaskList**
-----
-Listname | varchar(50) | Listan nimi
+
+| Attribuutti | Arvojoukko  | Kuvaus
+| -------     | ----------- | ---------------  |
+| Listname    | varchar(50) | Listan nimi      |
 
 Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen luoja säilyy listan omistajana.
 
 **Task**
-----
-Description   | varchar(100) | Tehtävän kuvaus
-Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
-Duedate       | datetime     | Tehtävän deadline
-Priority      | integer      | Tehtävän tärkeysaste (1...4)
+
+| Attribuutti   | Arvojoukko   | Kuvaus
+| -------       | -----------  | ---------------  |
+| Description   | varchar(100) | Tehtävän kuvaus
+| Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
+| Duedate       | datetime     | Tehtävän deadline
+| Priority      | integer      | Tehtävän tärkeysaste (1...4)
 
 Todo-listan alkio, suoritettava tehtävä.
 
 **Category**
------
-Description   | varchar(50)  | Kategorian kuvaus
 
-Tehtävälle annettava luokka.
+| Attribuutti   | Arvojoukko   | Kuvaus
+| -------       | -----------  | ---------------  |
+| Description   | varchar(50)  | Kategorian kuvaus
+
+Tehtävälle annettava luokittelumääre.
