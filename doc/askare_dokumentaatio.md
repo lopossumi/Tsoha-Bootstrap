@@ -16,11 +16,11 @@ Käyttäjät ovat järjestelmän sisällä tasa-arvoisia: kuka tahansa voi luoda
 
 Lenni Latva-Laho, viherkasvien kauhu, kuulee järjestelmästä ensimmäistä kertaa sosiaalisessa mediassa ja arvelee sen soveltuvan mainiosti arkipäiväisten asioiden muistamiseen. Lenni surffaa aloitussivulle, luo uuden käyttäjätunnuksen ja saa vahvistuslinkin sähköpostitse. Hän luo ensimmäisen askareensa, ”kastele kukat”, ja asettaa sen toistuvaksi tehtäväksi prioriteetilla Erittäin Tärkeä.
 
-Ruuhkavuosia elävä pariskunta Unto Unelma-Vävy ja Vieno Vainoke käyttävät järjestelmää yhteiseen taloudenpitoon. Vieno luo kauppalistan ja jakaa sen Untolle, joka kuittaa kauppareissun tehdyksi palatessaan toimistolta.
-
 Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan käyttää sitä autobiografista levykokoelmaansa varten. Ville pitää ohjelman luokittelu- ja järjestelyominaisuuksista, ja merkitsee jokaisen rakkaan vinyylilevynsä omaksi ”tehtäväkseen” luokitellen ne genren ja hankkimispäivämäärän mukaan. Villeä ei haittaa, että ohjelman tietokantaa ei missään tapauksessa ole suunniteltu levykokoelman ylläpitoon.
 
 ### Järjestelmän tietosisältö
+
+![Tietosisältö](askare_kasitekaavio.png)
 
 #### Tietokohde: Human
 
@@ -41,7 +41,7 @@ Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostios
 | -------     | ----------- | ---------------  |
 | Listname    | varchar(50) | Listan nimi      |
 
-Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen luoja säilyy listan omistajana.
+Tehtävälista. Käyttäjä voi luoda useita tehtävälistoja, joista jokainen voi sisältää useita tehtäviä. 
 
 #### Tietokohde: Task
 
@@ -52,7 +52,7 @@ Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen lu
 | Priority      | integer      | Tehtävän tärkeysaste (Low...Highest)
 | Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
 
-Todo-listan alkio, suoritettava tehtävä.
+Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prioriteetin (Low, **Normal**, High, Highest) ja useita luokkia. Deadline ilmaistaan jäljelläolevana aikana, mutta sen määrittäminen ei ole pakollista.
 
 #### Tietokohde: Category
 
@@ -61,7 +61,7 @@ Todo-listan alkio, suoritettava tehtävä.
 | Description   | varchar(50)  | Kategorian kuvaus
 | Symbol        | integer      | Kategorian tunnus
 
-Tehtävälle annettava luokittelumääre, voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Symboli valitaan annetusta joukosta.
+Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli valitaan annetusta kirjastosta.
 
 ![Tietokantakaavio](askare_database.png)
 
@@ -71,4 +71,4 @@ Tehtävälle annettava luokittelumääre, voi olla useita per tehtävä. Luokitt
 
 Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Painamalla login-nappia pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Voit avata uuden tehtävän luomiseen käytettävän näkymän painamalla "New task" -nappia jommankumman listan kohdalla.
 
-
+Tehtävälistojen jakaminen käyttäjien kesken toteutetaan mikäli aikaa riittää.
