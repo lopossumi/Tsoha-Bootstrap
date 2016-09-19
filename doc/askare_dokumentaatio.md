@@ -30,8 +30,8 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 | Password    | varchar(50)  | Salasana                              |
 | Fullname    | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
 | Email       | varchar(100) | Sähköpostiosoite aktivointia varten   |
-| Private     | boolean      | Piilotetaanko käyttäjä ystävähausta   |
-| CreatedAt   | datetime     |                                       |
+| IsPrivate   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
+| IsAdmin     | boolean      | Pääkäyttäjä (voi muokata käyttäjiä)   |
 
 Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
 
@@ -48,9 +48,9 @@ Tehtävälista. Voidaan jakaa muiden käyttäjien kanssa, mutta alkuperäinen lu
 | Attribuutti   | Arvojoukko   | Kuvaus
 | -------       | -----------  | ---------------  |
 | Description   | varchar(100) | Tehtävän kuvaus
+| Duedate       | timestamp    | Tehtävän deadline
+| Priority      | integer      | Tehtävän tärkeysaste (Low...Highest)
 | Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
-| Duedate       | datetime     | Tehtävän deadline
-| Priority      | integer      | Tehtävän tärkeysaste (1...4)
 
 Todo-listan alkio, suoritettava tehtävä.
 
@@ -59,9 +59,11 @@ Todo-listan alkio, suoritettava tehtävä.
 | Attribuutti   | Arvojoukko   | Kuvaus
 | -------       | -----------  | ---------------  |
 | Description   | varchar(50)  | Kategorian kuvaus
+| Symbol        | integer      | Kategorian tunnus
 
-Tehtävälle annettava luokittelumääre.
+Tehtävälle annettava luokittelumääre, voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Symboli valitaan annetusta joukosta.
 
+![Tietokantakaavio](askare_database.png)
 
 ### Järjestelmän käyttöohje
 
@@ -69,5 +71,4 @@ Tehtävälle annettava luokittelumääre.
 
 Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Painamalla login-nappia pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Voit avata uuden tehtävän luomiseen käytettävän näkymän painamalla "New task" -nappia jommankumman listan kohdalla.
 
-![GitHub Logo](/images/logo.png)
 
