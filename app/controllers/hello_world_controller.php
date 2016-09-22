@@ -1,7 +1,5 @@
 <?php
 
-require 'app/models/human.php';
-
 class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -23,5 +21,12 @@ class HelloWorldController extends BaseController{
 
         Kint::dump($humans);
         Kint::dump($human);
+
+        $task = Task::find(1);
+        $tasks = Task::all();
+
+        Kint::dump($task);
+        Kint::dump($tasks);
+
     }
 }
