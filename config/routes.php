@@ -13,3 +13,6 @@ $routes->get('/sandbox', function() {
     HelloWorldController::sandbox();
 });
 
+$routes->get('/tasklist_test', function(){
+    TaskListController::index();
+});
