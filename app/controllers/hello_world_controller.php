@@ -1,20 +1,27 @@
 <?php
 
-  class HelloWorldController extends BaseController{
+require 'app/models/human.php';
+
+class HelloWorldController extends BaseController{
 
     public static function index(){
-   	  View::make('login.html');
+        View::make('login.html');
     }
 
     public static function home(){
-   	  View::make('home.html');
+        View::make('home.html');
     }
 
     public static function newtask(){
-   	  View::make('newtask.html');
+        View::make('newtask.html');
     }
 
     public static function sandbox(){
-      echo 'Hello World!';
+        echo 'Hello World!';
+        $human = Human::find(1);
+        $humans = Human::all();
+
+        Kint::dump($humans);
+        Kint::dump($human);
     }
-  }
+}
