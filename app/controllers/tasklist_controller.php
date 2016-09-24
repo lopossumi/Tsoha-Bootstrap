@@ -1,7 +1,18 @@
 <?php
 class TaskListController extends BaseController{
     public static function index(){
-        $tasks = Task::all();
-        View::make('tasklist.html', array('tasks' => $tasks));
+        //testing with spede
+        $human = Human::find(1);
+
+        $myTaskLists = TaskList::all($human->id);
+        
+        $myTasks = Task::all($human->id);
+
+        View::make('tasklist.html', array('myTasks' => $myTasks, 'myTaskLists' => $myTaskLists));
     }
+
+    public static function store(){
+        $params = $_POST;
+        $task = new Task;
+    }    
 }

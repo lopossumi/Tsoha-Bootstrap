@@ -8,13 +8,13 @@ class Human extends BaseModel{
 
     private static function rowToHuman($row){
         $human = new Human(array(
-            'id' => $row['id'],
-            'username' => $row['username'],
-            'fullname' => $row['fullname'],
-            'password' => $row['password'],
-            'email' => $row['email'],
+            'id'        => $row['id'],
+            'username'  => $row['username'],
+            'fullname'  => $row['fullname'],
+            'password'  => $row['password'],
+            'email'     => $row['email'],
             'isprivate' => $row['isprivate'],
-            'isadmin' => $row['isadmin']
+            'isadmin'   => $row['isadmin']
         ));
         return $human;
     }

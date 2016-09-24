@@ -30,8 +30,9 @@ class Task extends BaseModel{
         return null;
     }
 
-    public static function all(){
-        $query = DB::connection()->prepare('SELECT * FROM task');
+    public static function all($id_owner){
+        $query = DB::connection()->prepare('SELECT * FROM Task WHERE id_tasklist IN (SELECT id FROM TaskList WHERE id_owner = :id_owner)');
+        $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
 
