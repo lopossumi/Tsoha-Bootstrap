@@ -11,7 +11,7 @@ class HelloWorldController extends BaseController{
     }
 
     public static function newtask(){
-        View::make('newtask.html');
+        View::make('task/new.html');
     }
 
     public static function sandbox(){

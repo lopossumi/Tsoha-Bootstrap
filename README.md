@@ -39,3 +39,13 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 * Lisää tietokantataulujen poistolauseet drop_tables.sql-tiedostoon
 * Lisää testidatan lisäyslauseet add_test_data.sql-tiedostoon
 - [x] Pushaa kaikki tekämäsi muutokset repoosi!
+
+## TODO: Viikko 3
+
+- [ ] Toteuta sovellukseesi vähintään yksi malliluokka, jossa on (1,5p)
+- [x] kaikki tietokohteen oliot tietokannasta hakeva metodi (esim. all)
+- [ ] tietyllä id:llä varustetun tietokohteen olion tietokannasta hakeva metodi (esim. find)
+- [ ] tietokohteen olion tietokantaan lisäävä metodi (esim. save).
+- [ ] Toteuta malliasi käyttämään kontrolleriin metodit, jotka esittävät tietokohteen listaus-, esittely- ja lisäysnäkymän. Toteuta myös kontrolleriisi metodi, joka mahdollistaa tietokohteen olion lisäämisen tietokantaan käyttäjän lähettämän lomakkeen tiedoilla. (1,5p)
+- [ ] Kirjoita koodikatselmointi (vapaaehtoinen). (0-2p)
+- [ ] Pushaa kaikki tekämäsi muutokset repoosi!
