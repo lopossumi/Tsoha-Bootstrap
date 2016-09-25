@@ -1,20 +1,21 @@
 <?php
 
 class Task extends BaseModel{
-    public $id, $id_tasklist, $description, $duedate, $priority, $status;
+    public $id, $id_tasklist, $description, $duedate, $priority, $status, $categories;
     public function __construct($attributes){
         parent::__construct($attributes);
     }
 
     private static function rowToTask($row){
         $task = new Task(array(
-            'id' => $row['id'],
-            'id_tasklist' => $row['id_tasklist'],
-            'description' => $row['description'],
-            'duedate' => $row['duedate'],
-            'priority' => $row['priority'],
-            'status' => $row['status']
+            'id'            => $row['id'],
+            'id_tasklist'   => $row['id_tasklist'],
+            'description'   => $row['description'],
+            'duedate'       => $row['duedate'],
+            'priority'      => $row['priority'],
+            'status'        => $row['status']
         ));
+        $task->categories = Category::allByTask($row['id']);
         return $task;
     }
 

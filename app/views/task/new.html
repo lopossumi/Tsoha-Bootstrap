@@ -42,14 +42,14 @@
 
   <div class="form-group">
     <label for="categories">Categories:</label>
-    <select multiple class="form-control" id="categories">
-      <option>Home</option>
-      <option>Shopping</option>
-      <option>Work</option>
+    <select multiple class="form-control" name="category[]">
+    <!-- TODO: how the hell do I show glyphicons in option text? -->
+      {% for category in myCategories %}
+      <option value="{{category.id}}">{{category.description}}</option>
+      {% endfor %}
     </select>
   </div>
 
   <button type="submit" class="btn btn-primary">Create task</button>
-
 
 {% endblock %}
