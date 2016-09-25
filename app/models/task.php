@@ -65,10 +65,14 @@ class Task extends BaseModel{
         //$query->bindValue(':duedate',       $this->duedate,     PDO::PARAM_DATE); check PDO
         $query->bindValue(':priority',      $this->priority,    PDO::PARAM_INT);
         $query->bindValue(':status',        $this->status,      PDO::PARAM_INT);
-
         $query->execute();
 
         $row = $query->fetch();
         $this->id = $row['id'];
+
+        // tallenna liitostauluun kategoriat
+        foreach ($this->categories as $id_category) {
+            Category::insert($this->id, $id_category);
+        }
     }
 }

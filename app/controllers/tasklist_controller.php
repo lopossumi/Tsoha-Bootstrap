@@ -22,9 +22,10 @@ class TaskListController extends BaseController{
             //'duedate' => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
-        //$task->save();
-        //Redirect::to('/index', array('message' => 'Task added!'));
-        Kint::dump($params);
+        $task->categories = $params['categories'];
+        $task->save();
+        Redirect::to('/index', array('message' => 'Task added!'));
+        //Kint::dump($params);
     }
 
     public static function newTask(){

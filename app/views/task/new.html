@@ -42,7 +42,7 @@
 
   <div class="form-group">
     <label for="categories">Categories:</label>
-    <select multiple class="form-control" name="category[]">
+    <select multiple class="form-control" name="categories[]">
     <!-- TODO: how the hell do I show glyphicons in option text? -->
       {% for category in myCategories %}
       <option value="{{category.id}}">{{category.description}}</option>

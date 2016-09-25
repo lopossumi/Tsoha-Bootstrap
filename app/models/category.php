@@ -43,4 +43,23 @@ class Category extends BaseModel{
         }
         return $categories;
     }
+
+    public static function insert($id_task, $id_category){
+    	$query = DB::connection()->prepare('
+    		SELECT * FROM TaskCategory 
+    		WHERE id_task = :id_task AND id_category = :id_category 
+    		LIMIT 1');
+        $query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
+        $query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+        $query->execute();
+        $row = $query->fetchAll();
+
+        if (!$row){
+    		$query = DB::connection()->prepare('
+    			INSERT INTO TaskCategory (id_task, id_category) VALUES (:id_task, :id_category)');
+        		$query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
+        		$query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+ 		    	$query->execute();
+        }
+    }
 }
