@@ -47,5 +47,5 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 - [x] tietyllä id:llä varustetun tietokohteen olion tietokannasta hakeva metodi (esim. find)
 - [x] tietokohteen olion tietokantaan lisäävä metodi (esim. save).
 - [x] Toteuta malliasi käyttämään kontrolleriin metodit, jotka esittävät tietokohteen listaus-, esittely- ja lisäysnäkymän. Toteuta myös kontrolleriisi metodi, joka mahdollistaa tietokohteen olion lisäämisen tietokantaan käyttäjän lähettämän lomakkeen tiedoilla. (1,5p)
-- [ ] Kirjoita koodikatselmointi (vapaaehtoinen). (0-2p)
-- [ ] Pushaa kaikki tekämäsi muutokset repoosi!
+- [x] Kirjoita koodikatselmointi (vapaaehtoinen). (0-2p)
+- [x] Pushaa kaikki tekämäsi muutokset repoosi!
