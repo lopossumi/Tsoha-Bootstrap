@@ -13,6 +13,20 @@ class TaskListController extends BaseController{
 
     public static function store(){
         $params = $_POST;
-        $task = new Task;
-    }    
+
+        $task = new Task(array(
+            'description' => $params['description'],
+            'id_tasklist' => $params['id_tasklist'],
+            //'duedate' => $params['duedate'],
+            'priority' => $params['priority'],
+            'status' => '0'
+            ));
+        $task->save();
+        Redirect::to('/index', array('message' => 'Task added!'));
+    }
+
+    public static function newTask(){
+        $human = Human::find(1);
+        View::make('task/new.html', array('myTaskLists' => TaskList::all($human->id)));
+    }
 }
