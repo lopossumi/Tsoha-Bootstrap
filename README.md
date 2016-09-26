@@ -12,34 +12,6 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
 [Aihekuvaus: Muistilista](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Muistilista.html)
 
-## TODO: Viikko 1
-
-- [x] Valitse harjoitustyösi aihe (katso aihe-ehdotukset, jos aiheen valinta tuottaa vaikeuksia). (0,5p)
-- [x] Pystytä versionhallinta. (0,5p)
-* Luo repositorio GitHubiin, ja lisää README.md-tiedostoon aiheesi kuvaus tai linkki valmiiseen aiheeseen, linkki sovellukseesi ja linkki dokumentaatioosi (linkki kansiossa doc sijaitsevaan pdf-tiedostoon).
-* Salli Issuet repositoriastasi
-- [x] Dokumentoi perusasiat doc-kansioon yhteen pdf-tiedostoon. (1p)
-* Lisää johdanto
-* Lisää käyttötapaukset
-- [x] Pystytä työympäristö. (1p)
-* Ota PHP-tuki käyttöön
-* Ota PostgreSQL-tietokantapalvelin käyttöön
-* Luo SSH-avain
-- [x] Rekisteröidy labtooliin.
-
-## TODO: Viikko 2
-
-- [x] Suunnittele käyttöliittymäsi ja toteuta niistä staattiset HTML-sivut. Muista lisätä linkit toteuttamiisi sivuihin reposi README.md-tiedostoon. (1,5p)
-* Suunnittele etusivu
-* Suunnittele listaussivut
-* Suunnittele muokkaus- ja esittelysivut
-- [x] Ota tietokanta käyttöön ja dokumentoi se. (1,5p)
-* Lisää dokumentaatioon järjestelmän tietosisältö osio ja relaatiotietokantakaavio
-* Lisää tietokantataulujen pystytyslauseet create_tables.sql-tiedostoon
-* Lisää tietokantataulujen poistolauseet drop_tables.sql-tiedostoon
-* Lisää testidatan lisäyslauseet add_test_data.sql-tiedostoon
-- [x] Pushaa kaikki tekämäsi muutokset repoosi!
-
 ## TODO: Viikko 3
 
 - [x] Toteuta sovellukseesi vähintään yksi malliluokka, jossa on (1,5p)
@@ -49,3 +21,17 @@ Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 - [x] Toteuta malliasi käyttämään kontrolleriin metodit, jotka esittävät tietokohteen listaus-, esittely- ja lisäysnäkymän. Toteuta myös kontrolleriisi metodi, joka mahdollistaa tietokohteen olion lisäämisen tietokantaan käyttäjän lähettämän lomakkeen tiedoilla. (1,5p)
 - [x] Kirjoita koodikatselmointi (vapaaehtoinen). (0-2p)
 - [x] Pushaa kaikki tekämäsi muutokset repoosi!
+
+## TODO: Viikko 4
+
+- [ ] Lisää malliluokkaasi metodi tietokohteen olion muokkaamiselle (esim. update)- ja poistolle (esim. destroy). (1p)
+- [ ] Lisää käyttäjälle mahdollisuus muokkaukseen ja poistoon lisäämällä kontrolleriin tarvittavat medotit ja toteuttamalla tarvittavat näkymät. Muokkausnäkymä on luultavasti lisäysnäkymää muistuttava lomake ja poisto voi tapahtua painiketta painamalla esimerkiksi tietokohteen esittely- tai listaussivulla. (0,5p)
+- [ ] Lisää malliisi tarvittavat validaattorit ja estä kontrollereissa virheellisten syötteiden lisääminen tietokantaan. Muista näyttää lomakkeissa virhetilanteissa virheilmoitukset ja täyttää kentät käyttäjän antamilla syötteillä. (0,5p)
+- [ ] Toteuta malliluokka sovelluksen käyttäjälle ja toteuta käyttäjän kirjautuminen. Toteuta get_user_logged_in-metodi ja käytä tarvittaessa kirjautuneen käyttäjän tietoa hyväksi näkymissä ja malleissa. (0,5p)
+- [ ] Kirjoita alustava käynnistys- / käyttöohje dokumentaatioosi. Lisää myös reposi README.md tiedostoon käyttäjätunnus ja salasana, jolla ohjaaja voi kirjautua sisään sovellukseesi. (0.5p)
+- [ ] Pushaa kaikki tekämäsi muutokset repoosi!
+
+## TODO: Muut
+
+- [ ] Vie omat skriptit site.js -tiedostoon
+- [ ] Datetimepickerin output käyttöön
