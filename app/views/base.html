@@ -72,10 +72,13 @@
 
       <!-- Enable popovers -->
       <script>
-	$(document).ready(function(){
-		$('[data-toggle="popover"]').popover();
-	});
+	    $(document).ready(function(){
+		    $('[data-toggle="popover"]').popover();
+	    });
       </script>
+      <!-- Datetime picker -->
+      <script src="{{base_path}}/vendor/moment.min.js"></script>
+      <script src="{{base_path}}/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
     {% endblock %}
   </body>
 </html>
