@@ -68,7 +68,11 @@
         <td>{{task.priority}}</td>
 
         <!-- category -->
-        <td>????</td>
+        <td>
+            {% for category in task.categories %}
+            <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+            {% endfor %}
+        </td>
 
         <!-- edit & remove -->
         <td>

@@ -1,9 +1,7 @@
 <?php
 
-//HelloworldController
-$routes->get('/',               function() { HelloWorldController::index();     });
-$routes->get('/home',           function() { HelloWorldController::home();      });
-$routes->get('/sandbox',        function() { HelloWorldController::sandbox();   });
+//LoginController
+$routes->get('/',               function() { LoginController::login();     });
 
 //TaskListController
 $routes->get('/newtask',        function(){ TaskListController::newtask();      });
