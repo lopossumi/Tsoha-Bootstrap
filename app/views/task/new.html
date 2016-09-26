@@ -5,53 +5,18 @@
 <h2>New task</h2>
 <form method="post" action="{{base_path}}/task">
 
-<<<<<<< HEAD
     <div class="form-group">
         <label>Task list:</label>
-        <select class="form-control">
-            <option>Kotijutut</option>
-            <option>Projektit</option>
+        <select class="form-control" name="id_tasklist">
+            {% for taskList in myTaskLists %}
+            <option value="{{taskList.id}}">{{taskList.name}}</option>
+            {% endfor %}
         </select>
-=======
-  <div class="form-group">
-    <label>Task list:</label>
-    <select class="form-control" name="id_tasklist">
-      {% for taskList in myTaskLists %}
-      <option value="{{taskList.id}}">{{taskList.name}}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <input type="text" class="form-control" name="description">
-  </div>
-
-  <!-- TODO: Duedate selector -->
-
-  <div class="form-group">
-    <label for="priority">Priority:</label>
-    <br>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-info">
-        <input type="radio" name="priority" id="low" value="1">Low
-      </label>
-      <label class="btn btn-success active">
-        <input type="radio" name="priority" id="normal" value="2" checked>Normal
-      </label>
-      <label class="btn btn-warning">
-        <input type="radio" name="priority" id="high" value="3">High
-      </label>
-      <label class="btn btn-danger">
-        <input type="radio" name="priority" id="highest" value="4">Highest
-      </label>
->>>>>>> 1aa791f6fcbf95d4d7a94e478dde8375122177ac
     </div>
 
-<<<<<<< HEAD
     <div class="form-group">
         <label for="description">Description:</label>
-        <input type="text" class="form-control" id="description">
+        <input type="text" class="form-control" name="description">
     </div>
 
     <div class="form-group">
@@ -59,16 +24,16 @@
         <br>
         <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-info">
-                <input type="radio" name="options" id="priority">Low
+                <input type="radio" name="priority" id="low" value="1">Low
             </label>
             <label class="btn btn-success active">
-                <input type="radio" name="options" id="priority" checked>Normal
+                <input type="radio" name="priority" id="normal" value="2" checked>Normal
             </label>
             <label class="btn btn-warning">
-                <input type="radio" name="options" id="priority">High
+                <input type="radio" name="priority" id="high" value="3">High
             </label>
             <label class="btn btn-danger">
-                <input type="radio" name="options" id="priority">Highest
+                <input type="radio" name="priority" id="highest" value="4">Highest
             </label>
         </div>
     </div>
@@ -81,37 +46,23 @@
             </span>
         </div>
     </div>
-    <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-        });
-    </script>
 
     <div class="form-group">
         <label for="categories">Categories:</label>
-        <select multiple class="form-control" id="categories">
-            <option>Home</option>
-            <option>Shopping</option>
-            <option>Work</option>
+        <select multiple class="form-control" name="categories[]">
+            <!-- TODO: how the hell do I show glyphicons in option text? -->
+            {% for category in myCategories %}
+            <option value="{{category.id}}">{{category.description}}</option>
+            {% endfor %}
         </select>
     </div>
-=======
-  <div class="form-group">
-    <label for="categories">Categories:</label>
-    <select multiple class="form-control" name="categories[]">
-    <!-- TODO: how the hell do I show glyphicons in option text? -->
-      {% for category in myCategories %}
-      <option value="{{category.id}}">{{category.description}}</option>
-      {% endfor %}
-    </select>
-  </div>
->>>>>>> 1aa791f6fcbf95d4d7a94e478dde8375122177ac
 
     <button type="submit" class="btn btn-primary">Create task</button>
 
-<<<<<<< HEAD
-
-    {% endblock %}
-=======
+</form>
+<script type="text/javascript">
+$(function () {
+        $('#datetimepicker1').datetimepicker();
+        });
+</script>
 {% endblock %}
->>>>>>> 1aa791f6fcbf95d4d7a94e478dde8375122177ac
