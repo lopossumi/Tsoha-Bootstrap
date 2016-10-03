@@ -58,8 +58,8 @@ class Task extends BaseModel{
     }
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Task (id_tasklist, description, priority, status) 
-            VALUES (:id_tasklist, :description, :priority, :status) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Task (id_tasklist, description, duedate, priority, status) 
+            VALUES (:id_tasklist, :description, :duedate, :priority, :status) RETURNING id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
         $query->bindValue(':duedate',       $this->duedate,     PDO::PARAM_STR);

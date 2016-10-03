@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <div class='input-group date' id='duedate'>
-            <input type='text' class="form-control" />
+            <input type='text' class="form-control" name='duedate'/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -60,4 +60,19 @@
     <button type="submit" class="btn btn-primary">Create task</button>
 
 </form>
+
+<!-- Enable popovers and Datetime picker -->
+<script type="text/javascript">
+$(function () {
+        $('#duedate').datetimepicker({
+            sideBySide:true,
+            format:'YYYY-MM-DD HH:mm:ss',
+            //defaultDate: '{{myTask.duedate}}',
+            });
+        });
+$(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+        });
+</script>
+
 {% endblock %}
