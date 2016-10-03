@@ -4,6 +4,10 @@ class TaskListController extends BaseController{
         //testing with spede
         $human = self::get_user_logged_in();
 
+        if(!$human){
+            Redirect::to('/login');
+        }
+
         $myTaskLists = TaskList::all($human->id);
         $myTasks = Task::all($human->id);
 
@@ -44,7 +48,9 @@ class TaskListController extends BaseController{
 
     public static function update($id){
         $params = $_POST;
+        Task::update()
         Kint::dump($params);
+        Kint::dump($id);
     }
 
     public function destroy($id){

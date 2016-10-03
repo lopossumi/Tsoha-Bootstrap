@@ -17,7 +17,7 @@ class LoginController extends BaseController{
             View::make('login.html', array('error' => 'Invalid e-mail or password!', 'email' => $params['email']));
         }else{
             $_SESSION['user'] = $user->id;
-            Redirect::to('/', array('message' => 'Welcome back ' . $user->username . '!'));
+            Redirect::to('/index', array('message' => 'Welcome back ' . $user->username . '!'));
         }
     }
 }
