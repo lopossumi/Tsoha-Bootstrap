@@ -75,4 +75,13 @@ class Task extends BaseModel{
             Category::insert($this->id, $id_category);
         }
     }
+
+    public function update(){
+    }
+
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM Task WHERE id = :id');
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $query->execute();
+    }
 }

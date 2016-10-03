@@ -32,6 +32,6 @@ CREATE TABLE Category(
 );
 
 CREATE TABLE TaskCategory(
-    id_task     INTEGER         REFERENCES Task(id),
-    id_category INTEGER         REFERENCES Category(id)
+    id_task     INTEGER         REFERENCES Task(id) ON DELETE CASCADE,
+    id_category INTEGER         REFERENCES Category(id) ON DELETE CASCADE
 );
