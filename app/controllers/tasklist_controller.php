@@ -2,7 +2,7 @@
 class TaskListController extends BaseController{
     public static function index(){
         //testing with spede
-        $human = Human::find(1);
+        $human = self::get_user_logged_in();
 
         $myTaskLists = TaskList::all($human->id);
         $myTasks = Task::all($human->id);
@@ -17,7 +17,7 @@ class TaskListController extends BaseController{
         $task = new Task(array(
             'description'   => $params['description'],
             'id_tasklist'   => $params['id_tasklist'],
-            //'duedate' => $params['duedate'],
+            'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
         $task->categories = $params['categories'];
@@ -27,14 +27,14 @@ class TaskListController extends BaseController{
     }
 
     public static function newTask(){
-        $human = Human::find(1);
+        $human = self::get_user_logged_in();
         View::make('task/new.html', array(
             'myTaskLists'   => TaskList::all($human->id),
             'myCategories'  => Category::allByOwner($human->id)));
     }
 
     public static function edit($id){
-        $human = Human::find(1);
+        $human = self::get_user_logged_in();
         $task = Task::find($id);
         View::make('task/edit.html', array(
             'myTaskLists'   => TaskList::all($human->id),
@@ -42,7 +42,12 @@ class TaskListController extends BaseController{
             'myTask'        => $task));
     }
 
-    public function remove($id){
+    public static function update($id){
+        $params = $_POST;
+        Kint::dump($params);
+    }
+
+    public function destroy($id){
         Task::destroy($id);
         Redirect::to('/index', array('message' => 'Task removed!'));
     }

@@ -19,6 +19,21 @@
 <!-- Oma tyylitiedostomme -->
 <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
 {% endblock %}
+
+<!-- jQuery -->
+<script src="{{base_path}}/vendor/jquery.min.js"></script>
+
+<!-- Bootstrap (skriptitiedosto) -->
+<script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{base_path}}/vendor/bootstrap/js/collapse.js"></script>
+<script src="{{base_path}}/vendor/bootstrap/js/transition.js"></script>
+
+<!-- Oma skriptitiedostomme -->
+<script src="{{base_path}}/assets/js/site.js"></script>
+<script src="{{base_path}}/vendor/moment.min.js"></script>
+<script src="{{base_path}}/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+
+
 </head>
 
 <body>
@@ -31,7 +46,7 @@
         </div>
         <!-- left -->
         <ul class="nav navbar-nav">
-            <li class="active"><a href="index">My lists</a></li>
+            <li class="active"><a href="{{base_path}}/index">My lists</a></li>
             <li><a href="#">Shared</a></li>
             <li><a href="#">Friends</a></li>
         </ul>
@@ -62,31 +77,7 @@
 </div>
 
 {% block body %}
-<!-- jQuery -->
-<script src="{{base_path}}/vendor/jquery.min.js"></script>
 
-<!-- Bootstrap (skriptitiedosto) -->
-<script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{base_path}}/vendor/bootstrap/js/collapse.js"></script>
-<script src="{{base_path}}/vendor/bootstrap/js/transition.js"></script>
-
-<!-- Oma skriptitiedostomme -->
-<script src="{{base_path}}/assets/js/site.js"></script>
-<script src="{{base_path}}/vendor/moment.min.js"></script>
-<script src="{{base_path}}/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
-
-<!-- Enable popovers and Datetime picker -->
-<script type="text/javascript">
-$(function () {
-        $('#duedate').datetimepicker({
-            sideBySide:true,
-            format:'DD/MM/YYYY HH:mm',
-            });
-        });
-$(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-        });
-</script>
 
 {% endblock %}
 </body>

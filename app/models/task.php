@@ -62,7 +62,7 @@ class Task extends BaseModel{
             VALUES (:id_tasklist, :description, :priority, :status) RETURNING id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
-        //$query->bindValue(':duedate',       $this->duedate,     PDO::PARAM_DATE); check PDO
+        $query->bindValue(':duedate',       $this->duedate,     PDO::PARAM_STR);
         $query->bindValue(':priority',      $this->priority,    PDO::PARAM_INT);
         $query->bindValue(':status',        $this->status,      PDO::PARAM_INT);
         $query->execute();
@@ -76,12 +76,13 @@ class Task extends BaseModel{
         }
     }
 
-    public function update(){
+    public function update($attributes){
+        Kint::dump($attributes);
     }
 
-    public function destroy(){
+    public function destroy($id){
         $query = DB::connection()->prepare('DELETE FROM Task WHERE id = :id');
-        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 }

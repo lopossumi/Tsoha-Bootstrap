@@ -9,4 +9,6 @@ $routes->get('/newtask',        function(){ TaskListController::newtask();      
 $routes->get('/index',          function(){ TaskListController::index();        });
 $routes->post('/task',          function(){ TaskListController::store();        });
 
-$routes->get('/task/:id/edit',  function($id){ TaskListController::edit($id);});
+$routes->get('/task/:id/edit',  function($id){ TaskListController::edit($id);	});
+$routes->post('/task/:id/edit', function($id){ TaskListController::update($id);	});
+$routes->post('/task/:id/destroy', function($id){TaskListController::destroy($id);});

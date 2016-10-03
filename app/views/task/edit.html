@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>Edit task</h2>
-<form method="post" action="{{base_path}}/edit">
+<form method="post" action="{{base_path}}/task/{{myTask.id}}/edit">
 
     <div class="form-group">
         <label>Task list:</label>
@@ -34,7 +34,7 @@
     <div class="form-group">
         <label for="duedate">Due date:</label>
         <div class='input-group date' id='duedate'>
-            <input type='text' class="form-control"/>
+            <input type='text' class="form-control" name='duedate' />
             <!-- <input type='text' class="form-control" value="{{myTask.duedate}}"/> Does not work-->
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
@@ -55,4 +55,19 @@
     <button type="submit" class="btn btn-primary">Save task</button>
 
 </form>
+
+<!-- Enable popovers and Datetime picker -->
+<script type="text/javascript">
+$(function () {
+        $('#duedate').datetimepicker({
+            sideBySide:true,
+            format:'YYYY-MM-DD HH:mm:ss',
+            defaultDate: '{{myTask.duedate}}',
+            });
+        });
+$(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+        });
+</script>
+
 {% endblock %}
