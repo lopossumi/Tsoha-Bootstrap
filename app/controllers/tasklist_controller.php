@@ -24,10 +24,15 @@ class TaskListController extends BaseController{
             'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
-        $task->categories = $params['categories'];
         $task->save();
+
+        // Add categories to junction table
+        if(isset ($params['categories'])){
+            foreach($params['categories'] as $id_category){
+                Category::insert($task->id, $id_category);
+            }
+        }
         Redirect::to('/index', array('message' => 'Task added!'));
-        //Kint::dump($params);
     }
 
     public static function newTask(){
@@ -48,9 +53,21 @@ class TaskListController extends BaseController{
 
     public static function update($id){
         $params = $_POST;
-        Task::update()
-        Kint::dump($params);
-        Kint::dump($id);
+        $task = new Task(array(
+            'description'   => $params['description'],
+            'id_tasklist'   => $params['id_tasklist'],
+            'duedate'       => $params['duedate'],
+            'priority'      => $params['priority'],
+            'status'        => '0'));
+        $task->update($id);
+
+        // Add categories to junction table
+        if(isset ($params['categories'])){
+            foreach($params['categories'] as $id_category){
+                Category::insert($task->id, $id_category);
+            }
+        }
+        Redirect::to('/index', array('message' => 'Task updated!'));
     }
 
     public function destroy($id){

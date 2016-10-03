@@ -14,7 +14,7 @@ class Task extends BaseModel{
             'duedate'       => $row['duedate'],
             'priority'      => $row['priority'],
             'status'        => $row['status']
-        ));
+            ));
         $task->categories = Category::allByTask($row['id']);
         return $task;
     }
@@ -62,22 +62,41 @@ class Task extends BaseModel{
             VALUES (:id_tasklist, :description, :duedate, :priority, :status) RETURNING id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
-        $query->bindValue(':duedate',       $this->duedate,     PDO::PARAM_STR);
+        // If duedate is empty, mark it null (empty string will crash postgresql timestamp)        
+        if($this->duedate){ 
+            $query->bindValue(':duedate', $this->duedate, PDO::PARAM_STR);
+        }else{ 
+            $query->bindValue(':duedate', null, PDO::PARAM_STR);
+        }
         $query->bindValue(':priority',      $this->priority,    PDO::PARAM_INT);
         $query->bindValue(':status',        $this->status,      PDO::PARAM_INT);
         $query->execute();
 
         $row = $query->fetch();
         $this->id = $row['id'];
-
-        // tallenna liitostauluun kategoriat
-        foreach ($this->categories as $id_category) {
-            Category::insert($this->id, $id_category);
-        }
     }
 
-    public function update($attributes){
-        Kint::dump($attributes);
+    public function update($id){
+        $query = DB::connection()->prepare('
+            UPDATE Task SET 
+            id_tasklist=:id_tasklist, 
+            description=:description, 
+            duedate=:duedate, 
+            priority=:priority, 
+            status=:status 
+            WHERE id=:id');
+        $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
+        $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
+        // If duedate is empty, mark it null (empty string will crash postgresql timestamp)        
+        if($this->duedate){ 
+            $query->bindValue(':duedate', $this->duedate, PDO::PARAM_STR);
+        }else{ 
+            $query->bindValue(':duedate', null, PDO::PARAM_STR);
+        }
+        $query->bindValue(':priority',      $this->priority,    PDO::PARAM_INT);
+        $query->bindValue(':status',        $this->status,      PDO::PARAM_INT);
+        $query->bindValue(':id',            $id,                PDO::PARAM_INT);
+        $query->execute();
     }
 
     public function destroy($id){
