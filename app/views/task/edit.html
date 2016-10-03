@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Edit task</h2>
+<form method="post" action="{{base_path}}/edit">
+
+    <div class="form-group">
+        <label>Task list:</label>
+        <select class="form-control" name="id_tasklist">
+            {% for taskList in myTaskLists %}
+            <option value="{{taskList.id}}" {% if taskList.id == myTask.id_taskList %}selected{% endif %}>{{taskList.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" name="description" value="{{myTask.description}}">
+    </div>
+
+    <div class="form-group">
+        <label for="priority">Priority:</label>
+        <br>
+        <div class="btn-group" data-toggle="buttons">
+            {% for i in 1..4 %}
+            {% set priorityText = ['', 'Low', 'Normal', 'High', 'Highest'] %}
+            <label class="btn btn-info{% if myTask.priority == i %} active {% endif %}">
+                <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if myTask.priority == i %} checked {% endif %}>{{priorityText[i]}}</label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="duedate">Due date:</label>
+        <div class='input-group date' id='duedate'>
+            <input type='text' class="form-control"/>
+            <!-- <input type='text' class="form-control" value="{{myTask.duedate}}"/> Does not work-->
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="categories">Categories:</label>
+        <select multiple class="form-control" name="categories[]">
+            <!-- TODO: how the hell do I show glyphicons in option text? -->
+            {% for category in myCategories %}
+            <option value="{{category.id}}">{{category.description}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save task</button>
+
+</form>
+{% endblock %}

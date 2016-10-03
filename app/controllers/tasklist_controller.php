@@ -14,8 +14,6 @@ class TaskListController extends BaseController{
 
     public static function store(){
         $params = $_POST;
-
-        Kint::dump($params);
         $task = new Task(array(
             'description'   => $params['description'],
             'id_tasklist'   => $params['id_tasklist'],
@@ -33,5 +31,19 @@ class TaskListController extends BaseController{
         View::make('task/new.html', array(
             'myTaskLists'   => TaskList::all($human->id),
             'myCategories'  => Category::allByOwner($human->id)));
+    }
+
+    public static function edit($id){
+        $human = Human::find(1);
+        $task = Task::find($id);
+        View::make('task/edit.html', array(
+            'myTaskLists'   => TaskList::all($human->id),
+            'myCategories'  => Category::allByOwner($human->id),
+            'myTask'        => $task));
+    }
+
+    public function remove($id){
+        Task::destroy($id);
+        Redirect::to('/index', array('message' => 'Task removed!'));
     }
 }
