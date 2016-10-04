@@ -1,9 +1,7 @@
 <?php
 class TaskListController extends BaseController{
     public static function index(){
-        //testing with spede
         $human = self::get_user_logged_in();
-
         if(!$human){
             Redirect::to('/login');
         }
@@ -14,6 +12,16 @@ class TaskListController extends BaseController{
         View::make('tasklist.html', array(
             'myTasks'       => $myTasks, 
             'myTaskLists'   => $myTaskLists));
+    }
+
+    public static function categories(){
+        $human = self::get_user_logged_in();
+        if(!$human){
+            Redirect::to('/login');
+        }
+
+        View::make('categorylist.html', array(
+            'myCategories'  => Category::allByOwner($human->id)));
     }
 
     public static function store(){
@@ -83,5 +91,12 @@ class TaskListController extends BaseController{
     public function complete($id){
         Task::complete($id);
         Redirect::to('/index', array('message' => 'Task finished!'));
+    }
+
+    public static function newTask(){
+        $human = self::get_user_logged_in();
+        View::make('task/new.html', array(
+            'myTaskLists'   => TaskList::all($human->id),
+            'myCategories'  => Category::allByOwner($human->id)));
     }
 }
