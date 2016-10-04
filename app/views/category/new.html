@@ -11,20 +11,31 @@
         <input type="text" class="form-control" name="description">
     </div>
 
-    <!-- todo: put these on a grid + color -->
+    <div class="form-group">
+        <label for="color">Color:</label>
+        <br>
+        <div data-toggle="buttons"> 
+            {% for symbolColor in ['danger', 'warning', 'success', 'info', 'primary'] %}
+            <label class="btn btn-{{symbolColor}}"> 
+            <input type="radio" name="color" value="{{symbolColor}}">
+                <span class="glyphicon glyphicon-adjust}}"></span>
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
     <div class="form-group">
         <label for="symbol">Symbol:</label>
         <br>
-        <div class="btn-group" data-toggle="buttons">
-            <span class="glyphicon glyphicon-calendar"></span>
-            <span class="glyphicon glyphicon-heart"></span>
-            <span class="glyphicon glyphicon-home"></span>
-            <span class="glyphicon glyphicon-music"></span>
-            <span class="glyphicon glyphicon-signal"></span>
-            <span class="glyphicon glyphicon-picture"></span>
-            <span class="glyphicon glyphicon-plane"></span>
-            <span class="glyphicon glyphicon-shopping-cart"></span>
+        <div data-toggle="buttons"> 
+            {% for symbolText in ['heart', 'home', 'shopping-cart', 'plane', 'music'] %}
+            <label class="btn btn-default"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
         </div>
+    
     </div>
 
     <button type="submit" class="btn btn-primary">Create category</button>

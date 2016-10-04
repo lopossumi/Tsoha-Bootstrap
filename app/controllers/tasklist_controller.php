@@ -93,10 +93,9 @@ class TaskListController extends BaseController{
         Redirect::to('/index', array('message' => 'Task finished!'));
     }
 
-    public static function newTask(){
+    public static function newCategory(){
         $human = self::get_user_logged_in();
-        View::make('task/new.html', array(
-            'myTaskLists'   => TaskList::all($human->id),
+        View::make('category/new.html', array(
             'myCategories'  => Category::allByOwner($human->id)));
     }
 }
