@@ -43,20 +43,22 @@
     </div>
 
     <div class="form-group">
-        <label for="categories">Categories:</label>
-        <select multiple class="form-control" name="categories[]">
-            <!-- TODO: how the hell do I show glyphicons in option text? -->
+        <label for="categories[]">Categories:</label>
+        <div data-toggle="buttons">
             {% for category in myCategories %}
-            <option value="{{category.id}}">{{category.description}}</option>
-            {% endfor %}
-        </select>
+            <label class="btn btn-{{category.color}}{% if category.id in myTaskCategories %} active{% endif %}" data-toggle="tooltip" title="{{category.description}}">
+                <input type="checkbox" name="categories[]" value="{{category.id}}"{% if category.id in myTaskCategories %} checked{% endif %}>
+                <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+            </label>
+            {% endfor %}     
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Save task</button>
 
 </form>
 
-<!-- Enable popovers and Datetime picker -->
+<!-- Enable and initialize Datetime picker -->
 <script type="text/javascript">
 $(function () {
         $('#duedate').datetimepicker({
@@ -65,9 +67,5 @@ $(function () {
             defaultDate: '{{myTask.duedate}}',
             });
         });
-$(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-        });
 </script>
-
 {% endblock %}

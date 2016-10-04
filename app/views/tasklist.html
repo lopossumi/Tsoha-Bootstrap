@@ -34,12 +34,12 @@
                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
                     {% elseif task.status == 1 %}
                     <form method="post" action="{{base_path}}/task/{{task.id}}/complete" style="display: inline-block;">
-                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
                     </form>
                     <!--<a href="#" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></a>-->
                     {% else %}
                     <form method="post" action="{{base_path}}/task/{{task.id}}/start" style="display: inline-block;">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></button>
                     </form>
                     <!--<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></a>-->
                     {% endif %}
@@ -72,8 +72,12 @@
                 <!-- description -->
                 <td>{{task.description}}</td>
 
+                <!-- priority 
+                <td>{{task.priority}}</td>-->
+
                 <!-- priority -->
-                <td>{{task.priority}}</td>
+                <td>{% for i in 1..task.priority %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</td>
+
 
                 <!-- category -->
                 <td>

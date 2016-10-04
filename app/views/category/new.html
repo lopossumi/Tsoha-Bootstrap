@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>New category</h2>
-<form method="post" action="{{base_path}}/category">
+<form method="post" action="{{base_path}}/newcategory">
 
     <!-- should be "name"? -->
     <div class="form-group">
@@ -16,7 +16,7 @@
         <br>
         <div data-toggle="buttons"> 
             {% for symbolColor in ['danger', 'warning', 'success', 'info', 'primary'] %}
-            <label class="btn btn-{{symbolColor}}"> 
+            <label class="btn btn-{{symbolColor}} btn-lg"> 
             <input type="radio" name="color" value="{{symbolColor}}">
                 <span class="glyphicon glyphicon-adjust}}"></span>
             </label>
@@ -27,9 +27,56 @@
     <div class="form-group">
         <label for="symbol">Symbol:</label>
         <br>
+        <!-- sorry for the copy-paste, but this is more clear than index-modulo hell -->
         <div data-toggle="buttons"> 
-            {% for symbolText in ['heart', 'home', 'shopping-cart', 'plane', 'music'] %}
-            <label class="btn btn-default"> 
+            {% for symbolText in ['list', 'heart', 'home', 'shopping-cart', 'plane'] %} 
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+            <br>
+            {% for symbolText in ['music', 'camera', 'euro', 'edit', 'envelope'] %}
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+            <br>
+            {% for symbolText in ['film', 'book', 'road', 'star', 'cog'] %}
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+        </div>
+
+        <br>
+        <!-- sorry for the copy-paste, but this is more clear than index-modulo hell -->
+        <div data-toggle="buttons"> 
+            {% for symbolText in ['list', 'heart', 'home', 'shopping-cart'] %} 
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+            <br>
+            {% for symbolText in ['music', 'camera', 'euro', 'edit'] %}
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+            <br>
+            {% for symbolText in ['film', 'book', 'road', 'star'] %}
+            <label class="btn btn-default btn-lg"> 
+            <input type="radio" name="symbol" value="{{symbolText}}">
+                <span class="glyphicon glyphicon-{{symbolText}}"></span>
+            </label>
+            {% endfor %}
+            <br>
+            {% for symbolText in ['film', 'book', 'road', 'star'] %}
+            <label class="btn btn-default btn-lg"> 
             <input type="radio" name="symbol" value="{{symbolText}}">
                 <span class="glyphicon glyphicon-{{symbolText}}"></span>
             </label>

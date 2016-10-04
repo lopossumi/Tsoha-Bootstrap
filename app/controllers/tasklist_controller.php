@@ -7,10 +7,10 @@ class TaskListController extends BaseController{
         }
 
         $myTaskLists = TaskList::all($human->id);
-        $myTasks = Task::all($human->id);
+        //$myTasks = Task::all($human->id);
 
         View::make('tasklist.html', array(
-            'myTasks'       => $myTasks, 
+            //'myTasks'       => $myTasks, 
             'myTaskLists'   => $myTaskLists));
     }
 
@@ -24,7 +24,7 @@ class TaskListController extends BaseController{
             'myCategories'  => Category::allByOwner($human->id)));
     }
 
-    public static function store(){
+    public static function storeTask(){
         $params = $_POST;
         $task = new Task(array(
             'description'   => $params['description'],
@@ -50,16 +50,18 @@ class TaskListController extends BaseController{
             'myCategories'  => Category::allByOwner($human->id)));
     }
 
-    public static function edit($id){
+    public static function editTask($id){
         $human = self::get_user_logged_in();
         $task = Task::find($id);
+
         View::make('task/edit.html', array(
-            'myTaskLists'   => TaskList::all($human->id),
-            'myCategories'  => Category::allByOwner($human->id),
-            'myTask'        => $task));
+            'myTaskLists'       => TaskList::all($human->id),
+            'myCategories'      => Category::allByOwner($human->id),
+            'myTask'            => $task,
+            'myTaskCategories'  => Category::idByTask($task->id)));
     }
 
-    public static function update($id){
+    public static function updateTask($id){
         $params = $_POST;
         $task = new Task(array(
             'description'   => $params['description'],
@@ -78,17 +80,17 @@ class TaskListController extends BaseController{
         Redirect::to('/index', array('message' => 'Task updated!'));
     }
 
-    public function destroy($id){
+    public function destroyTask($id){
         Task::destroy($id);
         Redirect::to('/index', array('message' => 'Task removed!'));
     }
 
-    public function start($id){
+    public function startTask($id){
         Task::start($id);
         Redirect::to('/index', array('message' => 'Task started!'));
     }
 
-    public function complete($id){
+    public function completeTask($id){
         Task::complete($id);
         Redirect::to('/index', array('message' => 'Task finished!'));
     }
@@ -97,5 +99,18 @@ class TaskListController extends BaseController{
         $human = self::get_user_logged_in();
         View::make('category/new.html', array(
             'myCategories'  => Category::allByOwner($human->id)));
+    }
+
+    public static function storeCategory(){
+        $params = $_POST;
+        $human = self::get_user_logged_in();
+        $category = new Category(array(
+            'id_owner'      => $human->id,
+            'description'   => $params['description'],
+            'color'         => $params['color'],
+            'symbol'        => $params['symbol']));
+        $category->save();
+
+        Redirect::to('/categories', array('message' => 'Category added!'));
     }
 }

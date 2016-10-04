@@ -31,6 +31,20 @@ class Category extends BaseModel{
         return $categories;
     }
 
+    public static function idByTask($id_task){
+		$query = DB::connection()->prepare(
+			'SELECT id_category FROM TaskCategory WHERE id_task = :id_task');
+        $query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
+        $query->execute();
+        $rows = $query->fetchAll();
+        
+        $taskCategory = array();
+        foreach($rows as $row){
+            $taskCategory[]=$row['id_category'];
+        }
+        return $taskCategory;
+    }
+
     public static function allByOwner($id_owner){
         $query = DB::connection()->prepare('SELECT * FROM category WHERE id_owner = :id_owner');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
@@ -62,5 +76,18 @@ class Category extends BaseModel{
         		$query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
  		    	$query->execute();
         }
+    }
+
+    public function save(){
+        $query = DB::connection()->prepare('INSERT INTO Category (id_owner, description, color, symbol) 
+            VALUES (:id_owner, :description, :color, :symbol) RETURNING id');
+        $query->bindValue(':id_owner',		$this->id_owner, 	PDO::PARAM_INT);
+        $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
+        $query->bindValue(':color',   		$this->color, 		PDO::PARAM_STR);
+        $query->bindValue(':symbol',      	$this->symbol,    	PDO::PARAM_STR);
+        $query->execute();
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
     }
 }
