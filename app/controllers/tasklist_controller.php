@@ -74,4 +74,14 @@ class TaskListController extends BaseController{
         Task::destroy($id);
         Redirect::to('/index', array('message' => 'Task removed!'));
     }
+
+    public function start($id){
+        Task::start($id);
+        Redirect::to('/index', array('message' => 'Task started!'));
+    }
+
+    public function complete($id){
+        Task::complete($id);
+        Redirect::to('/index', array('message' => 'Task finished!'));
+    }
 }
