@@ -19,14 +19,15 @@
         <input type="text" class="form-control" name="description">
     </div>
 
+    <!-- Priority: default "normal" -->
     <div class="form-group">
         <label for="priority">Priority:</label>
         <br>
         <div class="btn-group" data-toggle="buttons">
             {% for i in 1..4 %}
             {% set priorityText = ['', 'Low', 'Normal', 'High', 'Highest'] %}
-            <label class="btn btn-info">
-                <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}">{{priorityText[i]}}</label>
+            <label class="btn btn-info{% if i==2 %} active {% endif %}">
+                <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if i==2 %} checked {% endif %}>{{priorityText[i]}}</label>
             {% endfor %}
         </div>
     </div>
