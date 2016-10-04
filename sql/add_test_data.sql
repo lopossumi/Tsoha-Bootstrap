@@ -15,12 +15,13 @@ INSERT INTO Task (id_tasklist, description, duedate, priority, status)  VALUES('
 INSERT INTO Task (id_tasklist, description, duedate, priority, status)  VALUES('2', 'Spede2 Jazza',     NULL,                   4, 0);
 INSERT INTO Task (id_tasklist, description, duedate, priority, status)  VALUES('2', 'Spede2 Rozzo',     '2016-09-26 16:00:00',  3, 0);
 
-INSERT INTO Category (id_owner, description, symbol)    VALUES ('1', 'Spedenkategoria sydän',   'heart');
-INSERT INTO Category (id_owner, description, symbol)    VALUES ('1', 'Spedenkategoria pencil',  'pencil');
+INSERT INTO Category (id_owner, description, symbol, color) VALUES ('1', 'Ostokset',	'shopping-cart',	'primary');
+INSERT INTO Category (id_owner, description, symbol, color) VALUES ('1', 'Koti',  		'home',				'info');
+INSERT INTO Category (id_owner, description, symbol, color) VALUES ('1', 'Harrastukset','heart',			'danger');
 
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('1', '1');
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('1', '2');
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('2', '1');
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('3', '2');
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('6', '1');
-INSERT INTO TaskCategory(id_task, id_category)          VALUES ('6', '2');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('1', '1');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('1', '2');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('2', '1');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('3', '2');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('6', '1');
+INSERT INTO TaskCategory(id_task, id_category) VALUES ('6', '2');

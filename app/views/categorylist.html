@@ -22,7 +22,7 @@
     <tbody>
         {% for category in myCategories %}
         <tr>
-            <td><span class="glyphicon glyphicon-{{category.symbol}}"</td>
+            <td><button class="btn btn-{{category.color}}"><span class="glyphicon glyphicon-{{category.symbol}}"></button></td>
             <td>{{category.description}}</td>
         </tr>
         {% endfor %}

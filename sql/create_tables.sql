@@ -21,14 +21,16 @@ CREATE TABLE Task(
     description varchar(100)    NOT NULL,
     duedate     timestamp,
     priority    INTEGER,
-    status      INTEGER
+    status      INTEGER         DEFAULT 0,
+    archived    boolean         DEFAULT FALSE
 );
 
 CREATE TABLE Category(
     id          SERIAL          PRIMARY KEY,
     id_owner    INTEGER         REFERENCES Human(id),
     description varchar(50)     NOT NULL,
-    symbol      varchar(50)
+    symbol      varchar(50),
+    color       varchar(10)
 );
 
 CREATE TABLE TaskCategory(

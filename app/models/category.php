@@ -1,7 +1,7 @@
 <?php
 
 class Category extends BaseModel{
-    public $id, $id_owner, $description, $symbol;
+    public $id, $id_owner, $description, $symbol, $color;
     public function __construct($attributes){
         parent::__construct($attributes);
     }
@@ -11,7 +11,8 @@ class Category extends BaseModel{
             'id'        	=> $row['id'],
             'id_owner'  	=> $row['id_owner'],
             'description'  	=> $row['description'],
-            'symbol'  		=> $row['symbol']
+            'symbol'  		=> $row['symbol'],
+            'color'			=> $row['color']
         ));
         return $category;
     }

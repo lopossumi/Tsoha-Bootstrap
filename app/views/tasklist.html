@@ -78,7 +78,9 @@
                 <!-- category -->
                 <td>
                     {% for category in task.categories %}
-                    <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+                    <button class="btn btn-sm btn-{{category.color}}" data-toggle="tooltip" title="{{category.description}}"> 
+                        <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+                    </button>
                     {% endfor %}
                 </td>
 

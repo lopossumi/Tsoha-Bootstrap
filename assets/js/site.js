@@ -1,3 +1,6 @@
 $(document).ready(function(){
-  //alert('Hello World!');
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+$(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
 });
