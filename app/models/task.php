@@ -107,11 +107,13 @@ class Task extends BaseModel{
 
     public static function start($id){
         $query = DB::connection()->prepare('UPDATE Task SET status = 1 WHERE id=:id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
     
     public static function complete($id){
         $query = DB::connection()->prepare('UPDATE Task SET status = 2 WHERE id=:id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
 }
