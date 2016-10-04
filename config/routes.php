@@ -6,9 +6,9 @@ $routes->post('/login',         function(){ LoginController::handle_login();});
 
 //TaskListController
 $routes->get('/',               function(){ TaskListController::index();});
-$routes->get('/newtask',        function(){ TaskListController::newtask();});
 $routes->get('/index',          function(){ TaskListController::index();});
-$routes->post('/task',          function(){ TaskListController::store();});
+$routes->get('/newtask',        function(){ TaskListController::newtask();});
+$routes->post('/newtask',       function(){ TaskListController::store();});
 
 $routes->get('/task/:id/edit',      function($id){ TaskListController::edit($id);});
 $routes->post('/task/:id/edit',     function($id){ TaskListController::update($id);});

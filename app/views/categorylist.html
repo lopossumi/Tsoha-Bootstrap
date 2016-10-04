@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if message is defined %}
+<div class="alert alert-info">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{message}}
+</div>
+{% endif %}
+
+
+<table class="table">
+    <!-- header -->
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for category in myCategories %}
+        <tr>
+            <td><span class="glyphicon glyphicon-{{category.symbol}}"</td>
+            <td>{{category.description}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
