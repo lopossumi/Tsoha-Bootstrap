@@ -11,6 +11,8 @@
             {% for taskList in myTaskLists %}
             <option value="{{taskList.id}}" {% if taskList.id == myTask.id_taskList %}selected{% endif %}>{{taskList.name}}</option>
             {% endfor %}
+            {{taskList.id}}
+            {{myTask.id_taskList}}
         </select>
     </div>
 
