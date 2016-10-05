@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/forms.html" as forms %}
 
 {% block content %}
 
@@ -23,9 +24,8 @@
     {% for category in myCategories %}
     <tr>
         <td>
-            <form method="get" action="{{base_path}}/category/{{category.id}}/list" style="display: inline-block;">
-                <button type="submit" class="btn btn-{{category.color}}"><span class="glyphicon glyphicon-{{category.symbol}}"></span></button>
-            </form>
+            {{ forms.category_button("#{base_path}/category/#{category.id}/list","#{category.description}", 
+            "#{category.color}", "#{category.symbol}") }}
         </td>
         <td>{{category.description}}</td>
     </tr>

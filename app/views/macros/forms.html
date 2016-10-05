@@ -1,0 +1,7 @@
+{% macro category_button(action, description, color, symbol) %}
+<form method="get" action="{{action}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-sm btn-{{color}}" data-toggle="tooltip" title="{{description}}"> 
+        <span class="glyphicon glyphicon-{{symbol}}"></span>
+    </button>
+</form>
+{% endmacro %}
