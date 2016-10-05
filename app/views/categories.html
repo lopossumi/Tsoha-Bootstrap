@@ -20,12 +20,16 @@
     </thead>
 
     <tbody>
-        {% for category in myCategories %}
-        <tr>
-            <td><button class="btn btn-{{category.color}}"><span class="glyphicon glyphicon-{{category.symbol}}"></button></td>
-            <td>{{category.description}}</td>
-        </tr>
-        {% endfor %}
+    {% for category in myCategories %}
+    <tr>
+        <td>
+            <form method="get" action="{{base_path}}/category/{{category.id}}/list" style="display: inline-block;">
+                <button type="submit" class="btn btn-{{category.color}}"><span class="glyphicon glyphicon-{{category.symbol}}"></span></button>
+            </form>
+        </td>
+        <td>{{category.description}}</td>
+    </tr>
+    {% endfor %}
     </tbody>
 
 </table>

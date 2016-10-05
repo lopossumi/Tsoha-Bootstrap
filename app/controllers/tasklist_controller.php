@@ -20,7 +20,7 @@ class TaskListController extends BaseController{
             Redirect::to('/login');
         }
 
-        View::make('categorylist.html', array(
+        View::make('categories.html', array(
             'myCategories'  => Category::allByOwner($human->id)));
     }
 
@@ -53,7 +53,6 @@ class TaskListController extends BaseController{
     public static function editTask($id){
         $human = self::get_user_logged_in();
         $task = Task::find($id);
-
         View::make('task/edit.html', array(
             'myTaskLists'       => TaskList::all($human->id),
             'myCategories'      => Category::allByOwner($human->id),
@@ -112,5 +111,11 @@ class TaskListController extends BaseController{
         $category->save();
 
         Redirect::to('/categories', array('message' => 'Category added!'));
+    }
+
+    public static function listCategory($id){
+        View::make('category/list.html', array(
+            'myTasks'       => Task::allByCategory($id),
+            'myCategory'    => Category::find($id)));
     }
 }

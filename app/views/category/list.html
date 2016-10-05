@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if message is defined %}
+<div class="alert alert-info">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{message}}
+</div>
+{% endif %}
+
+<table class="table">
+    <!-- header -->
+    <thead>
+        <tr>
+            <th colspan=3>
+                <h2>{{myCategory.description}}</h2></th>
+                <th>Priority</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Tehtävälistaus -->
+
+            {% for task in myTasks %}
+            <tr>
+                <!-- status -->
+                <td>
+                    {% if task.status == 2 %}
+                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
+                    {% elseif task.status == 1 %}
+                    <form method="post" action="{{base_path}}/task/{{task.id}}/complete" style="display: inline-block;">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
+                    </form>
+                    <!--<a href="#" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></a>-->
+                    {% else %}
+                    <form method="post" action="{{base_path}}/task/{{task.id}}/start" style="display: inline-block;">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></button>
+                    </form>
+                    <!--<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></a>-->
+                    {% endif %}
+                </td>
+
+                <!-- due deadline. TODO: move to controller (task.timeremaining) -->
+                <td>
+                    {% if (task.duedate) %}
+                    {% set dateTimeEvent = date(task.duedate) %}
+                    {% set dateTimeNow = date(now.iso8601) %}
+
+                    {% set dateInterval = dateTimeNow.diff(dateTimeEvent) %}
+
+                    {% set days = dateInterval|date('%a') %}
+                    {% set hours = dateInterval|date('%h') %}
+                    {% set totalHours = days * 24 + hours %}
+
+                    {% set upcoming = dateInterval|date('%R') == '+' ? true %}
+
+                    {% if upcoming and (days>0) %}
+                    <span class="label label-info">{{ days }} d</span>
+                    {% elseif upcoming %}
+                    <span class="label label-warning">{{ totalHours }} h</span>
+                    {% else %}
+                    <span class="label label-danger">Late!</span>
+                    {% endif %}
+
+                    {% endif %}
+                </td>
+                <!-- description -->
+                <td>{{task.description}}</td>
+
+                <!-- priority 
+                <td>{{task.priority}}</td>-->
+
+                <!-- priority -->
+                <td>{% for i in 1..task.priority %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</td>
+
+
+                <!-- category -->
+                <td>
+                    {% for category in task.categories %}
+                    <button class="btn btn-sm btn-{{category.color}}" data-toggle="tooltip" title="{{category.description}}"> 
+                        <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+                    </button>
+                    {% endfor %}
+                </td>
+
+                <!-- edit & remove -->
+                <td>
+                    <div class="btn-toolbar">
+                        <form method="get" action="{{base_path}}/task/{{task.id}}/edit" style="display: inline-block;">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
+                        </form>
+
+                        <form method="post" action="{{base_path}}/task/{{task.id}}/destroy" style="display: inline-block;">
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                        </form>          
+
+                    </div>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

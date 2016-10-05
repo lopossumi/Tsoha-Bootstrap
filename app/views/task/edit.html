@@ -9,10 +9,8 @@
         <label>Task list:</label>
         <select class="form-control" name="id_tasklist">
             {% for taskList in myTaskLists %}
-            <option value="{{taskList.id}}" {% if taskList.id == myTask.id_taskList %}selected{% endif %}>{{taskList.name}}</option>
+            <option value="{{taskList.id}}" {% if taskList.id == myTask.id_tasklist %}selected{% endif %}>{{taskList.name}}</option>
             {% endfor %}
-            {{taskList.id}}
-            {{myTask.id_taskList}}
         </select>
     </div>
 

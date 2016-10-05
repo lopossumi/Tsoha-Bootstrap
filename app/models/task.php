@@ -116,4 +116,17 @@ class Task extends BaseModel{
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
+
+    public function allByCategory($id_category){
+        $query = DB::connection()->prepare('SELECT * FROM task LEFT JOIN taskCategory ON task.id = taskcategory.id_task WHERE id_category = :id_category ORDER BY id DESC');
+        $query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
+        $query->execute();
+        $rows = $query->fetchAll();
+
+        $tasks = array();
+        foreach($rows as $row){
+            $tasks[]=self::rowToTask($row);
+        }
+        return $tasks;
+    }
 }

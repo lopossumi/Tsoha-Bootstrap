@@ -17,6 +17,18 @@ class Category extends BaseModel{
         return $category;
     }
 
+    public static function find($id){
+        $query = DB::connection()->prepare('SELECT * FROM category WHERE id = :id LIMIT 1');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute(); 
+        $row = $query->fetch();
+
+        if($row){
+            return self::rowToCategory($row);
+        }
+        return null;
+    }
+
     public static function allByTask($id_task){
 		$query = DB::connection()->prepare(
 			'SELECT * FROM Category WHERE id IN (SELECT id_category FROM TaskCategory WHERE id_task = :id_task)');
