@@ -21,3 +21,7 @@ $routes->get('/newcategory',    function(){ TaskListController::newCategory();})
 $routes->post('/newcategory',	function(){ TaskListController::storeCategory();});
 
 $routes->get('/category/:id/list', function($id){ TaskListController::listCategory($id);});
+
+$routes->get('/newlist',        function(){ TaskListController::newList();});
+$routes->post('/newlist',       function(){ TaskListController::storeList();});
+

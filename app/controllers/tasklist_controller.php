@@ -118,4 +118,14 @@ class TaskListController extends BaseController{
             'myTasks'       => Task::allByCategory($id),
             'myCategory'    => Category::find($id)));
     }
+
+    public static function newList(){
+        $human = self::get_user_logged_in();
+        View::make('list/new.html');
+    }
+
+    public static function storeList(){
+        $params = $_POST;
+        Kint::dump($params);
+    }
 }
