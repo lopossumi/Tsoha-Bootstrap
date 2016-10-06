@@ -33,21 +33,6 @@ class TaskList extends BaseModel{
         return $taskLists;
     }
 
-    /* Found in task.php
-    public static function allInTasklist($id_tasklist){ 
-        $query = DB::connection()->prepare('SELECT * FROM task WHERE id_tasklist = :id_tasklist');
-        $query->bindValue(':id_tasklist', $id_tasklist, PDO::PARAM_INT);
-        $query->execute();
-        $rows = $query->fetchAll();
-
-        $tasks = array();
-        foreach($rows as $row){
-            $tasks[]=self::rowToTask($row);
-        }
-        return $tasks;
-    }
-    */
-
     public function save(){
         $query = DB::connection()->prepare('INSERT INTO tasklist (id_owner, name, description) 
             VALUES (:id_owner, :name, :description) RETURNING id');
