@@ -15,13 +15,8 @@ class TaskListController extends BaseController{
     }
 
     public static function categories(){
-        $human = self::get_user_logged_in();
-        if(!$human){
-            Redirect::to('/login');
-        }
-
         View::make('categories.html', array(
-            'myCategories'  => Category::allByOwner($human->id)));
+            'myCategories' => Category::allByOwner(self::get_user_logged_in()->id)));
     }
 
     public static function storeTask(){

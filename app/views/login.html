@@ -22,6 +22,9 @@
 
 <body>
 
+{% if message is defined %}
+<div class="alert alert-info">{{message}}</div>
+{% endif %}
 {% if error is defined %}
 <div class="alert alert-danger">{{error}}</div>
 {% endif %}

@@ -63,7 +63,11 @@
 
         <!-- right -->
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <li>
+            <form class="inline" method="post" action="{{base_path}}/logout">
+            <button type="submit" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+            </form>
+            </li>
             <!--
       <li><p class="navbar-btn"><a href="#" class="btn btn-primary">Add todo-list</a></p></li>
             <li><p class="navbar-btn">
