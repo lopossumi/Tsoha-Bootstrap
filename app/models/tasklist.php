@@ -1,7 +1,7 @@
 <?php
 
 class TaskList extends BaseModel{
-    public $id, $id_human, $name, $duedate, $priority, $status, $tasks;
+    public $id, $id_owner, $name, $description, $tasks;
     public function __construct($attributes){
         parent::__construct($attributes);
     }
@@ -16,7 +16,7 @@ class TaskList extends BaseModel{
         return $tasklist;
     }
 
-    public static function all($id_owner){
+    public static function allByOwner($id_owner){
         $query = DB::connection()->prepare('SELECT * FROM tasklist WHERE id_owner = :id_owner');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
@@ -34,7 +34,8 @@ class TaskList extends BaseModel{
         return $taskLists;
     }
 
-    public static function allInTasklist($id_tasklist){
+    /* Found in task.php
+    public static function allInTasklist($id_tasklist){ 
         $query = DB::connection()->prepare('SELECT * FROM task WHERE id_tasklist = :id_tasklist');
         $query->bindValue(':id_tasklist', $id_tasklist, PDO::PARAM_INT);
         $query->execute();
@@ -45,5 +46,18 @@ class TaskList extends BaseModel{
             $tasks[]=self::rowToTask($row);
         }
         return $tasks;
+    }
+    */
+
+    public function save(){
+        $query = DB::connection()->prepare('INSERT INTO tasklist (id_owner, name, description) 
+            VALUES (:id_owner, :name, :description) RETURNING id');
+        $query->bindValue(':id_owner',      $this->id_owner,    PDO::PARAM_INT);
+        $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
+        $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
+        $query->execute();
+
+        $row = $query->fetch();
+        $this->id = $row['id'];
     }
 }
