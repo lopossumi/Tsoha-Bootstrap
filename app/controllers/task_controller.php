@@ -53,21 +53,25 @@ class TaskController extends BaseController{
                 Category::insert($task->id, $id_category);
             }
         }
-        Redirect::to('/index', array('message' => 'Task updated!'));
+        Redirect::to('/index', array(
+            'message' => 'Task updated!'));
     }
 
     public function startTask($id){
         Task::start($id);
-        Redirect::to('/index', array('message' => 'Task started!'));
+        Redirect::to('/index', array(
+            'message' => 'Task started!'));
     }
 
     public function completeTask($id){
         Task::complete($id);
-        Redirect::to('/index', array('message' => 'Task finished!'));
+        Redirect::to('/index', array(
+            'message' => 'Task finished!'));
     }
 
     public function destroyTask($id){
         Task::destroy($id);
-        Redirect::to('/index', array('message' => 'Task removed!'));
+        Redirect::to('/index', array(
+            'message' => 'Task removed!'));
     }
 }

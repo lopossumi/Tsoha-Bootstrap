@@ -1,5 +1,4 @@
 <?php
-
 class Category extends BaseModel{
     public $id, $id_owner, $description, $symbol, $color;
     public function __construct($attributes){

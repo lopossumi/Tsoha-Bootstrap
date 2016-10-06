@@ -1,5 +1,4 @@
 <?php
-
 class Human extends BaseModel{
     public $id, $username, $fullname, $password, $email, $isprivate, $isadmin;
     public function __construct($attributes){

@@ -1,5 +1,4 @@
 <?php
-
 class Task extends BaseModel{
     public $id, $id_tasklist, $description, $duedate, $priority, $status, $categories;
     public function __construct($attributes){
