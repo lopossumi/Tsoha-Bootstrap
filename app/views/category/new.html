@@ -50,39 +50,6 @@
             </label>
             {% endfor %}
         </div>
-
-        <br>
-        <!-- sorry for the copy-paste, but this is more clear than index-modulo hell -->
-        <div data-toggle="buttons"> 
-            {% for symbolText in ['list', 'heart', 'home', 'shopping-cart'] %} 
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-            <br>
-            {% for symbolText in ['music', 'camera', 'euro', 'edit'] %}
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-            <br>
-            {% for symbolText in ['film', 'book', 'road', 'star'] %}
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-            <br>
-            {% for symbolText in ['film', 'book', 'road', 'star'] %}
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-        </div>
-    
     </div>
 
     <button type="submit" class="btn btn-primary">Create category</button>

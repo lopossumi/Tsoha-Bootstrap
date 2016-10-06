@@ -51,13 +51,21 @@
             <!-- TODO some day
             <li><a href="#">Friends</a></li>
             -->
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">New <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="{{base_path}}/newtask">Task</a></li>
+                <li><a href="{{base_path}}/newlist">List</a></li>
+                <li><a href="{{base_path}}/newcategory">Category</a></li>
+            </ul>
+            </li>
         </ul>
 
         <!-- right -->
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             <!--
       <li><p class="navbar-btn"><a href="#" class="btn btn-primary">Add todo-list</a></p></li>
-        -->
             <li><p class="navbar-btn">
             <a href="#" class="btn btn-primary" 
                 data-toggle="popover"
@@ -69,6 +77,7 @@
                 </form>'
                 data-html="true"
                 data-placement="bottom">Add todo-list</a></p></li>
+        -->
         </ul>
     </div>
 </nav>
