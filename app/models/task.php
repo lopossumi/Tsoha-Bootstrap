@@ -1,6 +1,6 @@
 <?php
 class Task extends BaseModel{
-    public $id, $id_tasklist, $description, $duedate, $priority, $status, $categories;
+    public $id, $id_tasklist, $name, $description, $duedate, $priority, $status, $archived, $deleted, $categories;
     public function __construct($attributes){
         parent::__construct($attributes);
     }
@@ -9,10 +9,13 @@ class Task extends BaseModel{
         $task = new Task(array(
             'id'            => $row['id'],
             'id_tasklist'   => $row['id_tasklist'],
+            'name'          => $row['name'],
             'description'   => $row['description'],
             'duedate'       => $row['duedate'],
             'priority'      => $row['priority'],
-            'status'        => $row['status']
+            'status'        => $row['status'],
+            'archived'      => $row['archived'],
+            'deleted'       => $row['deleted']
             ));
         $task->categories = Category::allByTask($row['id']);
         return $task;
@@ -31,7 +34,8 @@ class Task extends BaseModel{
     }
 
     public static function all($id_owner){
-        $query = DB::connection()->prepare('SELECT * FROM Task WHERE id_tasklist IN (SELECT id FROM TaskList WHERE id_owner = :id_owner)');
+        $query = DB::connection()->prepare('SELECT * FROM Task WHERE id_tasklist IN 
+            (SELECT id FROM TaskList WHERE id_owner = :id_owner)');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();

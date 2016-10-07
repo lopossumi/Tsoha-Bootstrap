@@ -15,9 +15,9 @@
     <thead>
         <tr>
             <th colspan=3>
-                <h2><button class="btn btn-default btn-{{myCategory.color}}"><span class="glyphicon glyphicon-{{myCategory.symbol}}"></span></button> {{myCategory.description}}</h2></th>
+                <h2><button class="btn btn-default btn-{{myCategory.color}}"><span class="glyphicon glyphicon-{{myCategory.symbol}}"></span></button> {{myCategory.name}}</h2></th>
                 <th>Priority</th>
-                <th>Category</th>
+                <th>Categories</th>
                 <th></th>
             </tr>
         </thead>
@@ -68,8 +68,8 @@
 
                     {% endif %}
                 </td>
-                <!-- description -->
-                <td>{{task.description}}</td>
+                <!-- task name -->
+                <td>{{task.name}}</td>
 
                 <!-- priority 
                 <td>{{task.priority}}</td>-->
@@ -78,27 +78,21 @@
                 <td>{% for i in 1..task.priority %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</td>
 
 
-                <!-- category -->
-                <td>
-                    {% for category in task.categories %}
-                    {{ forms.category_button("#{base_path}/category/#{category.id}/list","#{category.description}", 
-                    "#{category.color}", "#{category.symbol}") }}
-                    {% endfor %}
-                </td>
+            <!-- category -->
+            <td>
+                {% for category in task.categories %}
+                {{ forms.category_button("#{base_path}/category/#{category.id}/list","#{category.name}", 
+                "#{category.color}", "#{category.symbol}") }}
+                {% endfor %}
+            </td>
 
-                <!-- edit & remove -->
-                <td>
-                    <div class="btn-toolbar">
-                        <form method="get" action="{{base_path}}/task/{{task.id}}/edit" style="display: inline-block;">
-                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></button>
-                        </form>
-
-                        <form method="post" action="{{base_path}}/task/{{task.id}}/destroy" style="display: inline-block;">
-                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                        </form>          
-
-                    </div>
-                </td>
+            <!-- edit & remove buttons -->
+            <td>
+                <div class="btn-toolbar">
+                 {{ forms.edit_button("#{base_path}/task/#{task.id}/edit","Edit task")}}
+                 {{ forms.remove_button("#{base_path}/task/#{task.id}/remove","Remove task") }}
+                </div>
+            </td>
 
             </tr>
             {% endfor %}

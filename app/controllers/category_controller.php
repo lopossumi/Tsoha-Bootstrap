@@ -17,6 +17,7 @@ class CategoryController extends BaseController{
         $human = self::get_user_logged_in();
         $category = new Category(array(
             'id_owner'      => $human->id,
+            'name'          => $params['name'],
             'description'   => $params['description'],
             'color'         => $params['color'],
             'symbol'        => $params['symbol']));

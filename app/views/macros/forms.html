@@ -1,7 +1,27 @@
-{% macro category_button(action, description, color, symbol) %}
-<form method="get" action="{{action}}" style="display: inline-block;">
-    <button type="submit" class="btn btn-sm btn-{{color}}" data-toggle="tooltip" title="{{description}}"> 
+{% macro action_button(method, action, title, color, symbol, size) %}
+<form method="{{method}}" action="{{action}}" style="display: inline-block;">
+    <button type="submit" class="btn btn-{{color}} {{size}}" data-toggle="tooltip" title="{{title}}"> 
         <span class="glyphicon glyphicon-{{symbol}}"></span>
     </button>
 </form>
+{% endmacro %}
+
+{% macro category_button_xs(action, title, color, symbol) %}
+    {% import _self as forms %}
+    {{ forms.action_button("get", action, title, color, symbol) }}
+{% endmacro %}
+
+{% macro category_button(action, title, color, symbol) %}
+    {% import _self as forms %}
+    {{ forms.action_button("get", action, title, color, symbol, "btn-xs") }}
+{% endmacro %}
+
+{% macro edit_button(action, title) %}
+    {% import _self as forms %}
+    {{ forms.action_button("get", action, title, "info", "pencil") }}
+{% endmacro %}
+
+{% macro remove_button(action, title) %}
+    {% import _self as forms %}
+    {{ forms.action_button("post", action, title, "danger", "trash") }}
 {% endmacro %}

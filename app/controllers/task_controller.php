@@ -69,7 +69,7 @@ class TaskController extends BaseController{
             'message' => 'Task finished!'));
     }
 
-    public function destroyTask($id){
+    public function removeTask($id){
         Task::destroy($id);
         Redirect::to('/index', array(
             'message' => 'Task removed!'));

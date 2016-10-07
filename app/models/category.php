@@ -1,6 +1,6 @@
 <?php
 class Category extends BaseModel{
-    public $id, $id_owner, $description, $symbol, $color;
+    public $id, $id_owner, $name, $description, $symbol, $color;
     public function __construct($attributes){
         parent::__construct($attributes);
     }
@@ -9,6 +9,7 @@ class Category extends BaseModel{
         $category = new Category(array(
             'id'        	=> $row['id'],
             'id_owner'  	=> $row['id_owner'],
+            'name'          => $row['name'],
             'description'  	=> $row['description'],
             'symbol'  		=> $row['symbol'],
             'color'			=> $row['color']
@@ -90,9 +91,10 @@ class Category extends BaseModel{
     }
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Category (id_owner, description, color, symbol) 
-            VALUES (:id_owner, :description, :color, :symbol) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Category (id_owner, name, description, color, symbol) 
+            VALUES (:id_owner, :name, :description, :color, :symbol) RETURNING id');
         $query->bindValue(':id_owner',		$this->id_owner, 	PDO::PARAM_INT);
+        $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
         $query->bindValue(':color',   		$this->color, 		PDO::PARAM_STR);
         $query->bindValue(':symbol',      	$this->symbol,    	PDO::PARAM_STR);
