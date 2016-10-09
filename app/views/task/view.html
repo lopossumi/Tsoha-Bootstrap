@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{myTask.name}}</h2>
+<p>
+{{myTask.description}}
+</p>
+
+<div>
+    <label for="priority">Priority:</label><br/>
+    <div class="btn-group" data-toggle="buttons">
+        {% for i in 1..4 %}
+        {% set priorityText = ['', 'Low', 'Normal', 'High', 'Highest'] %}
+        <label class="btn btn-info{% if myTask.priority == i %} active {% endif %}">
+            <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if myTask.priority == i %} checked {% endif %}>{{priorityText[i]}}
+        </label>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <label for="duedate">Due date:</label>
+    <div class='input-group date' id='duedate'>
+        <input type='text' class="form-control" name='duedate' />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
+<label for="categories[]">Categories:</label>
+<div data-toggle="buttons">
+    {% for category in myCategories %}
+    <label class="btn btn-{{category.color}}{% if category.id in myTaskCategories %} active{% endif %}" data-toggle="tooltip" title="{{category.description}}">
+        <input type="checkbox" name="categories[]" value="{{category.id}}"{% if category.id in myTaskCategories %} checked{% endif %}>
+        <span class="glyphicon glyphicon-{{category.symbol}}"></span>
+    </label>
+    {% endfor %}     
+</div>
+<!-- Enable and initialize Datetime picker -->
+<script type="text/javascript">
+    $(function () {
+        $('#duedate').datetimepicker({
+            sideBySide:true,
+            format:'YYYY-MM-DD HH:mm',
+            defaultDate: '{{myTask.duedate}}',
+        });
+    });
+</script>
+{% endblock %}

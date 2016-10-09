@@ -11,8 +11,9 @@ class TaskController extends BaseController{
     public static function storeTask(){
         $params = $_POST;
         $task = new Task(array(
-            'description'   => $params['description'],
             'id_tasklist'   => $params['id_tasklist'],
+            'name'          => $params['name'],
+            'description'   => $params['description'],
             'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
@@ -25,6 +26,16 @@ class TaskController extends BaseController{
             }
         }
         Redirect::to('/index', array('message' => 'Task added!'));
+    }
+
+    public static function viewTask($id){
+        $human = self::get_user_logged_in();
+        $task = Task::find($id);
+        View::make('task/view.html', array(
+            'myTaskLists'       => TaskList::allByOwner($human->id),
+            'myCategories'      => Category::allByOwner($human->id),
+            'myTask'            => $task,
+            'myTaskCategories'  => Category::idByTask($task->id)));
     }
 
     public static function editTask($id){
@@ -40,8 +51,9 @@ class TaskController extends BaseController{
     public static function updateTask($id){
         $params = $_POST;
         $task = new Task(array(
-            'description'   => $params['description'],
             'id_tasklist'   => $params['id_tasklist'],
+            'name'          => $params['name'],
+            'description'   => $params['description'],
             'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));

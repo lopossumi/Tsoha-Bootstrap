@@ -5,7 +5,7 @@ class Task extends BaseModel{
         parent::__construct($attributes);
     }
 
-    private static function rowToTask($row){
+    public static function newFromParams($row){
         $task = new Task(array(
             'id'            => $row['id'],
             'id_tasklist'   => $row['id_tasklist'],
@@ -28,7 +28,7 @@ class Task extends BaseModel{
         $row = $query->fetch();
 
         if($row){
-            return self::rowToTask($row);
+            return self::newFromParams($row);
         }
         return null;
     }
@@ -42,7 +42,7 @@ class Task extends BaseModel{
 
         $tasks = array();
         foreach($rows as $row){
-            $tasks[]=self::rowToTask($row);
+            $tasks[]=self::newFromParams($row);
         }
         return $tasks;
     }
@@ -55,15 +55,16 @@ class Task extends BaseModel{
 
         $tasks = array();
         foreach($rows as $row){
-            $tasks[]=self::rowToTask($row);
+            $tasks[]=self::newFromParams($row);
         }
         return $tasks;
     }
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Task (id_tasklist, description, duedate, priority, status) 
-            VALUES (:id_tasklist, :description, :duedate, :priority, :status) RETURNING id');
+        $query = DB::connection()->prepare('INSERT INTO Task (id_tasklist, name, description, duedate, priority, status) 
+            VALUES (:id_tasklist, :name, :description, :duedate, :priority, :status) RETURNING id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
+        $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
         // If duedate is empty, mark it null (empty string will crash postgresql timestamp)        
         if($this->duedate){ 
@@ -128,7 +129,7 @@ class Task extends BaseModel{
 
         $tasks = array();
         foreach($rows as $row){
-            $tasks[]=self::rowToTask($row);
+            $tasks[]=self::newFromParams($row);
         }
         return $tasks;
     }
