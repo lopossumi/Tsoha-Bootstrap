@@ -96,4 +96,9 @@ class TaskController extends BaseController{
         Task::destroy($id);
         Redirect::to('/index');
     }
+
+    public function archiveTask($id){
+        Task::archive($id);
+        Redirect::to('/index');
+    }
 }

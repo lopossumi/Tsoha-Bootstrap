@@ -33,19 +33,18 @@
     <tbody>
 
         {% for task in taskList.tasks %}
-        <tr class="{% if task.status == 2 %}success{% endif %}{% if task.status == 1 %}info{% endif %}">
+        <tr class="
+        {% if task.status == 2 %}success{% endif %}
+        {% if task.status == 1 %}info{% endif %} 
+        {% if task.archived %} hidden{% endif %}">
             <!-- status -->
             <td>
                 {% if task.status == 2 %}
-                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/archive", "Archive task", "success", "ok") }}
                 {% elseif task.status == 1 %}
-                <form method="post" action="{{base_path}}/task/{{task.id}}/complete" style="display: inline-block;">
-                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></button>
-                </form>
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/complete", "Complete task", "info", "play") }}
                 {% else %}
-                <form method="post" action="{{base_path}}/task/{{task.id}}/start" style="display: inline-block;">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></span></button>
-                </form>
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start task", "default", "play") }}
                 {% endif %}
             </td>
             <td>

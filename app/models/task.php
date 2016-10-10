@@ -23,7 +23,11 @@ class Task extends BaseModel{
     }
 
     public static function find($id){
-        $query = DB::connection()->prepare('SELECT * FROM task WHERE id = :id LIMIT 1');
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM task 
+             WHERE id = :id 
+             LIMIT 1');
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute(); 
         $row = $query->fetch();
@@ -35,8 +39,13 @@ class Task extends BaseModel{
     }
 
     public static function all($id_owner){
-        $query = DB::connection()->prepare('SELECT * FROM Task WHERE id_tasklist IN 
-            (SELECT id FROM TaskList WHERE id_owner = :id_owner)');
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM task 
+             WHERE id_tasklist 
+                IN SELECT id 
+                     FROM TaskList 
+                    WHERE id_owner = :id_owner)');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
@@ -49,7 +58,11 @@ class Task extends BaseModel{
     }
 
     public static function allInTasklist($id_tasklist){
-        $query = DB::connection()->prepare('SELECT * FROM task WHERE id_tasklist = :id_tasklist ORDER BY id DESC');
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM task 
+             WHERE id_tasklist = :id_tasklist 
+          ORDER BY id DESC');
         $query->bindValue(':id_tasklist', $id_tasklist, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
@@ -62,8 +75,10 @@ class Task extends BaseModel{
     }
 
     public function save(){
-        $query = DB::connection()->prepare('INSERT INTO Task (id_tasklist, name, description, duedate, priority, status) 
-            VALUES (:id_tasklist, :name, :description, :duedate, :priority, :status) RETURNING id');
+        $query = DB::connection()->prepare('
+            INSERT INTO Task (id_tasklist, name, description, duedate, priority, status) 
+                 VALUES (:id_tasklist, :name, :description, :duedate, :priority, :status)
+              RETURNING id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
         $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
@@ -83,13 +98,13 @@ class Task extends BaseModel{
 
     public function update($id){
         $query = DB::connection()->prepare('
-            UPDATE Task SET 
-            id_tasklist=:id_tasklist, 
-            description=:description, 
-            duedate=:duedate, 
-            priority=:priority, 
-            status=:status 
-            WHERE id=:id');
+            UPDATE task 
+               SET id_tasklist  =:id_tasklist, 
+                   description  =:description, 
+                   duedate      =:duedate, 
+                   priority     =:priority, 
+                   status       =:status 
+             WHERE id           =:id');
         $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
         // If duedate is empty, mark it null (empty string will crash postgresql timestamp)        
@@ -122,8 +137,20 @@ class Task extends BaseModel{
         $query->execute();
     }
 
+    public static function archive($id){
+        $query = DB::connection()->prepare('UPDATE task SET archived = true WHERE id=:id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
+
     public function allByCategory($id_category){
-        $query = DB::connection()->prepare('SELECT * FROM task LEFT JOIN taskCategory ON task.id = taskcategory.id_task WHERE id_category = :id_category ORDER BY id DESC');
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM task 
+         LEFT JOIN taskCategory 
+                ON task.id = taskcategory.id_task 
+             WHERE id_category = :id_category 
+          ORDER BY id DESC');
         $query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
