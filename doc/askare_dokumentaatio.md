@@ -75,18 +75,18 @@ Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. L
 
 *Kuva 2. Tietokantakaavio*
 
-![Järjestelmän komponentit](components.png)
-
-*Kuva 3. Järjestelmän komponentit*
-
 ### Järjestelmän yleisrakenne
 
 Tietokantasovelluksessa on noudatettu MVC-mallia. Kontrollerit, näkymät ja mallit
 sijaitsevat hakemistoissa /app/controllers, /app/views ja /app/models. GET ja POST -pyyntöjen ohjaamisesta kontrollereille vastaa /config -hakemistossa sijaitseva *routes.php*.
 
-Ulkopuoliset kirjastot (esim. Bootstrap) sijaitsevat hakemistossa /vendor. Sovellus käyttää päivämäärän valintaan Jonathan Petersonin ![Bootstrap Datetimepickeriä](https://github.com/Eonasdan/bootstrap-datetimepicker).
+Ulkopuoliset kirjastot (esim. Bootstrap) sijaitsevat hakemistossa /vendor. Sovellus käyttää päivämäärän valintaan Jonathan Petersonin [Bootstrap Datetimepickeriä](https://github.com/Eonasdan/bootstrap-datetimepicker).
 
-Kaikki tiedostonimet on kirjoitettu pienellä.
+Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty kiinnittämään huomiota.
+
+![Järjestelmän komponentit](components.png)
+
+*Kuva 3. Järjestelmän komponentit*
 
 ### Järjestelmän käyttöohje
 
