@@ -65,6 +65,8 @@ Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. L
 
 ![Tietokantakaavio](askare_database.png)
 
+![Järjestelmän komponentit](components.png)
+
 ### Järjestelmän käyttöohje
 
 #### Staattiset sivut
