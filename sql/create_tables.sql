@@ -32,8 +32,8 @@ CREATE TABLE Category(
     id_owner    INTEGER         REFERENCES Human(id),
     name        varchar(50)     NOT NULL,
     description varchar(200),
-    symbol      varchar(50),
-    color       varchar(10)
+    symbol      varchar(20),
+    color       varchar(20)
 );
 
 CREATE TABLE TaskCategory(
