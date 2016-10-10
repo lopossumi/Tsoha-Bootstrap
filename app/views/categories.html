@@ -15,9 +15,9 @@
     <!-- header -->
     <thead>
         <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Description</th>
+            <th class="col-xs-2">Symbol</th>
+            <th class="col-xs-10">Name</th>
+            <!-- <th>Description</th> -->
         </tr>
     </thead>
 
@@ -25,11 +25,11 @@
     {% for category in myCategories %}
     <tr>
         <td>
-            {{ forms.category_button_xs("#{base_path}/category/#{category.id}/list","#{category.name}", 
+            {{ forms.category_button("#{base_path}/category/#{category.id}/list","#{category.name}", 
             "#{category.color}", "#{category.symbol}") }}
         </td>
         <td>{{category.name}}</td>
-        <td>{{category.description}}</td>
+        <!-- <td>{{category.description}}</td> -->
     </tr>
     {% endfor %}
     </tbody>

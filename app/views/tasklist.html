@@ -16,35 +16,40 @@
     <!-- header -->
     <thead>
         <tr>
-            <th colspan=3>
+            <td colspan=6>
                 <h2>{{taskList.name}}</h2>
-            </th>
-            <th>Priority</th>
-            <th colspan=3>Categories</th>
+            </td>
+        </tr>
+        <tr>
+            <th class="col-xs-1">Status</th>
+            <th class="col-xs-1">Due</th>
+            <th class="col-xs-2">Priority</th>
+            <th class="col-xs-5">Name</th>
+            <th class="col-xs-1">Categories</th>
+            <th class="col-xs-2">Actions</th>
         </tr>
     </thead>
 
     <tbody>
 
         {% for task in taskList.tasks %}
-        <tr>
+        <tr class="{% if task.status == 2 %}success{% endif %}{% if task.status == 1 %}info{% endif %}">
             <!-- status -->
             <td>
                 {% if task.status == 2 %}
                 <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
                 {% elseif task.status == 1 %}
                 <form method="post" action="{{base_path}}/task/{{task.id}}/complete" style="display: inline-block;">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
+                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></button>
                 </form>
                 {% else %}
                 <form method="post" action="{{base_path}}/task/{{task.id}}/start" style="display: inline-block;">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></button>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></span></button>
                 </form>
                 {% endif %}
             </td>
-
-            <!-- due deadline. TODO: move to controller (task.timeremaining) -->
             <td>
+            <!-- due deadline. TODO: move to controller (task.timeremaining) -->
                 {% if task.duedate and task.status == 0 %}
                 {% set dateTimeEvent = date(task.duedate) %}
                 {% set dateTimeNow = date(now.iso8601) %}
@@ -67,11 +72,12 @@
 
                 {% endif %}
             </td>
-            <!-- task name -->
-            <td>{{task.name}}</td>
 
             <!-- priority stars -->
-            <td>{% for i in 1..task.priority %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</td>
+            <td>{% for i in 1..4 %}<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>{% endfor %}</td>
+
+            <!-- task name -->
+            <td>{{task.name}}</td>
 
             <!-- category -->
             <td>
@@ -93,6 +99,6 @@
         {% endfor %}
     </tbody>
 </table>
-
 {% endfor %}
+
 {% endblock %}

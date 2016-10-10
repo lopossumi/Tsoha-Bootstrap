@@ -18,10 +18,10 @@
 
 {% macro edit_button(action, title) %}
     {% import _self as forms %}
-    {{ forms.action_button("get", action, title, "info", "pencil") }}
+    {{ forms.action_button("get", action, title, "info", "pencil", "btn-sm") }}
 {% endmacro %}
 
 {% macro remove_button(action, title) %}
     {% import _self as forms %}
-    {{ forms.action_button("post", action, title, "danger", "trash") }}
+    {{ forms.action_button("post", action, title, "danger", "trash", "btn-sm") }}
 {% endmacro %}
