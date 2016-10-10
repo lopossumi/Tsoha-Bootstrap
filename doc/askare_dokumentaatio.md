@@ -63,8 +63,10 @@ Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prior
 
 Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli valitaan annetusta kirjastosta.
 
+### Tietokantakaavio
 ![Tietokantakaavio](askare_database.png)
 
+### Järjestelmän komponentit
 ![Järjestelmän komponentit](components.png)
 
 ### Järjestelmän käyttöohje
