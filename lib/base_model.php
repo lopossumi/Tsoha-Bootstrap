@@ -26,7 +26,7 @@ class BaseModel{
     return $errors;
   }
 
-  public function validate_string_length($string, $minLength, $maxLength, $field){
+  public static function validate_string_length($string, $minLength, $maxLength, $field){
     $errors = array();
     if(strlen($string) < $minLength || strlen($string) > $maxLength){
       $errors[] = $field . ' length must be between '. $minLength . '...' . $maxLength . ' characters!';
@@ -34,14 +34,16 @@ class BaseModel{
     return $errors;
   }
 
-  public function validate_name($string){
+  public function validate_name(){
+    $string = $this->name;
     if($string == null || $string == ''){
       return array('Name cannot be empty!');
     }
     return validate_string_length($string, 3, 50, 'Name');
   }
 
-  public function validate_description($string){
+  public function validate_description(){
+    $string = $this->description;
     if(!is_null($string)){
       return validate_string_length($string, 0, 2000, 'Description');
     }

@@ -17,6 +17,9 @@ class TaskController extends BaseController{
             'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
+        
+        Kint::dump($task->errors());
+        /*
         $task->save();
 
         // Add categories to junction table
@@ -26,6 +29,7 @@ class TaskController extends BaseController{
             }
         }
         Redirect::to('/index', array('message' => 'Task added!'));
+        */
     }
 
     public static function viewTask($id){

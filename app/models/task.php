@@ -3,6 +3,7 @@ class Task extends BaseModel{
     public $id, $id_tasklist, $name, $description, $duedate, $priority, $status, $archived, $deleted, $categories;
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_description');
     }
 
     public static function newFromParams($row){
