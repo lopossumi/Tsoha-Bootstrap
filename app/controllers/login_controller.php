@@ -10,7 +10,7 @@ class LoginController extends BaseController{
         }
     }
 
-    public static function handle_login(){
+    public static function handleLogin(){
         $params = $_POST;
         //$pwd = crypt($params['password']);
 

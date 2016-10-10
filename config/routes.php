@@ -6,7 +6,7 @@ function checkLogin(){
 
 //LoginController
 $routes->get('/login',                              function(){     LoginController::login();});
-$routes->post('/login',                             function(){     LoginController::handle_login();});
+$routes->post('/login',                             function(){     LoginController::handleLogin();});
 $routes->post('/logout',                            function(){     LoginController::logout();});
 
 //TaskListController
