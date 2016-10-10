@@ -21,15 +21,16 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 ### Järjestelmän tietosisältö
 
 ![Tietosisältö](askare_kasitekaavio.png)
+*Kuva 1. Käsitekaavio*
 
 #### Tietokohde: Human
 
 | Attribuutti | Arvojoukko   | Kuvaus
 | -------     | -----------  | ------------------------------------  |
 | Username    | varchar(20)  | Käyttäjätunnus                        |
-| Password    | varchar(50)  | Salasana                              |
 | Fullname    | varchar(100) | Koko nimi (näkyy muille käyttäjille)  |
-| Email       | varchar(100) | Sähköpostiosoite aktivointia varten   |
+| Password    | varchar(255) | Salasana                              |
+| Email       | varchar(254) | Sähköpostiosoite aktivointia varten   |
 | IsPrivate   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
 | IsAdmin     | boolean      | Pääkäyttäjä (voi muokata käyttäjiä)   |
 
@@ -37,20 +38,24 @@ Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostios
 
 #### Tietokohde: TaskList
 
-| Attribuutti | Arvojoukko  | Kuvaus
-| -------     | ----------- | ---------------  |
-| Listname    | varchar(50) | Listan nimi      |
+| Attribuutti | Arvojoukko   | Kuvaus
+| -------     | ------------ | ---------------  |
+| Name        | varchar(50)  | Listan nimi      |
+| Description | varchar(200) | Listan kuvaus    |
 
 Tehtävälista. Käyttäjä voi luoda useita tehtävälistoja, joista jokainen voi sisältää useita tehtäviä. 
 
 #### Tietokohde: Task
 
-| Attribuutti   | Arvojoukko   | Kuvaus
-| -------       | -----------  | ---------------  |
-| Description   | varchar(100) | Tehtävän kuvaus
-| Duedate       | timestamp    | Tehtävän deadline
-| Priority      | integer      | Tehtävän tärkeysaste (Low...Highest)
-| Status        | integer      | Ei aloitettu / aloitettu / Suoritettu
+| Attribuutti   | Arvojoukko    | Kuvaus
+| -------       | -----------   | ---------------
+| Description   | varchar(50)   | Tehtävän nimi
+| Description   | varchar(2000) | Tehtävän tarkempi kuvaus
+| Duedate       | timestamp     | Tehtävän deadline
+| Priority      | integer       | Tehtävän tärkeysaste (Low...Highest)
+| Status        | integer       | Ei aloitettu / aloitettu / Suoritettu
+| Archived      | boolean       | Tehtävä on arkistossa
+| Deleted       | boolean       | Tehtävä on roskakorissa
 
 Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prioriteetin (Low, **Normal**, High, Highest) ja useita luokkia. Deadline ilmaistaan jäljelläolevana aikana, mutta sen määrittäminen ei ole pakollista.
 
@@ -58,16 +63,18 @@ Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prior
 
 | Attribuutti   | Arvojoukko   | Kuvaus
 | -------       | -----------  | ---------------  |
-| Description   | varchar(50)  | Kategorian kuvaus
-| Symbol        | integer      | Kategorian tunnus
+| Name          | varchar(50)  | Kategorian nimi
+| Description   | varchar(200) | Kategorian kuvaus
+| Symbol        | varchar(20)  | Kategorian tunnus (glyphicon)
+| Color         | varchar(20)  | Kategorian väri (bootstrap)
 
 Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli valitaan annetusta kirjastosta.
 
-### Tietokantakaavio
 ![Tietokantakaavio](askare_database.png)
+*Kuva 2. Tietokantakaavio*
 
-### Järjestelmän komponentit
 ![Järjestelmän komponentit](components.png)
+*Kuva 3. Järjestelmän komponentit*
 
 ### Järjestelmän käyttöohje
 
