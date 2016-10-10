@@ -92,6 +92,4 @@ Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty
 
 #### Staattiset sivut
 
-Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Painamalla login-nappia pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Voit avata uuden tehtävän luomiseen käytettävän näkymän painamalla "New task" -nappia jommankumman listan kohdalla.
-
-Tehtävälistojen jakaminen käyttäjien kesken toteutetaan mikäli aikaa riittää.
+Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Kirjautumalla pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Tehtävien kategoriat ilmaistaan värillisellä symbolilla, jota klikkaamalla näytetään kaikki saman kategorian tehtävät omana listanaan. Uusia tehtäviä, kategorioita ja listoja voi luoda yläpalkin New-alasvetovalikosta.
