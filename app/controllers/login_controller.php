@@ -7,6 +7,7 @@ class LoginController extends BaseController{
 
     public static function handle_login(){
         $params = $_POST;
+        //$pwd = crypt($params['password']);
 
         $user = Human::authenticate(
             $params['email'], 
@@ -14,7 +15,7 @@ class LoginController extends BaseController{
 
         if(!$user){
             View::make('login.html', array(
-                'error'     => 'Invalid e-mail or password!', 
+                'error'     => 'Invalid e-mail or password! [' . $pwd . ']', 
                 'email'     => $params['email']));
         }else{
             $_SESSION['user'] = $user->id;

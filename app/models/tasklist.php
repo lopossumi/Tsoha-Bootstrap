@@ -3,6 +3,7 @@ class TaskList extends BaseModel{
     public $id, $id_owner, $name, $description, $tasks;
     public function __construct($attributes){
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_description_short');
     }
 
     private static function rowToTaskList($row){

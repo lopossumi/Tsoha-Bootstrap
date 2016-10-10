@@ -2,8 +2,8 @@ CREATE TABLE Human(
     id          SERIAL          PRIMARY KEY,
     username    varchar(20)     NOT NULL, 
     fullname    varchar(100)    NOT NULL,
-    password    varchar(50)     NOT NULL,
-    email       varchar(100)    NOT NULL,
+    password    varchar(255)    NOT NULL,
+    email       varchar(254)    NOT NULL,
     isprivate   boolean         DEFAULT TRUE,
     isadmin     boolean         DEFAULT FALSE
 );

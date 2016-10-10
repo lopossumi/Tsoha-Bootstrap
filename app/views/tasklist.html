@@ -45,7 +45,7 @@
 
             <!-- due deadline. TODO: move to controller (task.timeremaining) -->
             <td>
-                {% if (task.duedate) %}
+                {% if task.duedate and task.status == 0 %}
                 {% set dateTimeEvent = date(task.duedate) %}
                 {% set dateTimeNow = date(now.iso8601) %}
 

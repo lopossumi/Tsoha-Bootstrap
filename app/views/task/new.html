@@ -2,6 +2,15 @@
 
 {% block content %}
 
+{% if errors is defined %}
+{% for error in errors %}
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{error}}
+</div>
+{% endfor %}
+{% endif %}
+
 <h2>New task</h2>
 <form method="post" action="{{base_path}}/newtask">
 
@@ -9,19 +18,19 @@
         <label>Task list:</label>
         <select class="form-control" name="id_tasklist">
             {% for taskList in myTaskLists %}
-            <option value="{{taskList.id}}">{{taskList.name}}</option>
+            <option value="{{taskList.id}}" {% if (attributes.id_tasklist == taskList.id) %} selected{% endif %}>{{taskList.name}}</option>
             {% endfor %}
         </select>
     </div>
 
     <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control" name="name">
+        <input type="text" class="form-control" name="name" value="{{attributes.name}}">
     </div>
 
     <div class="form-group">
         <label for="description">Description:</label>
-        <textarea class="form-control" rows="6" name="description"></textarea>
+        <textarea class="form-control" rows="6" name="description">{{attributes.description}}</textarea>
     </div>
 
     <!-- Priority: default "normal" -->
@@ -32,7 +41,7 @@
             {% for i in 1..4 %}
             {% set priorityText = ['', 'Low', 'Normal', 'High', 'Highest'] %}
             <label class="btn btn-info{% if i==2 %} active {% endif %}">
-                <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if i==2 %} checked {% endif %}>{{priorityText[i]}}</label>
+                <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if attributes.priority == i %} checked {% endif %}>{{priorityText[i]}}</label>
             {% endfor %}
         </div>
     </div>
@@ -67,10 +76,10 @@
 <script type="text/javascript">
 $(function () {
         $('#duedate').datetimepicker({
-            sideBySide:true,
-            format:'YYYY-MM-DD HH:mm',
-            //defaultDate: '{{myTask.duedate}}',
-            });
+sideBySide:true,
+format:'YYYY-MM-DD HH:mm',
+//defaultDate: '{{myTask.duedate}}',
+});
         });
 </script>
 {% endblock %}

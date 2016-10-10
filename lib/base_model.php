@@ -20,7 +20,9 @@ class BaseModel{
     $errors = array();
 
     foreach($this->validators as $validator){
+
         // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+        $errors = array_merge($errors, $this->{$validator}());
     }
 
     return $errors;
@@ -39,13 +41,20 @@ class BaseModel{
     if($string == null || $string == ''){
       return array('Name cannot be empty!');
     }
-    return validate_string_length($string, 3, 50, 'Name');
+    return self::validate_string_length($string, 3, 50, 'Name');
   }
 
   public function validate_description(){
     $string = $this->description;
     if(!is_null($string)){
-      return validate_string_length($string, 0, 2000, 'Description');
+      return self::validate_string_length($string, 0, 2000, 'Description');
+    }
+  }
+  
+  public function validate_description_short(){
+    $string = $this->description;
+    if(!is_null($string)){
+      return self::validate_string_length($string, 0, 200, 'Description');
     }
   }
 }

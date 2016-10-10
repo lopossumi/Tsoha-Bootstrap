@@ -8,12 +8,12 @@
 
 {% macro category_button_xs(action, title, color, symbol) %}
     {% import _self as forms %}
-    {{ forms.action_button("get", action, title, color, symbol) }}
+    {{ forms.action_button("get", action, title, color, symbol, "btn-xs") }}
 {% endmacro %}
 
 {% macro category_button(action, title, color, symbol) %}
     {% import _self as forms %}
-    {{ forms.action_button("get", action, title, color, symbol, "btn-xs") }}
+    {{ forms.action_button("get", action, title, color, symbol) }}
 {% endmacro %}
 
 {% macro edit_button(action, title) %}
