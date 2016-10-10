@@ -14,69 +14,68 @@
     <!-- header -->
     <thead>
         <tr>
-            <th colspan=3>
-                <h2><button class="btn btn-default btn-{{myCategory.color}}"><span class="glyphicon glyphicon-{{myCategory.symbol}}"></span></button> {{myCategory.name}}</h2></th>
-                <th>Priority</th>
-                <th>Categories</th>
-                <th></th>
-            </tr>
-        </thead>
+            <td colspan=6>
+                <h2><button class="btn btn-default btn-{{myCategory.color}}"><span class="glyphicon glyphicon-{{myCategory.symbol}}"></span></button> {{myCategory.name}}</h2>
+            </td>
+        </tr>
+        <tr>
+            <th class="col-xs-1">Status</th>
+            <th class="col-xs-1">Due</th>
+            <th class="col-xs-2">Priority</th>
+            <th class="col-xs-5">Name</th>
+            <th class="col-xs-1">Categories</th>
+            <th class="col-xs-2">Actions</th>
+        </tr>
+    </thead>
 
-        <tbody>
-            <!-- Tehtävälistaus -->
 
-            {% for task in myTasks %}
-            <tr>
-                <!-- status -->
-                <td>
-                    {% if task.status == 2 %}
-                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
-                    {% elseif task.status == 1 %}
-                    <form method="post" action="{{base_path}}/task/{{task.id}}/complete" style="display: inline-block;">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
-                    </form>
-                    <!--<a href="#" class="btn btn-info"><span class="glyphicon glyphicon-play"></span></a>-->
-                    {% else %}
-                    <form method="post" action="{{base_path}}/task/{{task.id}}/start" style="display: inline-block;">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-play" style="visibility: hidden"></button>
-                    </form>
-                    <!--<a href="#" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></a>-->
-                    {% endif %}
-                </td>
+    <tbody>
+        <!-- Tehtävälistaus -->
+        {% for task in myTasks %}
+        <tr class="
+        {% if task.status == 2 %}success{% endif %}
+        {% if task.status == 1 %}info{% endif %} 
+        {% if task.archived %} hidden{% endif %}">
+            <!-- status -->
+            <td>
+                {% if task.status == 2 %}
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/archive", "Archive task", "success", "ok") }}
+                {% elseif task.status == 1 %}
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/complete", "Complete task", "info", "play") }}
+                {% else %}
+                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start task", "default", "play") }}
+                {% endif %}
+            </td>
+            <td>
+            <!-- due deadline. TODO: move to controller (task.timeremaining) -->
+                {% if task.duedate and task.status == 0 %}
+                {% set dateTimeEvent = date(task.duedate) %}
+                {% set dateTimeNow = date(now.iso8601) %}
 
-                <!-- due deadline. TODO: move to controller (task.timeremaining) -->
-                <td>
-                    {% if (task.duedate) %}
-                    {% set dateTimeEvent = date(task.duedate) %}
-                    {% set dateTimeNow = date(now.iso8601) %}
+                {% set dateInterval = dateTimeNow.diff(dateTimeEvent) %}
 
-                    {% set dateInterval = dateTimeNow.diff(dateTimeEvent) %}
+                {% set days = dateInterval|date('%a') %}
+                {% set hours = dateInterval|date('%h') %}
+                {% set totalHours = days * 24 + hours %}
 
-                    {% set days = dateInterval|date('%a') %}
-                    {% set hours = dateInterval|date('%h') %}
-                    {% set totalHours = days * 24 + hours %}
+                {% set upcoming = dateInterval|date('%R') == '+' ? true %}
 
-                    {% set upcoming = dateInterval|date('%R') == '+' ? true %}
+                {% if upcoming and (days>0) %}
+                <span class="label label-info">{{ days }} d</span>
+                {% elseif upcoming %}
+                <span class="label label-warning">{{ totalHours }} h</span>
+                {% else %}
+                <span class="label label-danger">Late!</span>
+                {% endif %}
 
-                    {% if upcoming and (days>0) %}
-                    <span class="label label-info">{{ days }} d</span>
-                    {% elseif upcoming %}
-                    <span class="label label-warning">{{ totalHours }} h</span>
-                    {% else %}
-                    <span class="label label-danger">Late!</span>
-                    {% endif %}
+                {% endif %}
+            </td>
 
-                    {% endif %}
-                </td>
-                <!-- task name -->
-                <td>{{task.name}}</td>
+            <!-- priority stars -->
+            <td>{% for i in 1..4 %}<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>{% endfor %}</td>
 
-                <!-- priority 
-                <td>{{task.priority}}</td>-->
-
-                <!-- priority -->
-                <td>{% for i in 1..task.priority %}<span class="glyphicon glyphicon-star"></span>{% endfor %}</td>
-
+            <!-- task name -->
+            <td>{{task.name}}</td>
 
             <!-- category -->
             <td>
@@ -94,9 +93,9 @@
                 </div>
             </td>
 
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        </tr>
+           {% endfor %}
+       </tbody>
+   </table>
 
-    {% endblock %}
+   {% endblock %}
