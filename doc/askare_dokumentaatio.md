@@ -21,6 +21,7 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 ### Järjestelmän tietosisältö
 
 ![Tietosisältö](askare_kasitekaavio.png)
+
 *Kuva 1. Käsitekaavio*
 
 #### Tietokohde: Human
@@ -71,9 +72,11 @@ Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prior
 Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli valitaan annetusta kirjastosta.
 
 ![Tietokantakaavio](askare_database.png)
+
 *Kuva 2. Tietokantakaavio*
 
 ![Järjestelmän komponentit](components.png)
+
 *Kuva 3. Järjestelmän komponentit*
 
 ### Järjestelmän käyttöohje
