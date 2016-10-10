@@ -16,7 +16,8 @@
     <thead>
         <tr>
             <th class="col-xs-2">Symbol</th>
-            <th class="col-xs-10">Name</th>
+            <th class="col-xs-9">Name</th>
+            <th class="col-xs-1"></th>
             <!-- <th>Description</th> -->
         </tr>
     </thead>
@@ -30,6 +31,13 @@
         </td>
         <td>{{category.name}}</td>
         <!-- <td>{{category.description}}</td> -->
+        <td>
+            <div class="btn-toolbar">
+            <!-- {{ forms.edit_button("#{base_path}/category/#{category.id}/edit","Edit category")}} -->
+            {{ forms.remove_button("#{base_path}/category/#{category.id}/remove","Remove category") }}
+            </div>
+        </td>
+
     </tr>
     {% endfor %}
     </tbody>

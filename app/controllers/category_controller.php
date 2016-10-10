@@ -31,4 +31,9 @@ class CategoryController extends BaseController{
             'myTasks'       => Task::allByCategory($id),
             'myCategory'    => Category::find($id)));
     }
+
+    public function removeCategory($id){
+        Category::destroy($id);
+        Redirect::to('/categories');
+    }
 }

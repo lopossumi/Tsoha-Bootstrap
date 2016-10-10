@@ -104,4 +104,10 @@ class Category extends BaseModel{
         $row = $query->fetch();
         $this->id = $row['id'];
     }
+
+    public function destroy($id){
+        $query = DB::connection()->prepare('DELETE FROM Category WHERE id = :id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
 }
