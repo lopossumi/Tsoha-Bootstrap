@@ -25,3 +25,23 @@
     {% import _self as forms %}
     {{ forms.action_button("post", action, title, "danger", "trash", "btn-sm") }}
 {% endmacro %}
+
+{% macro due_label(duedate) %}
+    {% set dateTimeEvent = date(duedate) %}
+    {% set dateTimeNow = date(now.iso8601) %}
+    {% set dateInterval = dateTimeNow.diff(dateTimeEvent) %}
+  
+    {% set days = dateInterval|date('%a') %}
+    {% set hours = dateInterval|date('%h') %}
+    {% set totalHours = days * 24 + hours %}
+
+    {% set upcoming = dateInterval|date('%R') == '+' ? true %}
+
+    {% if upcoming and (days>0) %}
+    <span class="label label-info">{{ days }} d</span>
+    {% elseif upcoming %}
+    <span class="label label-warning">{{ totalHours }} h</span>
+    {% else %}
+    <span class="label label-danger">Late!</span>
+    {% endif %}
+{% endmacro %}
