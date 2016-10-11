@@ -23,11 +23,8 @@
 
     <tbody>
 
-        {% for task in myTasklist.tasks %}
-        <tr class="
-        {% if task.status == 2 %}success{% endif %}
-        {% if task.status == 1 %}info{% endif %} 
-        {% if task.archived %} hidden{% endif %}">
+        {% for task in myTasks %}
+        <tr>
             <!-- status -->
             <td>
                 {% if task.status == 2 %}
