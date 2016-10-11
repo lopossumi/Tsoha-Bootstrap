@@ -7,7 +7,7 @@ class TasklistController extends BaseController{
             Redirect::to('/login');
         }
         $myTasklists = Tasklist::allByOwner($human->id);
-        View::make('tasklist.html', array(
+        View::make('index.html', array(
             'myTasklists'   => $myTasklists));
     }
 

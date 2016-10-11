@@ -27,7 +27,7 @@ class CategoryController extends BaseController{
     }
 
     public static function listCategory($id){
-        View::make('category/list.html', array(
+        View::make('category/view.html', array(
             'myTasks'       => Task::activeByCategory($id),
             'myCategory'    => Category::find($id)));
     }
