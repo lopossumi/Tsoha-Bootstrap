@@ -63,7 +63,13 @@
             </td>
 
             <!-- task name -->
-            <td>{{task.name}}</td>
+            <td>
+                <a href="{{base_path}}/task/{{task.id}}/view">
+                <div style="height:100%;width:100%">
+                {{task.name}}
+                </div>
+                </a>
+            </td>
 
             <!-- category -->
             <td>
