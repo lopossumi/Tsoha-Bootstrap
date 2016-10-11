@@ -27,9 +27,11 @@
         <tr>
             <!-- status -->
             <td>
+                <!-- dummy button -->
                 {% if task.status == 2 %}
-                {{ forms.action_button("post", "#{base_path}/task/#{task.id}/archive", "Archive task", "success", "ok") }}
+                <button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
                 {% elseif task.status == 1 %}
+                <!-- non-finished tasks should not end up in the archive. -->
                 {{ forms.action_button("post", "#{base_path}/task/#{task.id}/complete", "Complete task", "info", "play") }}
                 {% else %}
                 {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start task", "default", "play") }}
