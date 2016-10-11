@@ -84,26 +84,31 @@ class TaskController extends BaseController{
 
     public function startTask($id){
         Task::start($id);
-        Redirect::to('/index');
+        Redirect::to('/index', array(
+            'message' => 'Task started!'));
     }
 
     public function completeTask($id){
         Task::complete($id);
-        Redirect::to('/index');
+        Redirect::to('/index', array(
+            'message' => 'Task completed!'));
     }
 
     public function removeTask($id){
         Task::destroy($id);
-        Redirect::to('/index');
+        Redirect::to('/index', array(
+            'message' => 'Task removed!'));
     }
 
     public function archiveTask($id){
         Task::archive($id);
-        Redirect::to('/index');
+        Redirect::to('/index', array(
+            'message' => 'Task archived!'));
     }
 
     public function revertTask($id){
         Task::revert($id);
-        Redirect::to('/archive');
+        Redirect::to('/archive', array(
+            'message' => 'Task reverted!'));
     }
 }
