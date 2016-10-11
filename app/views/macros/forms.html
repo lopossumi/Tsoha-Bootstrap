@@ -21,7 +21,7 @@
     {{ forms.action_button("get", action, title, "info", "pencil", "btn-sm", text) }}
 {% endmacro %}
 
-{% macro remove_button(action, title) %}
+{% macro remove_button(action, title, text) %}
     {% import _self as forms %}
     {{ forms.action_button("post", action, title, "danger", "trash", "btn-sm", text) }}
 {% endmacro %}

@@ -8,7 +8,7 @@
 {{myTask.description}}
 </p>
 
-<div>
+<div class="form-group">
     <label for="priority">Priority:</label><br/>
     <div class="btn-group" data-toggle="buttons">
         {% for i in 1..4 %}
@@ -19,7 +19,8 @@
         {% endfor %}
     </div>
 </div>
-<div>
+
+<div class="form-group">
     <label for="duedate">Due date:</label>
     <div class='input-group date' id='duedate'>
         <input type='text' class="form-control" name='duedate' />
@@ -28,6 +29,8 @@
         </span>
     </div>
 </div>
+
+<div class="form-group">
 <label for="categories[]">Categories:</label>
 <div data-toggle="buttons">
     {% for category in myCategories %}
@@ -47,6 +50,7 @@
         });
     });
 </script>
+</div>
 
 {{ forms.edit_button("#{base_path}/task/#{myTask.id}/edit","Edit task", "Edit task")}}
 {{ forms.remove_button("#{base_path}/task/#{myTask.id}/remove","Remove task", "Remove task") }}
