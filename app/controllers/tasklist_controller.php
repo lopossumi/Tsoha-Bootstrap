@@ -30,6 +30,7 @@ class TasklistController extends BaseController{
 
     public static function viewList($id){
         $human = self::get_user_logged_in();
+        $tasklist = Tasklist::find($id);
         View::make('list/view.html', array(
             'myTasklist'        => $tasklist));
     }
