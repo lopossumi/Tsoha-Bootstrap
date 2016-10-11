@@ -88,7 +88,10 @@
 <!-- enable datatable -->
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#tasklist{{tasklist.id}}').DataTable();
+    $('#tasklist{{tasklist.id}}').DataTable({
+        paging: false,
+        searching: false
+    });
 } );
 </script>
 
