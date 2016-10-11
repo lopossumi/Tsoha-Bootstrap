@@ -35,10 +35,12 @@
 <label for="categories[]">Categories:</label>
 <div data-toggle="buttons">
     {% for category in myCategories %}
-    <label class="btn btn-{{category.color}}{% if category.id in myTaskCategories %} active{% endif %}" data-toggle="tooltip" title="{{category.description}}">
-        <input type="checkbox" name="categories[]" value="{{category.id}}"{% if category.id in myTaskCategories %} checked{% endif %}>
-        <span class="glyphicon glyphicon-{{category.symbol}}"></span>
-    </label>
+        {% if category.id in myTaskCategories %}
+            {{ forms.category_button("#{base_path}/category/#{category.id}/list",
+                                     "#{category.name}", 
+                                     "#{category.color}", 
+                                     "#{category.symbol}") }}
+        {% endif %}
     {% endfor %}     
 </div>
 <!-- Enable and initialize Datetime picker -->
