@@ -17,7 +17,7 @@ CREATE TABLE TaskList(
 
 CREATE TABLE Task(
     id          SERIAL          PRIMARY KEY,
-    id_tasklist INTEGER         REFERENCES TaskList(id),
+    id_tasklist INTEGER         REFERENCES TaskList(id) ON DELETE CASCADE,
     name        varchar(50)     NOT NULL,
     description varchar(2000),
     duedate     timestamp,
