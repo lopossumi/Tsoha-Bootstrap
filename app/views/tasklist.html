@@ -5,7 +5,7 @@
 
 {% for tasklist in myTasklists %}
 
-<table class="table">
+<table class="table" id="tasklist">
     <!-- Headers -->
     <thead>
         <tr>
@@ -86,4 +86,10 @@
 </table>
 {% endfor %}
 
+<!-- enable datatable -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#tasklist').DataTable();
+} );
+</script>
 {% endblock %}
