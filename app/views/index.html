@@ -101,7 +101,8 @@
     $('#datatable{{tasklist.id}}').DataTable({
         paging: false,
         searching: false,
-        info: false
+        info: false,
+		"order": [[ 2, "desc" ]]
     });});
 	</script>
 	{% endfor %}
