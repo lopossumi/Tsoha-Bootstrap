@@ -17,8 +17,8 @@
     <div class="form-group">
         <label>Task list:</label>
         <select class="form-control" name="id_tasklist">
-            {% for taskList in myTaskLists %}
-            <option value="{{taskList.id}}" {% if (attributes.id_tasklist == taskList.id) %} selected{% endif %}>{{taskList.name}}</option>
+            {% for tasklist in myTasklists %}
+            <option value="{{tasklist.id}}" {% if (attributes.id_tasklist == tasklist.id) %} selected{% endif %}>{{tasklist.name}}</option>
             {% endfor %}
         </select>
     </div>

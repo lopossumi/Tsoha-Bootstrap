@@ -2,5 +2,20 @@
 {% block content %}
 
 <h2>Edit list</h2>
+<form method="post" action="{{base_path}}/list/{{myTasklist.id}}/edit">
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" value="{{myTasklist.name}}">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" name="description" value="{{myTasklist.description}}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save tasklist</button>
+
+</form>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 <?php
-class TaskListController extends BaseController{
+class TasklistController extends BaseController{
 
     public static function index(){
         $human = self::get_user_logged_in();
@@ -7,9 +7,9 @@ class TaskListController extends BaseController{
             Redirect::to('/login');
         }
 
-        $myTaskLists = TaskList::allByOwner($human->id);
+        $myTasklists = Tasklist::allByOwner($human->id);
         View::make('tasklist.html', array(
-            'myTaskLists'   => $myTaskLists));
+            'myTasklists'   => $myTasklists));
     }
 
     public static function newList(){
@@ -20,7 +20,7 @@ class TaskListController extends BaseController{
     public static function storeList(){
         $params = $_POST;
         $human = self::get_user_logged_in();
-        $tasklist = new TaskList(array(
+        $tasklist = new Tasklist(array(
             'id_owner'      => $human->id,
             'name'          => $params['name'],
             'description'   => $params['description']));
@@ -28,17 +28,31 @@ class TaskListController extends BaseController{
         Redirect::to('/index', array('message' => 'List added!'));
     }
 
-    public static function viewList(){
+    public static function viewList($id){
         $human = self::get_user_logged_in();
-        View::make('list/view.html');
+        View::make('list/view.html', array(
+            'myTasklist'        => $tasklist));
     }
     
-    public static function editList(){
+    public static function editList($id){
         $human = self::get_user_logged_in();
-        View::make('list/edit.html');
+        $tasklist = Tasklist::find($id);
+        View::make('list/edit.html', array(
+            'myTasklist'        => $tasklist));
     }
     
     public static function removeList(){
         Redirect::to('/index', array('message' => 'NOTHING DONE!'));
+    }
+    
+    public static function updateList($id){
+        $params = $_POST;
+        $tasklist = new Tasklist(array(
+            'name'          => $params['name'],
+            'description'   => $params['description']));
+        $tasklist->update($id);
+
+        Redirect::to('/index', array(
+            'message' => 'Task list updated!'));
     }
 }

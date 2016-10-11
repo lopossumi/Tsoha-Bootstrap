@@ -44,7 +44,7 @@ class Task extends BaseModel{
               FROM task 
              WHERE id_tasklist 
                 IN SELECT id 
-                     FROM TaskList 
+                     FROM tasklist 
                     WHERE id_owner = :id_owner)');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();

@@ -9,14 +9,15 @@ $routes->get('/login',                              function(){     LoginControl
 $routes->post('/login',                             function(){     LoginController::handleLogin();});
 $routes->post('/logout',                            function(){     LoginController::logout();});
 
-//TaskListController
-$routes->get('/',                   'checkLogin',   function(){     TaskListController::index();});
-$routes->get('/index',              'checkLogin',   function(){     TaskListController::index();});
-$routes->get('/newlist',            'checkLogin',   function(){     TaskListController::newList();});
-$routes->post('/newlist',           'checkLogin',   function(){     TaskListController::storeList();});
-$routes->get('/list/:id/view',     'checkLogin',   function($id){  TaskListController::viewList();});
-$routes->post('/list/:id/edit',     'checkLogin',   function($id){  TaskListController::editList();});
-$routes->post('/list/:id/remove',   'checkLogin',   function($id){  TaskListController::removeList();});
+//TasklistController
+$routes->get('/',                   'checkLogin',   function(){     TasklistController::index();});
+$routes->get('/index',              'checkLogin',   function(){     TasklistController::index();});
+$routes->get('/newlist',            'checkLogin',   function(){     TasklistController::newList();});
+$routes->post('/newlist',           'checkLogin',   function(){     TasklistController::storeList();});
+$routes->get('/list/:id/view',      'checkLogin',   function($id){  TasklistController::viewList();});
+$routes->get('/list/:id/edit',      'checkLogin',   function($id){  TasklistController::editList();});
+$routes->post('/list/:id/edit',     'checkLogin',   function($id){  TasklistController::updateList();});
+$routes->post('/list/:id/remove',   'checkLogin',   function($id){  TasklistController::removeList();});
 
 //TaskController
 $routes->get('/newtask',            'checkLogin',   function(){     TaskController::newTask();});

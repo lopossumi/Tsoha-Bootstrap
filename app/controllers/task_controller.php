@@ -4,7 +4,7 @@ class TaskController extends BaseController{
     public static function newTask(){
         $human = self::get_user_logged_in();
         View::make('task/new.html', array(
-            'myTaskLists'   => TaskList::allByOwner($human->id),
+            'myTasklists'   => Tasklist::allByOwner($human->id),
             'myCategories'  => Category::allByOwner($human->id)));
     }
 
@@ -36,7 +36,7 @@ class TaskController extends BaseController{
             View::make('task/new.html', array(
                 'errors' => $errors,
                 'attributes' => $attributes,
-                'myTaskLists'   => TaskList::allByOwner($human->id),
+                'myTasklists'   => Tasklist::allByOwner($human->id),
                 'myCategories'  => Category::allByOwner($human->id)));
         }
     }
@@ -45,7 +45,7 @@ class TaskController extends BaseController{
         $human = self::get_user_logged_in();
         $task = Task::find($id);
         View::make('task/view.html', array(
-            'myTaskLists'       => TaskList::allByOwner($human->id),
+            'myTasklists'       => Tasklist::allByOwner($human->id),
             'myCategories'      => Category::allByOwner($human->id),
             'myTask'            => $task,
             'myTaskCategories'  => Category::idByTask($task->id)));
@@ -55,7 +55,7 @@ class TaskController extends BaseController{
         $human = self::get_user_logged_in();
         $task = Task::find($id);
         View::make('task/edit.html', array(
-            'myTaskLists'       => TaskList::allByOwner($human->id),
+            'myTasklists'       => Tasklist::allByOwner($human->id),
             'myCategories'      => Category::allByOwner($human->id),
             'myTask'            => $task,
             'myTaskCategories'  => Category::idByTask($task->id)));

@@ -10,14 +10,14 @@
 </div>
 {% endif %}
 
-{% for taskList in myTaskLists %}
+{% for tasklist in myTasklists %}
 
 <table class="table">
     <!-- Headers -->
     <thead>
         <tr>
             <td colspan=6>
-                <h2><a href="{{base_path}}/list/{{taskList.id}}/view"><span class="label label-default">{{taskList.name}}</span></a></h2>
+                <h2><a href="{{base_path}}/list/{{tasklist.id}}/view"><span class="label label-default">{{tasklist.name}}</span></a></h2>
             </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
 
     <tbody>
 
-        {% for task in taskList.tasks %}
+        {% for task in tasklist.tasks %}
         <tr class="
         {% if task.status == 2 %}success{% endif %}
         {% if task.status == 1 %}info{% endif %} 
