@@ -82,7 +82,7 @@ class Task extends BaseModel{
                 ON task.id_tasklist = tasklist.id 
              WHERE id_owner = :id_owner
                AND archived = TRUE
-          ORDER BY id DESC');
+          ORDER BY task.id DESC');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
