@@ -1,19 +1,12 @@
 {% extends "base.html" %} {% import "macros/forms.html" as forms %} {% block content %}
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $('.collapse').collapse()
-} );
-</script> 
-
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 	{% for tasklist in myTasklists %}
 	<div class="panel panel-default">
 		<div class="panel-heading" role="tab" id="heading{{tasklist.id}}">
 			<h2 class="panel-title">
 				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{tasklist.id}}" aria-expanded="true" aria-controls="collapse{{tasklist.id}}">
-                  <span class="label label-default">{{tasklist.name}}</span></a>
-                </a>
+                  {{tasklist.name}}</a>
 			</h2>
 		</div>
 		
