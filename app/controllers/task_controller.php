@@ -72,7 +72,8 @@ class TaskController extends BaseController{
             'status'        => '0'));
         $task->update($id);
 
-        // Add categories to junction table
+        // Clean existing categories and add updated to junction table
+        Category::clean($id);
         if(isset ($params['categories'])){
             foreach($params['categories'] as $id_category){
                 Category::insert($id, $id_category);
