@@ -24,12 +24,14 @@
 			</table>
 			-->
 			<container>
+				<div class="row">
 			<div class="col-xs-2"><h3><a role="button" data-toggle="collapse" href="#collapse{{tasklist.id}}" aria-expanded="true" aria-controls="collapse{{tasklist.id}}">{{tasklist.name}}</a></h3></div>
 			<div class="col-xs-8">{{tasklist.description}}</div>
 			<div class="col-xs-2">
 				{{ forms.edit_button("#{base_path}/list/#{tasklist.id}/edit","Edit list")}} 
 				{{ forms.remove_button("#{base_path}/list/#{tasklist.id}/remove","Remove list")}}
 			</div>
+				</div>
 			</container>
 		</div>	
 		
