@@ -75,7 +75,7 @@ class TaskController extends BaseController{
         // Add categories to junction table
         if(isset ($params['categories'])){
             foreach($params['categories'] as $id_category){
-                Category::insert($task->id, $id_category);
+                Category::insert($id, $id_category);
             }
         }
         Redirect::to('/index', array(
