@@ -8,10 +8,13 @@ function checkLogin(){
 $routes->get('/login',                              function(){     LoginController::login();});
 $routes->post('/login',                             function(){     LoginController::handleLogin();});
 $routes->post('/logout',                            function(){     LoginController::logout();});
+$routes->get('/signup',                             function(){     LoginController::newHuman();});
+$routes->post('/signup',                            function(){     LoginController::storeHuman();});
 
 //TasklistController
 $routes->get('/',                   'checkLogin',   function(){     TasklistController::index();});
 $routes->get('/index',              'checkLogin',   function(){     TasklistController::index();});
+$routes->get('/archive',            'checkLogin',   function(){     TasklistController::viewArchive();});
 $routes->get('/newlist',            'checkLogin',   function(){     TasklistController::newList();});
 $routes->post('/newlist',           'checkLogin',   function(){     TasklistController::storeList();});
 $routes->get('/list/:id/view',      'checkLogin',   function($id){  TasklistController::viewList($id);});

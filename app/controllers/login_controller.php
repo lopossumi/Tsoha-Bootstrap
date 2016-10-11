@@ -34,4 +34,11 @@ class LoginController extends BaseController{
         Redirect::to('/login', array(
             'message' => 'You have successfully logged out.'));
     }
+
+    public static function newHuman(){
+
+    }
+    public static function storeHuman(){
+        $params = $_POST;
+    }
 }

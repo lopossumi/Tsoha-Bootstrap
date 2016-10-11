@@ -14,7 +14,8 @@
         {% for i in 1..4 %}
         {% set priorityText = ['', 'Low', 'Normal', 'High', 'Highest'] %}
         <label class="btn btn-info{% if myTask.priority == i %} active {% endif %}">
-            <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" {% if myTask.priority == i %} checked {% endif %}>{{priorityText[i]}}
+            <input type="radio" name="priority" id="{{priorityText[i]}}" value="{{i}}" 
+            {% if myTask.priority == i %} checked {% endif %}>{{priorityText[i]}}
         </label>
         {% endfor %}
     </div>

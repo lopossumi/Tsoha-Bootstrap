@@ -43,9 +43,9 @@ class Task extends BaseModel{
             SELECT * 
               FROM task 
              WHERE id_tasklist 
-                IN SELECT id 
-                     FROM tasklist 
-                    WHERE id_owner = :id_owner)');
+                IN (SELECT id 
+                      FROM tasklist 
+                     WHERE id_owner = :id_owner)');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
@@ -72,6 +72,26 @@ class Task extends BaseModel{
             $tasks[]=self::newFromParams($row);
         }
         return $tasks;
+    }
+
+    public static function archivedByOwner($id_owner){
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM task 
+         LEFT JOIN tasklist 
+                ON task.id_tasklist = tasklist.id 
+             WHERE id_owner = :id_owner
+               AND archived = TRUE
+          ORDER BY id DESC');
+        $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
+        $query->execute();
+        $rows = $query->fetchAll();
+
+        $tasks = array();
+        foreach($rows as $row){
+            $tasks[]=self::newFromParams($row);
+        }
+        return $tasks;      
     }
 
     public function save(){

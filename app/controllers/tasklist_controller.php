@@ -6,10 +6,19 @@ class TasklistController extends BaseController{
         if(!$human){
             Redirect::to('/login');
         }
-
         $myTasklists = Tasklist::allByOwner($human->id);
         View::make('tasklist.html', array(
             'myTasklists'   => $myTasklists));
+    }
+
+    public static function viewArchive(){
+        $human = self::get_user_logged_in();
+        if(!$human){
+            Redirect::to('/login');
+        }
+        $myTasks = Task::archivedByOwner($human->id);
+        View::make('archive.html', array(
+            'myTasks'   => $myTasks));
     }
 
     public static function newList(){
