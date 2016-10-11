@@ -77,7 +77,7 @@ class Category extends BaseModel{
     		DELETE FROM taskcategory 
     		      WHERE id_task = :id_task');
         $query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
-        query->execute();
+        $query->execute();
     }
 
     public static function insert($id_task, $id_category){
