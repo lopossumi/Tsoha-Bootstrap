@@ -4,6 +4,7 @@
 	{% for tasklist in myTasklists %}
 	<div class="panel panel-default">
 		<div class="panel-heading" role="tab" id="heading{{tasklist.id}}">
+			<!--
 			<table class="table">
 				<thead>
 					<tr>
@@ -21,6 +22,15 @@
 					</tr>
 				</thead>
 			</table>
+			-->
+			<container>
+			<div class="col-xs-2">{{tasklist.name}}</div>
+			<div class="col-xs-8">{{tasklist.description}}</div>
+			<div class="col-xs-2">
+				{{ forms.edit_button("#{base_path}/list/#{tasklist.id}/edit","Edit list")}} 
+				{{ forms.remove_button("#{base_path}/list/#{tasklist.id}/remove","Remove list")}}
+			</div>
+			</container>
 		</div>	
 		
 		<div id="collapse{{tasklist.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{tasklist.id}}">
