@@ -21,6 +21,7 @@ CREATE TABLE Task(
     name        varchar(50)     NOT NULL,
     description varchar(2000),
     duedate     timestamp,
+    completed   timestamp,
     priority    INTEGER,
     status      INTEGER         DEFAULT 0,
     archived    boolean         DEFAULT FALSE,
