@@ -171,13 +171,15 @@ class Task extends BaseModel{
         $query->execute();
     }
 
-    public function allByCategory($id_category){
+    public function activeByCategory($id_category){
         $query = DB::connection()->prepare('
             SELECT * 
               FROM task 
          LEFT JOIN taskCategory 
                 ON task.id = taskcategory.id_task 
-             WHERE id_category = :id_category 
+             WHERE id_category = :id_category
+               AND archived = false
+               AND deleted = false
           ORDER BY id DESC');
         $query->bindValue(':id_category', $id_category, PDO::PARAM_INT);
         $query->execute();
