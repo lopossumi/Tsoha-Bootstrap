@@ -46,14 +46,14 @@ class TaskController extends BaseController{
         $task = Task::find($id);
         
         $Parsedown = new Parsedown();
-        $mdDescription = $Parsedown->text($task->description);
+        $myDescription = $Parsedown->text($task->description);
         
         View::make('task/view.html', array(
             'myTasklists'       => Tasklist::allByOwner($human->id),
             'myCategories'      => Category::allByOwner($human->id),
             'myTask'            => $task,
             'myTaskCategories'  => Category::idByTask($task->id),
-            'myDescription'     => $mdDescription));
+            'myDescription'     => $myDescription));
     }
 
     public static function editTask($id){
