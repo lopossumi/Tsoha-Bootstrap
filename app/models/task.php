@@ -117,13 +117,15 @@ class Task extends BaseModel{
     public function update($id){
         $query = DB::connection()->prepare('
             UPDATE task 
-               SET id_tasklist  =:id_tasklist, 
+               SET name         =:name,
+                   id_tasklist  =:id_tasklist, 
                    description  =:description, 
                    duedate      =:duedate, 
                    priority     =:priority, 
                    status       =:status 
              WHERE id           =:id');
-        $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_STR);
+        $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
+        $query->bindValue(':id_tasklist',   $this->id_tasklist, PDO::PARAM_INT);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
         // If duedate is empty, mark it null (empty string will crash postgresql timestamp)        
         if($this->duedate){ 
