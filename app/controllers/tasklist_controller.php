@@ -28,8 +28,14 @@ class TaskListController extends BaseController{
         Redirect::to('/index', array('message' => 'List added!'));
     }
 
+    public static function viewList(){
+        $human = self::get_user_logged_in();
+        View::make('list/view.html');
+    }
+    
     public static function editList(){
-        Redirect::to('/index', array('message' => 'NOTHING DONE!'));
+        $human = self::get_user_logged_in();
+        View::make('list/edit.html');
     }
     
     public static function removeList(){
