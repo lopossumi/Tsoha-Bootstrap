@@ -3,9 +3,9 @@ class LoginController extends BaseController{
 
     public static function login(){
          if(!isset($_SESSION['user'])){
-            View::make('login.html');
+            View::make('login/login.html');
         }else{
-            View::make('logged_in.html', array(
+            View::make('login/logged_in.html', array(
                 'username'     => self::get_user_logged_in()->username));
         }
     }
@@ -19,7 +19,7 @@ class LoginController extends BaseController{
             $params['password']);
 
         if(!$user){
-            View::make('login.html', array(
+            View::make('login/login.html', array(
                 'error'     => 'Invalid e-mail or password!', 
                 'email'     => $params['email']));
         }else{
