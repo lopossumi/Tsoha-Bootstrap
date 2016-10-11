@@ -33,14 +33,13 @@
 
 <div class="form-group">
 <label for="categories[]">Categories:</label>
-<div class="btn-toolbar">
+<br>
     {% for category in myCategories %}
         {% if category.id in myTaskCategories %}
                 {{ forms.category_button_xs("#{base_path}/category/#{category.id}/list","#{category.name}", 
                 "#{category.color}", "#{category.symbol}") }}
         {% endif %}
     {% endfor %}     
-</div>
 </div>
 
 <!-- Edit and remove buttons -->

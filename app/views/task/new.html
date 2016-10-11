@@ -60,7 +60,7 @@
         <label for="categories[]">Categories:</label>
         <div data-toggle="buttons">
             {% for category in myCategories %}
-            <label class="btn btn-{{category.color}}" data-toggle="tooltip" title="{{category.description}}">
+            <label class="btn btn-{{category.color}}" data-toggle="tooltip" title="{{category.name}}">
                 <input type="checkbox" name="categories[]" value="{{category.id}}">
                 <span class="glyphicon glyphicon-{{category.symbol}}"></span>
             </label>
