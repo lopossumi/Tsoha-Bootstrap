@@ -42,6 +42,13 @@
     {% endfor %}     
 </div>
 </div>
+
+<!-- Edit and remove buttons -->
+<div class="form-group">
+{{ forms.edit_button("#{base_path}/task/#{myTask.id}/edit","Edit task", "Edit task")}}
+{{ forms.remove_button("#{base_path}/task/#{myTask.id}/remove","Remove task", "Remove task") }}
+</div>
+
 <!-- Enable and initialize Datetime picker -->
 <script type="text/javascript">
     $(function () {
@@ -49,12 +56,8 @@
             sideBySide:true,
             format:'YYYY-MM-DD HH:mm',
             defaultDate: '{{myTask.duedate}}',
+            disabled: true
         });
     });
 </script>
-</div>
-
-{{ forms.edit_button("#{base_path}/task/#{myTask.id}/edit","Edit task", "Edit task")}}
-{{ forms.remove_button("#{base_path}/task/#{myTask.id}/remove","Remove task", "Remove task") }}
-
 {% endblock %}
