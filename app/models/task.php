@@ -78,9 +78,9 @@ class Task extends BaseModel{
         $query = DB::connection()->prepare('
             SELECT * 
               FROM task 
-         LEFT JOIN tasklist 
-                ON task.id_tasklist = tasklist.id 
-             WHERE id_owner = :id_owner
+             WHERE id_tasklist IN (SELECT * 
+                                     FROM tasklist 
+                                    WHERE id_owner = :id_owner) 
                AND archived = TRUE
           ORDER BY task.id DESC');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
