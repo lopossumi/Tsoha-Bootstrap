@@ -6,7 +6,7 @@ class Tasklist extends BaseModel{
         $this->validators = array('validate_name', 'validate_description_short');
     }
 
-    private static function rowToTasklist($row){
+    private static function newFromParams($row){
         $tasklist = new Tasklist(array(
             'id'            => $row['id'],
             'id_owner'      => $row['id_owner'],
@@ -16,15 +16,34 @@ class Tasklist extends BaseModel{
         return $tasklist;
     }
 
+    public static function find($id){
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM tasklist 
+             WHERE id = :id 
+             LIMIT 1');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute(); 
+        $row = $query->fetch();
+
+        if($row){
+            return self::newFromParams($row);
+        }
+        return null;
+    }
+
     public static function allByOwner($id_owner){
-        $query = DB::connection()->prepare('SELECT * FROM tasklist WHERE id_owner = :id_owner');
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM tasklist 
+             WHERE id_owner = :id_owner');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
 
         $tasklists = array();
         foreach($rows as $row){
-            $tasklists[]=self::rowToTasklist($row);
+            $tasklists[]=self::newFromParams($row);
         }
 
         // Link all tasks in list
