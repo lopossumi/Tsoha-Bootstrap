@@ -67,10 +67,10 @@
                 {% endfor %}
             </td>
 
-            <!-- edit & remove buttons -->
+            <!-- revert & remove buttons -->
             <td>
                 <div class="btn-toolbar">
-                 {{ forms.edit_button("#{base_path}/task/#{task.id}/edit","Edit task")}}
+                 {{ forms.revert_button("#{base_path}/task/#{task.id}/revert","Revert task")}}
                  {{ forms.remove_button("#{base_path}/task/#{task.id}/remove","Remove task") }}
                 </div>
             </td>

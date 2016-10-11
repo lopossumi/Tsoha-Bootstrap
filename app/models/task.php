@@ -161,6 +161,12 @@ class Task extends BaseModel{
         $query->execute();
     }
 
+    public static function revert($id){
+        $query = DB::connection()->prepare('UPDATE task SET archived = false WHERE id=:id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
+
     public function allByCategory($id_category){
         $query = DB::connection()->prepare('
             SELECT * 

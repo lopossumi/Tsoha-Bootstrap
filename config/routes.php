@@ -32,6 +32,7 @@ $routes->post('/task/:id/start',    'checkLogin',   function($id){  TaskControll
 $routes->post('/task/:id/complete', 'checkLogin',   function($id){  TaskController::completeTask($id);});
 $routes->post('/task/:id/remove',   'checkLogin',   function($id){  TaskController::removeTask($id);});
 $routes->post('/task/:id/archive',  'checkLogin',   function($id){  TaskController::archiveTask($id);});
+$routes->post('/task/:id/revert',   'checkLogin',   function($id){  TaskController::revertTask($id);});
 
 //CategoryController
 $routes->get('/categories',         'checkLogin',   function(){     CategoryController::categories();});

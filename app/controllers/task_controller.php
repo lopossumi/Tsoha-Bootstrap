@@ -101,4 +101,10 @@ class TaskController extends BaseController{
         Task::archive($id);
         Redirect::to('/index');
     }
+
+    public function revertTask($id){
+        Task::revert($id);
+        Redirect::to('/index', array(
+            'message' => 'Task reverted!'));
+    }
 }
