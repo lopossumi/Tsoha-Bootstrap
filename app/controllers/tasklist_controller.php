@@ -27,4 +27,12 @@ class TaskListController extends BaseController{
         $tasklist->save();
         Redirect::to('/index', array('message' => 'List added!'));
     }
+
+    public static function editList(){
+        Redirect::to('/index', array('message' => 'NOTHING DONE!'));
+    }
+    
+    public static function removeList(){
+        Redirect::to('/index', array('message' => 'NOTHING DONE!'));
+    }
 }

@@ -14,6 +14,8 @@ $routes->get('/',                   'checkLogin',   function(){     TaskListCont
 $routes->get('/index',              'checkLogin',   function(){     TaskListController::index();});
 $routes->get('/newlist',            'checkLogin',   function(){     TaskListController::newList();});
 $routes->post('/newlist',           'checkLogin',   function(){     TaskListController::storeList();});
+$routes->post('/list/:id/edit',     'checkLogin',   function(){     TaskListController::editList();});
+$routes->post('/list/:id/remove',   'checkLogin',   function(){     TaskListController::removeList();});
 
 //TaskController
 $routes->get('/newtask',            'checkLogin',   function(){     TaskController::newTask();});
