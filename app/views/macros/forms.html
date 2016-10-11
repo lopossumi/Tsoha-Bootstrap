@@ -1,7 +1,7 @@
-{% macro action_button(method, action, title, color, symbol, size) %}
+{% macro action_button(method, action, title, color, symbol, size, text) %}
 <form method="{{method}}" action="{{action}}" style="display: inline-block;">
     <button type="submit" class="btn btn-{{color}} {{size}}" data-toggle="tooltip" title="{{title}}"> 
-        <span class="glyphicon glyphicon-{{symbol}}"></span>
+        <span class="glyphicon glyphicon-{{symbol}}"></span> {{text}}
     </button>
 </form>
 {% endmacro %}
@@ -16,14 +16,14 @@
     {{ forms.action_button("get", action, title, color, symbol) }}
 {% endmacro %}
 
-{% macro edit_button(action, title) %}
+{% macro edit_button(action, title, text) %}
     {% import _self as forms %}
-    {{ forms.action_button("get", action, title, "info", "pencil", "btn-sm") }}
+    {{ forms.action_button("get", action, title, "info", "pencil", "btn-sm", text) }}
 {% endmacro %}
 
 {% macro remove_button(action, title) %}
     {% import _self as forms %}
-    {{ forms.action_button("post", action, title, "danger", "trash", "btn-sm") }}
+    {{ forms.action_button("post", action, title, "danger", "trash", "btn-sm", text) }}
 {% endmacro %}
 
 {% macro due_label(duedate) %}
