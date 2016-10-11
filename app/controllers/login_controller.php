@@ -36,9 +36,11 @@ class LoginController extends BaseController{
     }
 
     public static function newHuman(){
-
+        View::make('login/signup.html');
     }
+
     public static function storeHuman(){
         $params = $_POST;
+        // validate and create user
     }
 }
