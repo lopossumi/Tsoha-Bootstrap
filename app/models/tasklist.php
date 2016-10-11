@@ -71,7 +71,7 @@ class Tasklist extends BaseModel{
         $query = DB::connection()->prepare('
             UPDATE tasklist
                SET name         =:name, 
-                   description  =:description, 
+                   description  =:description 
              WHERE id           =:id');
         $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
