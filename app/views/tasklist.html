@@ -12,22 +12,13 @@
 
 {% for taskList in myTaskLists %}
 
-<hr>
-
 <table class="table">
-    <!-- header -->
+    <!-- Headers -->
     <thead>
         <tr>
-            <td colspan=5>
-                <strong>{{taskList.name}}</strong>
+            <td colspan=6>
+                <h2>{{taskList.name}}</h2>
             </td>
-            <td>
-                <div class="btn-toolbar">
-                 {{ forms.edit_button("#{base_path}/list/#{taskList.id}/edit","Edit list")}}
-                 {{ forms.remove_button("#{base_path}/list/#{taskList.id}/remove","Remove list") }}
-                </div>
-            </td>
-
         </tr>
         <tr>
             <th class="col-xs-1">Status</th>
@@ -56,33 +47,20 @@
                 {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start task", "default", "play") }}
                 {% endif %}
             </td>
+            
+            <!-- due deadline -->
             <td>
-            <!-- due deadline. TODO: move to controller (task.timeremaining) -->
                 {% if task.duedate and task.status == 0 %}
-                {% set dateTimeEvent = date(task.duedate) %}
-                {% set dateTimeNow = date(now.iso8601) %}
-
-                {% set dateInterval = dateTimeNow.diff(dateTimeEvent) %}
-
-                {% set days = dateInterval|date('%a') %}
-                {% set hours = dateInterval|date('%h') %}
-                {% set totalHours = days * 24 + hours %}
-
-                {% set upcoming = dateInterval|date('%R') == '+' ? true %}
-
-                {% if upcoming and (days>0) %}
-                <span class="label label-info">{{ days }} d</span>
-                {% elseif upcoming %}
-                <span class="label label-warning">{{ totalHours }} h</span>
-                {% else %}
-                <span class="label label-danger">Late!</span>
-                {% endif %}
-
+                    {{ forms.due_label(task.duedate) }}
                 {% endif %}
             </td>
 
             <!-- priority stars -->
-            <td>{% for i in 1..4 %}<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>{% endfor %}</td>
+            <td>
+                {% for i in 1..4 %}
+                    <span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>
+                {% endfor %}
+            </td>
 
             <!-- task name -->
             <td>{{task.name}}</td>
