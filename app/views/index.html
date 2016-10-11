@@ -13,7 +13,10 @@
 		
 		<div id="collapse{{tasklist.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 			<div class="panel-body">
-				<table class="table" id="tasklist{{tasklist.id}}">
+				
+				<!-- check this table -->
+				
+				<table class="table" id="datatable{{tasklist.id}}">
 					<!-- Headers -->
 					<thead>
 						<tr>
@@ -73,24 +76,30 @@
 									task") }}
 								</div>
 							</td>
-
 						</tr>
+						{% endfor %}
+
 					</tbody>
 				</table>
+				-->
 			</div>
 		</div>
 	</div><!-- panel -->
-	{% endfor %}
-</div><!-- panel-group -->
-
-	<!-- enable datatable -->
 	<script type="text/javascript">
-$(document).ready(function() {
-    $('#tasklist{{tasklist.id}}').DataTable({
+	$(document).ready(function() {
+    $('#datatable{{tasklist.id}}').DataTable({
         paging: false,
         searching: false,
         info: false
-    });
+    });});
+	</script>
+	{% endfor %}
+</div><!-- panel-group -->
+
+<!-- enable collapse -->
+<script type="text/javascript">
+$(document).ready(function() {
     $('.collapse').collapse()
 } );
-</script> {% endfor %} {% endblock %}
+</script> 
+{% endblock %}
