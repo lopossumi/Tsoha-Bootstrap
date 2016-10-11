@@ -57,11 +57,13 @@ class Task extends BaseModel{
         return $tasks;
     }
 
-    public static function allInTasklist($id_tasklist){
+    public static function activeInTasklist($id_tasklist){
         $query = DB::connection()->prepare('
             SELECT * 
               FROM task 
-             WHERE id_tasklist = :id_tasklist 
+             WHERE id_tasklist = :id_tasklist
+               AND archived = false
+               AND deleted = false
           ORDER BY id DESC');
         $query->bindValue(':id_tasklist', $id_tasklist, PDO::PARAM_INT);
         $query->execute();

@@ -46,9 +46,9 @@ class Tasklist extends BaseModel{
             $tasklists[]=self::newFromParams($row);
         }
 
-        // Link all tasks in list
+        // Link active tasks in list
         foreach ($tasklists as $tasklist) {
-            $tasklist->tasks = Task::allInTasklist($tasklist->id);
+            $tasklist->tasks = Task::activeInTasklist($tasklist->id);
         }
         return $tasklists;
     }
