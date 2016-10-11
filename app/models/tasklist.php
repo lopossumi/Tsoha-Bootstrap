@@ -75,7 +75,7 @@ class Tasklist extends BaseModel{
              WHERE id           =:id');
         $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
+        $query->bindValue(':id',            $id,                PDO::PARAM_INT);
         $query->execute();
     }
-
 }
