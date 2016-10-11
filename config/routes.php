@@ -14,10 +14,10 @@ $routes->get('/',                   'checkLogin',   function(){     TasklistCont
 $routes->get('/index',              'checkLogin',   function(){     TasklistController::index();});
 $routes->get('/newlist',            'checkLogin',   function(){     TasklistController::newList();});
 $routes->post('/newlist',           'checkLogin',   function(){     TasklistController::storeList();});
-$routes->get('/list/:id/view',      'checkLogin',   function($id){  TasklistController::viewList();});
-$routes->get('/list/:id/edit',      'checkLogin',   function($id){  TasklistController::editList();});
-$routes->post('/list/:id/edit',     'checkLogin',   function($id){  TasklistController::updateList();});
-$routes->post('/list/:id/remove',   'checkLogin',   function($id){  TasklistController::removeList();});
+$routes->get('/list/:id/view',      'checkLogin',   function($id){  TasklistController::viewList($id);});
+$routes->get('/list/:id/edit',      'checkLogin',   function($id){  TasklistController::editList($id);});
+$routes->post('/list/:id/edit',     'checkLogin',   function($id){  TasklistController::updateList($id);});
+$routes->post('/list/:id/remove',   'checkLogin',   function($id){  TasklistController::removeList($id);});
 
 //TaskController
 $routes->get('/newtask',            'checkLogin',   function(){     TaskController::newTask();});
