@@ -17,7 +17,7 @@ $routes->get('/index',              'checkLogin',   function(){     TasklistCont
 $routes->get('/archive',            'checkLogin',   function(){     TasklistController::viewArchive();});
 $routes->get('/newlist',            'checkLogin',   function(){     TasklistController::newList();});
 $routes->post('/newlist',           'checkLogin',   function(){     TasklistController::storeList();});
-$routes->get('/lists'               'checkLogin',   function(){     TasklistController::tasklists();});
+$routes->get('/lists',               'checkLogin',   function(){     TasklistController::tasklists();});
 $routes->get('/list/:id/view',      'checkLogin',   function($id){  TasklistController::viewList($id);});
 $routes->get('/list/:id/edit',      'checkLogin',   function($id){  TasklistController::editList($id);});
 $routes->post('/list/:id/edit',     'checkLogin',   function($id){  TasklistController::updateList($id);});
