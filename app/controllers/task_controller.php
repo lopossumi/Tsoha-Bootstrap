@@ -119,4 +119,10 @@ class TaskController extends BaseController{
         Redirect::to('/archive', array(
             'message' => 'Task reverted!'));
     }
+
+    public function setPriority($id, $priority){
+        Task::setPriority($id, $priority);
+        Redirect::to('/index', array(
+            'message' => 'Task priority set!'));
+    }
 }

@@ -171,6 +171,13 @@ class Task extends BaseModel{
         $query->execute();
     }
 
+    public static function setPriority($id, $priority){
+        $query = DB::connection()->prepare('UPDATE task SET priority = :priority WHERE id=:id');
+        $query->bindValue(':id',        $id,        PDO::PARAM_INT);
+        $query->bindValue(':priority',  $priority,  PDO::PARAM_INT);
+        $query->execute();
+    }
+
     public function activeByCategory($id_category){
         $query = DB::connection()->prepare('
             SELECT * 
