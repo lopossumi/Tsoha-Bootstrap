@@ -86,7 +86,7 @@ class TaskController extends BaseController{
                 Category::insert($id, $id_category);
             }
         }
-        Redirect::to('/index', array(
+        Redirect::to('/task/' . $id . '/view', array(
             'message' => 'Task updated!'));
     }
 
