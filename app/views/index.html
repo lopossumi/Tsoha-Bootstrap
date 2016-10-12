@@ -55,14 +55,14 @@
 							<td data-order="{{task.priority}}">
 								
 								{% for i in 1..4 %}
-								<!--
 								{% if task.priority < i %}
 									{{ forms.action_button("", "","", "warning", "star", "xs")}}
 								{% else %}
 									{{ forms.action_button("", "","", "default", "star-empty", "xs")}}
 								{% endif %}
-								-->
+								<!--
 								<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>
+								-->
 								{% endfor %}
 								 
 							</td>
