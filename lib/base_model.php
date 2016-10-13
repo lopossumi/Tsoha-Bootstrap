@@ -29,7 +29,7 @@ class BaseModel{
     return $errors;
   }
 
-  public const VALID_COLORS = array(
+  const VALID_COLORS = array(
         "default",
         "primary",
         "success",
@@ -37,7 +37,7 @@ class BaseModel{
         "warning",
         "danger");
     
-  public const VALID_SYMBOLS = array(
+  const VALID_SYMBOLS = array(
         "plus",
         "minus",
         "eur",

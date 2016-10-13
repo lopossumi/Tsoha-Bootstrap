@@ -11,8 +11,8 @@ class CategoryController extends BaseController{
         $human = self::get_user_logged_in();
         View::make('category/new.html', array(
             'myCategories'  => Category::allByOwner($human->id),
-            'validColors'   => $human->VALID_COLORS,
-            'validSymbols'  => $human->VALID_SYMBOLS));
+            'validColors'   => BaseModel::VALID_COLORS,
+            'validSymbols'  => BaseModel::VALID_SYMBOLS));
     }
 
     public static function storeCategory(){
