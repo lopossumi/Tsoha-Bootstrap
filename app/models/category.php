@@ -146,7 +146,7 @@ class Category extends BaseModel{
       return array(
         "plus",
         "minus",
-        "eur",
+        "euro",
         "cloud",
         "envelope",
         "glass",
