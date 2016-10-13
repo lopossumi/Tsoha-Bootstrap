@@ -27,51 +27,55 @@
 	{% endif %}
 
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-list"></span> askare</h1>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<h1><span class="glyphicon glyphicon-list"></span> askare</h1>
 
-		<h2>Register <small>It's free! (for now)</small></h2>
+				<h2>Register <small>It's free! (for now)</small></h2>
 
-		<form class="form-horizontal" method="post" action="{{base_path}}/signup">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="username">User alias:</label>
-				<div class="col-sm-10">
-					<input type="text" id="username" class="form-control" name="username" value="{{username}}" placeholder="Username">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="fullname">Full name:</label>
-				<div class="col-sm-10">
-					<input type="text" id="fullname" class="form-control" name="fullname" value="{{fullname}}" placeholder="Full name">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">E-mail:</label>
-				<div class="col-sm-10">
-					<input type="email" class="form-control" name="email" value="{{email}}" placeholder="E-mail">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-12 col-sm-6">
+				<form class="form-horizontal" method="post" action="{{base_path}}/signup">
 					<div class="form-group">
-						<input type="password" id="password" class="form-control" name="password" placeholder="Password">
+						<label class="control-label col-sm-2" for="username">User alias:</label>
+						<div class="col-sm-10">
+							<input type="text" id="username" class="form-control" name="username" value="{{username}}" placeholder="Username">
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6">
-					<div class="form-group">
-						<input type="password" id="password2" class="form-control" name="password2" placeholder="Confirm password">
-					</div>
-				</div>
-			</div>
 
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10 btn-group">
-					<button type="submit" class="btn btn-primary">Register</button>
-				</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="fullname">Full name:</label>
+						<div class="col-sm-10">
+							<input type="text" id="fullname" class="form-control" name="fullname" value="{{fullname}}" placeholder="Full name">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="email">E-mail:</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" name="email" value="{{email}}" placeholder="E-mail">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-6">
+							<div class="form-group">
+								<input type="password" id="password" class="form-control" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6">
+							<div class="form-group">
+								<input type="password" id="password2" class="form-control" name="password2" placeholder="Confirm password">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10 btn-group">
+							<button type="submit" class="btn btn-primary">Register</button>
+						</div>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
 	</div>
 
 	<!-- jQuery -->
