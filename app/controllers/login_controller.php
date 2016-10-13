@@ -12,7 +12,6 @@ class LoginController extends BaseController{
 
     public static function handleLogin(){
         $params = $_POST;
-        //$pwd = crypt($params['password']);
 
         $user = Human::authenticate(
             $params['email'], 

@@ -43,15 +43,14 @@ class Human extends BaseModel{
         return $humans;
     }
 
-    public static function authenticate($email, $password){
-        $query = DB::connection()->prepare('SELECT * FROM human WHERE email = :email AND password = :password LIMIT 1');
+    public static function authenticate($email, $inputPassword){
+        $query = DB::connection()->prepare('SELECT password FROM human WHERE email = :email');
         $query->bindValue(':email',     $email,     PDO::PARAM_STR);
-        $query->bindValue(':password',  $password,  PDO::PARAM_STR);
         $query->execute();
         $row = $query->fetch();
 
         if($row){
-            return self::rowToHuman($row);
+            return $row['password'] == crypt($inputPassword, $row['password']);
         }    
         return null;
     }
