@@ -20,11 +20,14 @@
 
 <body>
 
-	{% if message is defined %}
-	<div class="alert alert-info">{{message}}</div>
-	{% endif %} {% if error is defined %}
-	<div class="alert alert-danger">{{error}}</div>
-	{% endif %}
+{% if errors is defined %}
+{% for error in errors %}
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{error}}
+</div>
+{% endfor %}
+{% endif %}
 
 	<div class="container">
 		<div class="row">
@@ -35,15 +38,15 @@
 
 				<form class="form-horizontal" method="post" action="{{base_path}}/signup">
 					<div class="form-group">
-							<input type="text" id="username" class="form-control" name="username" value="{{username}}" placeholder="Username">
+							<input type="text" id="username" class="form-control" name="username" value="{{attributes.username}}" placeholder="Username">
 					</div>
 
 					<div class="form-group">
-							<input type="text" id="fullname" class="form-control" name="fullname" value="{{fullname}}" placeholder="Full name">
+							<input type="text" id="fullname" class="form-control" name="fullname" value="{{attributes.fullname}}" placeholder="Full name">
 					</div>
 
 					<div class="form-group">
-							<input type="email" class="form-control" name="email" value="{{email}}" placeholder="E-mail">
+							<input type="email" class="form-control" name="email" value="{{attributes.email}}" placeholder="E-mail">
 					</div>
 
 					<div class="row">
@@ -60,9 +63,7 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10 btn-group">
 							<button type="submit" class="btn btn-success">Register</button>
-						</div>
 					</div>
 				</form>
 			</div>

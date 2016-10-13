@@ -42,5 +42,23 @@ class LoginController extends BaseController{
     public static function storeHuman(){
         $params = $_POST;
         // validate and create user
+        $attributes = array(
+            'username'  => $params['username'],
+            'fullname'  => $params['fullname'],
+            'email'     => $params['email'],
+            'password'  => $params['password']);
+        $newuser = new Human($attributes);
+        $errors = $newuser->errors();                
+        
+        if(count($errors) == 0){
+            // Log existing user out
+            // Save new user to DB
+            $newuser->save();
+            Redirect::to('/index', array('message' => 'Welcome to askare, ' . '$newuser->username' . '!'));
+        }else{
+            View::make('login/signup.html', array(
+            'errors' => $errors,
+            'attributes' => $attributes));
+        }
     }
 }
