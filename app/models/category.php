@@ -6,46 +6,6 @@ class Category extends BaseModel{
         $this->validators = array('validate_name', 'validate_description_short', 'validate_color', 'validate_symbol');
     }
 
-    public const VALID_COLORS = array(
-        "default",
-        "primary",
-        "success",
-        "info",
-        "warning",
-        "danger");
-    
-  public const VALID_SYMBOLS = array(
-        "plus",
-        "minus",
-        "eur",
-        "cloud",
-        "envelope",
-        "glass",
-        "music",
-        "search",
-        "heart",
-        "star",
-        "star-empty",
-        "user",
-        "film",
-        "th-large",
-        "signal",
-        "cog",
-        "home",
-        "file",
-        "time",
-        "road",
-        "lock",
-        "flag",
-        "headphones",
-        "book",
-        "bookmark",
-        "camera",
-        "adjust",
-        "tint",
-        "globe",
-        "wrench");
-
     private static function rowToCategory($row){
         $category = new Category(array(
             'id'        	=> $row['id'],
@@ -170,5 +130,49 @@ class Category extends BaseModel{
         $row = $query->fetch();
 
         return $row['id_owner'] == $id_human;
+    }
+    
+  public static function validColors(){
+      return array(
+        "default",
+        "primary",
+        "success",
+        "info",
+        "warning",
+        "danger");
+  }
+
+  public static function validSymbols(){
+      return array(
+        "plus",
+        "minus",
+        "eur",
+        "cloud",
+        "envelope",
+        "glass",
+        "music",
+        "search",
+        "heart",
+        "star",
+        "star-empty",
+        "user",
+        "film",
+        "th-large",
+        "signal",
+        "cog",
+        "home",
+        "file",
+        "time",
+        "road",
+        "lock",
+        "flag",
+        "headphones",
+        "book",
+        "bookmark",
+        "camera",
+        "adjust",
+        "tint",
+        "globe",
+        "wrench");
     }
 }
