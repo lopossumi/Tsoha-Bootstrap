@@ -31,13 +31,15 @@
 		<label for="symbol">Symbol:</label>
 		<br>
 		<div data-toggle="buttons">
+                {% for symbol in validSymbols %}
                 <label class="btn btn-default btn-lg"> 
                 <input id="symbol" type="radio" name="symbol" value="{{symbol}}">
                     <span class="glyphicon glyphicon-{{symbol}}"></span>
                 </label>
                 {% if loop.index is divisible by(5) %}
 				<br>
-                {% endif %} 
+                {% endif %}
+                {% endfor %}
 		</div>
 	</div>
 
