@@ -50,9 +50,17 @@ class Human extends BaseModel{
         $row = $query->fetch();
 
         if($row){
-            return $row['password'] == crypt($inputPassword, $row['password']);
-        }    
-        return null;
+            //Email found, check password against stored hash
+            if($row['password'] == crypt($inputPassword, $row['password'])){
+                return rowToHuman($row);
+            }else{
+            //Password mismatch
+                return null;
+            };
+        }else{
+            //Email mismatch
+            return null;
+        }
     }
 
     public function save(){
