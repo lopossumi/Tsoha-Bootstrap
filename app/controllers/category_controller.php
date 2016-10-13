@@ -10,7 +10,9 @@ class CategoryController extends BaseController{
     public static function newCategory(){
         $human = self::get_user_logged_in();
         View::make('category/new.html', array(
-            'myCategories'  => Category::allByOwner($human->id)));
+            'myCategories'  => Category::allByOwner($human->id),
+            'validColors'   => $human->VALID_COLORS,
+            'validSymbols'  => $human->VALID_SYMBOLS));
     }
 
     public static function storeCategory(){

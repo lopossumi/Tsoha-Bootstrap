@@ -15,4 +15,44 @@ class BaseController{
             Redirect::to('/login', array('message' => 'Please login first!'));
         }
     }
+    
+    public const VALID_COLORS = array(
+        "default",
+        "primary",
+        "success",
+        "info",
+        "warning",
+        "danger");
+    
+  public const VALID_SYMBOLS = array(
+        "plus",
+        "minus",
+        "eur",
+        "cloud",
+        "envelope",
+        "glass",
+        "music",
+        "search",
+        "heart",
+        "star",
+        "star-empty",
+        "user",
+        "film",
+        "th-large",
+        "signal",
+        "cog",
+        "home",
+        "file",
+        "time",
+        "road",
+        "lock",
+        "flag",
+        "headphones",
+        "book",
+        "bookmark",
+        "camera",
+        "adjust",
+        "tint",
+        "globe",
+        "wrench");
 }

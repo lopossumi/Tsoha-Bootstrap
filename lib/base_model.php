@@ -1,102 +1,151 @@
 <?php
 
 class BaseModel{
-    // "protected"-attribuutti on käytössä vain luokan ja sen perivien luokkien sisällä
   protected $validators;
 
   public function __construct($attributes = null){
-      // Käydään assosiaatiolistan avaimet läpi
     foreach($attributes as $attribute => $value){
-        // Jos avaimen niminen attribuutti on olemassa...
       if(property_exists($this, $attribute)){
-          // ... lisätään avaimen nimiseen attribuuttin siihen liittyvä arvo
         $this->{$attribute} = $value;
       }
     }
   }
 
+  // Returns all $errors from validators as a table
   public function errors(){
-      // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
     $errors = array();
-
     foreach($this->validators as $validator){
-
-        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
         $errors = array_merge($errors, $this->{$validator}());
     }
-
     return $errors;
   }
 
-  public static function validate_string_length($string, $minLength, $maxLength, $field){
+  // Generic validator for string min/max lenght
+  public static function validate_string_length($string, $minLength, $maxLength, $fieldName){
     $errors = array();
     if(strlen($string) < $minLength || strlen($string) > $maxLength){
-      $errors[] = $field . ' length must be between '. $minLength . '...' . $maxLength . ' characters!';
+      $errors[] = $fieldName . ' length must be between '. $minLength . '...' . $maxLength . ' characters!';
     }
     return $errors;
   }
 
+  public const VALID_COLORS = array(
+        "default",
+        "primary",
+        "success",
+        "info",
+        "warning",
+        "danger");
+    
+  public const VALID_SYMBOLS = array(
+        "plus",
+        "minus",
+        "eur",
+        "cloud",
+        "envelope",
+        "glass",
+        "music",
+        "search",
+        "heart",
+        "star",
+        "star-empty",
+        "user",
+        "film",
+        "th-large",
+        "signal",
+        "cog",
+        "home",
+        "file",
+        "time",
+        "road",
+        "lock",
+        "flag",
+        "headphones",
+        "book",
+        "bookmark",
+        "camera",
+        "adjust",
+        "tint",
+        "globe",
+        "wrench");
+
+  //============================================
+  // VALIDATORS
+  //============================================
+
   public function validate_name(){
-    $string = $this->name;
-    if($string == null || $string == ''){
+    $name = $this->name;
+    if($name == null || $name == ''){
       return array('Name cannot be empty!');
     }
-    return self::validate_string_length($string, 3, 50, 'Name');
+    return self::validate_string_length($name, 3, 50, 'Name');
   }
 
   public function validate_description(){
-    $string = $this->description;
-    if(!is_null($string)){
-      return self::validate_string_length($string, 0, 2000, 'Description');
+    $description = $this->description;
+    if(!is_null($description)){
+      return self::validate_string_length($description, 0, 2000, 'Description');
     }
   }
   
   public function validate_description_short(){
-    $string = $this->description;
-    if(!is_null($string)){
-      return self::validate_string_length($string, 0, 200, 'Description');
+    $description = $this->description;
+    if(!is_null($description)){
+      return self::validate_string_length($description, 0, 200, 'Description');
     }
   }
 
   public function validate_username(){
-    $string = $this->username;
-    if($string == null || $string == ''){
+    $username = $this->username;
+    if($username == null || $username == ''){
       return array('Username cannot be empty!');
-    }elseif(!Human::usernameAvailable($string)){
+    } elseif (!Human::usernameAvailable($username)){
       return array('Username is taken!');
-    }else{
-      return self::validate_string_length($string, 2, 20, 'Username');
+    } else {
+      return self::validate_string_length($username, 2, 20, 'Username');
     }
   }
 
   public function validate_fullname(){
-    $string = $this->fullname;
-    if($string == null || $string == ''){
+    $fullname = $this->fullname;
+    if($fullname == null || $fullname == ''){
       return array('Fullname cannot be empty!');
-    }else{
-      return self::validate_string_length($string, 1, 100, 'Fullname');
+    } else {
+      return self::validate_string_length($fullname, 1, 100, 'Fullname');
     }
   }
 
   public function validate_email(){
-    $string = $this->email;
-    if($string == null || $string == ''){
+    $email = $this->email;
+    if($email == null || $email == ''){
       return array('Email cannot be empty!');
-    }elseif(!Human::emailAvailable($string)){
+    } elseif (!Human::emailAvailable($email)){
       return array('Email is taken!');
-    }else{
-      return self::validate_string_length($string, 3, 254, 'Email');
+    } else {
+      return self::validate_string_length($email, 3, 254, 'Email');
     }
   }
 
   public function validate_password(){
-    $string = $this->password;
-    if($string == null || $string == ''){
+    $password = $this->password;
+    if($password == null || $password == ''){
       return array('Password cannot be empty!');
-    }else{
-      return self::validate_string_length($string, 4, 255, 'Password');
+    } else {
+      return self::validate_string_length($password, 4, 255, 'Password');
     }
   }
 
-}
+  public function validate_color(){
+    $color = $this->color;
+    if(!in_array($color, self::VALID_COLORS)){
+      return array('Invalid color!');
+    }
+  }
 
+  public function validate_symbol(){
+  $symbol = $this->symbol;
+    if(!in_array($symbol, self::VALID_SYMBOLS)){
+      return array('Invalid symbol!');
+    }
+  }
+}

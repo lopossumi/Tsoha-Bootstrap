@@ -31,29 +31,28 @@
     <div class="form-group">
         <label for="symbol">Symbol:</label>
         <br>
-        <!-- sorry for the copy-paste, but this is more clear than index-modulo hell -->
-        <div data-toggle="buttons"> 
-            {% for symbolText in ['list', 'heart', 'home', 'shopping-cart', 'plane'] %} 
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
+        <div data-toggle="buttons">
+            {% for symbolText in validSymbols %}
+                
+                {% if loop.index0 is divisible by(15) %}
+                    <div class="row">
+                {% endif }
+
+                <label class="btn btn-default btn-lg"> 
+                <input type="radio" name="symbol" value="{{symbolText}}">
+                    <span class="glyphicon glyphicon-{{symbolText}}"></span>
+                </label>
+
+                {% if loop.index0 is divisible by(3) %}
+                    <br>
+                {% endif }
+                
+                {% if loop.index0 is divisible by(15) %}
+                    </div><!--class row-->
+                {% endif }
+                
             {% endfor %}
-            <br>
-            {% for symbolText in ['music', 'camera', 'euro', 'edit', 'envelope'] %}
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-            <br>
-            {% for symbolText in ['film', 'book', 'road', 'star', 'cog'] %}
-            <label class="btn btn-default btn-lg"> 
-            <input type="radio" name="symbol" value="{{symbolText}}">
-                <span class="glyphicon glyphicon-{{symbolText}}"></span>
-            </label>
-            {% endfor %}
-        </div>
+        </div>        
     </div>
 
     <button type="submit" class="btn btn-primary">Create category</button>
