@@ -88,5 +88,15 @@ class BaseModel{
       return self::validate_string_length($string, 3, 254, 'Email');
     }
   }
+
+  public function validate_password(){
+    $string = $this->password;
+    if($string == null || $string == ''){
+      return array('Password cannot be empty!');
+    }else{
+      return self::validate_string_length($string, 4, 255, 'Password');
+    }
+  }
+
 }
 
