@@ -12,7 +12,7 @@ class CategoryController extends BaseController{
         View::make('category/new.html', array(
             'myCategories'  => Category::allByOwner($human->id),
             'validColors'   => Category::validColors(),
-            'validSymbols'  => BaseModel::validSymbols()));
+            'validSymbols'  => Category::validSymbols()));
     }
 
     public static function storeCategory(){
