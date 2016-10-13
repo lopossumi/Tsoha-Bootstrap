@@ -48,12 +48,14 @@ class LoginController extends BaseController{
             'email'     => $params['email'],
             'password'  => $params['password']);
         $newuser = new Human($attributes);
-        $errors = $newuser->errors();                
-        
+        $errors = $newuser->errors();
+        if($params['password'] != $params['password2']){
+            array_push($errors, "Passwords did not match!");
+        }
         if(count($errors) == 0){
-            // Log existing user out
-            // Save new user to DB
+            // Save new user to DB and login
             $newuser->save();
+            $_SESSION['user'] = $newuser->id;
             Redirect::to('/index', array('message' => 'Welcome to askare, ' . '$newuser->username' . '!'));
         }else{
             View::make('login/signup.html', array(
