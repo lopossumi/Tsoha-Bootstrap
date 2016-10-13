@@ -56,7 +56,7 @@ class LoginController extends BaseController{
             // Save new user to DB and login
             $newuser->save();
             $_SESSION['user'] = $newuser->id;
-            Redirect::to('/index', array('message' => 'Welcome to askare, ' . '$newuser->username' . '!'));
+            Redirect::to('/index', array('message' => 'Welcome to askare, ' . $newuser->username . '!'));
         }else{
             View::make('login/signup.html', array(
             'errors' => $errors,
