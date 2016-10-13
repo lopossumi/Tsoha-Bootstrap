@@ -14,7 +14,7 @@ class LoginController extends BaseController{
         $params = $_POST;
 
         $user = Human::authenticate(
-            $params['email'], 
+            $params['email'],
             $params['password']);
 
         if(!$user){

@@ -52,7 +52,7 @@ class Human extends BaseModel{
         if($row){
             //Email found, check password against stored hash
             if($row['password'] == crypt($inputPassword, $row['password'])){
-                return rowToHuman($row);
+                return self::rowToHuman($row);
             }else{
             //Password mismatch
                 return null;
