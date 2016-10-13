@@ -198,4 +198,17 @@ class Task extends BaseModel{
         }
         return $tasks;
     }
+
+    public function checkPrivilege($id_human){
+        $query = DB::connection()->prepare('
+            SELECT id_owner
+              FROM tasklist
+             WHERE id = :id_tasklist
+             LIMIT 1');
+        $query->bindValue('id_tasklist', $this->id_tasklist, PDO::PARAM_INT);
+        $query->execute();
+        $row = $query->fetch();
+
+        return $row['id_owner'] == $id_human;
+    }
 }

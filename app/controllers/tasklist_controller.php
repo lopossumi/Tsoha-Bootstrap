@@ -65,9 +65,4 @@ class TasklistController extends BaseController{
         Redirect::to('/index', array(
             'message' => 'Task list updated!'));
     }
-
-    public static function tasklists(){
-        View::make('tasklists.html', array(
-            'myTasklists' => Category::allByOwner(self::get_user_logged_in()->id)));
-    }
 }

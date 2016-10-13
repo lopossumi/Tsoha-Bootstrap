@@ -43,17 +43,20 @@ class TaskController extends BaseController{
 
     public static function viewTask($id){
         $human = self::get_user_logged_in();
+        
         $task = Task::find($id);
+        if($task->checkPrivilege($human->id)){
+
+            $Parsedown = new Parsedown();
+            $myDescription = $Parsedown->text($task->description);
         
-        $Parsedown = new Parsedown();
-        $myDescription = $Parsedown->text($task->description);
-        
-        View::make('task/view.html', array(
-            'myTasklists'       => Tasklist::allByOwner($human->id),
-            'myCategories'      => Category::allByOwner($human->id),
-            'myTask'            => $task,
-            'myTaskCategories'  => Category::idByTask($task->id),
-            'myDescription'     => $myDescription));
+            View::make('task/view.html', array(
+                'myTasklists'       => Tasklist::allByOwner($human->id),
+                'myCategories'      => Category::allByOwner($human->id),
+                'myTask'            => $task,
+                'myTaskCategories'  => Category::idByTask($task->id),
+                'myDescription'     => $myDescription));
+        }
     }
 
     public static function editTask($id){
