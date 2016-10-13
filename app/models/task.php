@@ -141,39 +141,39 @@ class Task extends BaseModel{
         $query->execute();
     }
 
-    public function destroy($id){
+    public function destroy(){
         $query = DB::connection()->prepare('DELETE FROM Task WHERE id = :id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
         $query->execute();
     }
 
-    public static function start($id){
+    public function start(){
         $query = DB::connection()->prepare('UPDATE Task SET status = 1 WHERE id=:id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
         $query->execute();
     }
     
-    public static function complete($id){
+    public function complete(){
         $query = DB::connection()->prepare('UPDATE Task SET status = 2 WHERE id=:id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
         $query->execute();
     }
 
-    public static function archive($id){
+    public function archive(){
         $query = DB::connection()->prepare('UPDATE task SET archived = true WHERE id=:id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
         $query->execute();
     }
 
-    public static function revert($id){
+    public function revert(){
         $query = DB::connection()->prepare('UPDATE task SET archived = false WHERE id=:id');
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
         $query->execute();
     }
 
-    public static function setPriority($id, $priority){
+    public function setPriority($priority){
         $query = DB::connection()->prepare('UPDATE task SET priority = :priority WHERE id=:id');
-        $query->bindValue(':id',        $id,        PDO::PARAM_INT);
+        $query->bindValue(':id',        $this->id,  PDO::PARAM_INT);
         $query->bindValue(':priority',  $priority,  PDO::PARAM_INT);
         $query->execute();
     }
@@ -199,7 +199,7 @@ class Task extends BaseModel{
         return $tasks;
     }
 
-    public function checkPrivilege($id_human){
+    public function checkOwner($id_human){
         $query = DB::connection()->prepare('
             SELECT id_owner
               FROM tasklist

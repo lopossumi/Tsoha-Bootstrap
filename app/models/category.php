@@ -118,4 +118,17 @@ class Category extends BaseModel{
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute();
     }
+
+    public function checkOwner($id_human){
+        $query = DB::connection()->prepare('
+            SELECT id_owner
+              FROM category
+             WHERE id = :id
+             LIMIT 1');
+        $query->bindValue('id', $this->id, PDO::PARAM_INT);
+        $query->execute();
+        $row = $query->fetch();
+
+        return $row['id_owner'] == $id_human;
+    }
 }

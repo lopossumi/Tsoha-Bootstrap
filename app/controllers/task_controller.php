@@ -43,13 +43,11 @@ class TaskController extends BaseController{
 
     public static function viewTask($id){
         $human = self::get_user_logged_in();
-        
         $task = Task::find($id);
-        if($task->checkPrivilege($human->id)){
 
+        if($task->checkOwner($human->id)){
             $Parsedown = new Parsedown();
             $myDescription = $Parsedown->text($task->description);
-        
             View::make('task/view.html', array(
                 'myTasklists'       => Tasklist::allByOwner($human->id),
                 'myCategories'      => Category::allByOwner($human->id),
@@ -62,11 +60,14 @@ class TaskController extends BaseController{
     public static function editTask($id){
         $human = self::get_user_logged_in();
         $task = Task::find($id);
-        View::make('task/edit.html', array(
-            'myTasklists'       => Tasklist::allByOwner($human->id),
-            'myCategories'      => Category::allByOwner($human->id),
-            'myTask'            => $task,
-            'myTaskCategories'  => Category::idByTask($task->id)));
+        
+        if($task->checkOwner($human->id)){
+            View::make('task/edit.html', array(
+                'myTasklists'       => Tasklist::allByOwner($human->id),
+                'myCategories'      => Category::allByOwner($human->id),
+                'myTask'            => $task,
+                'myTaskCategories'  => Category::idByTask($task->id)));
+        }
     }
 
     public static function updateTask($id){
@@ -94,38 +95,68 @@ class TaskController extends BaseController{
     }
 
     public function startTask($id){
-        Task::start($id);
-        Redirect::to('/index', array(
-            'message' => 'Task started!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->start();
+            Redirect::to('/index', array(
+                'message' => 'Task started!'));
+        }
     }
 
     public function completeTask($id){
-        Task::complete($id);
-        Redirect::to('/index', array(
-            'message' => 'Task completed!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->complete();
+            Redirect::to('/index', array(
+                'message' => 'Task completed!'));
+        }
     }
 
     public function removeTask($id){
-        Task::destroy($id);
-        Redirect::to('/index', array(
-            'message' => 'Task removed!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->destroy();
+            Redirect::to('/index', array(
+                'message' => 'Task removed!'));
+        }
     }
 
     public function archiveTask($id){
-        Task::archive($id);
-        Redirect::to('/index', array(
-            'message' => 'Task archived!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->archive();
+            Redirect::to('/index', array(
+                'message' => 'Task archived!'));
+        }
     }
 
     public function revertTask($id){
-        Task::revert($id);
-        Redirect::to('/archive', array(
-            'message' => 'Task reverted!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->revert();
+            Redirect::to('/archive', array(
+                'message' => 'Task reverted!'));
+        }
     }
 
     public function setPriority($id, $priority){
-        Task::setPriority($id, $priority);
-        Redirect::to('/index', array(
-            'message' => 'Task priority set!'));
+        $human = self::get_user_logged_in();        
+        $task = Task::find($id);
+
+        if($task->checkOwner($human->id)){
+            $task->setPriority($priority);
+            Redirect::to('/index', array(
+                'message' => 'Task priority set!'));
+        }
     }
 }

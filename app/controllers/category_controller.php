@@ -2,8 +2,9 @@
 class CategoryController extends BaseController{
 
     public static function categories(){
+        $human = self::get_user_logged_in();
         View::make('categories.html', array(
-            'myCategories' => Category::allByOwner(self::get_user_logged_in()->id)));
+            'myCategories' => Category::allByOwner($human->id)));
     }
 
     public static function newCategory(){
@@ -15,6 +16,7 @@ class CategoryController extends BaseController{
     public static function storeCategory(){
         $params = $_POST;
         $human = self::get_user_logged_in();
+
         $category = new Category(array(
             'id_owner'      => $human->id,
             'name'          => $params['name'],
@@ -27,13 +29,23 @@ class CategoryController extends BaseController{
     }
 
     public static function listCategory($id){
-        View::make('category/view.html', array(
-            'myTasks'       => Task::activeByCategory($id),
-            'myCategory'    => Category::find($id)));
+        $human = self::get_user_logged_in();
+        $myCategory = Category::find($id);
+        
+        if($myCategory->checkOwner($human->id)){
+            View::make('category/view.html', array(
+                'myTasks'       => Task::activeByCategory($id),
+                'myCategory'    => $myCategory));
+        }
     }
 
     public function removeCategory($id){
-        Category::destroy($id);
-        Redirect::to('/categories');
+        $human = self::get_user_logged_in();
+        $myCategory = Category::find($id);
+
+        if($myCategory->checkOwner($human->id)){
+            Category::destroy($id);
+            Redirect::to('/categories');
+        }
     }
 }
