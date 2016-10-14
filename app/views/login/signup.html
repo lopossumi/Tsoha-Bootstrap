@@ -16,6 +16,15 @@
 
 	<!-- Oma tyylitiedostomme -->
 	<link href="{{base_path}}/assets/css/site.css" rel="stylesheet"> {% endblock %}
+	
+	<!-- jQuery -->
+	<script src="{{base_path}}/vendor/jquery.min.js"></script>
+
+	<!-- Bootstrap (skriptitiedosto) -->
+	<script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Oma skriptitiedostomme -->
+	<script src="{{base_path}}/assets/js/site.js"></script>
 </head>
 
 <body>
@@ -32,7 +41,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 
-						<h1><a href="{{base_path}}/login"><span class="glyphicon glyphicon-list"></span> askare</a></h1>
+						<h1><span class="glyphicon glyphicon-list"></span> askare</h1>
 
 						<h2 class="panel-title">Sign up! <small>It's free! (for now)</small></h2>
 					</div>
@@ -64,7 +73,8 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-success">Register</button>
+								<button type="submit" class="btn btn-success btn-lg btn-block" id="register">Register</button>
+								<button type="button" class="btn btn-default btn-lg btn-block" id="cancel">Cancel</button>
 							</div>
 						</form>
 					</div>
@@ -72,15 +82,6 @@
 			</div>
 		</div>
 	</div>
-
-		<!-- jQuery -->
-		<script src="{{base_path}}/vendor/jquery.min.js"></script>
-
-		<!-- Bootstrap (skriptitiedosto) -->
-		<script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-		<!-- Oma skriptitiedostomme -->
-		<script src="{{base_path}}/assets/js/site.js"></script>
 </body>
 
 </html>
