@@ -1,0 +1,68 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<h2>Edit category</h2>
+<form method="post" action="{{base_path}}/category/{{}}/edit">
+
+	<div class="form-group">
+		<label for="name">Name:</label>
+		<input type="text" class="form-control" name="name" value="{{myCaterogy.name}}">
+	</div>
+
+	<div class="form-group">
+		<label for="description">Description:</label>
+		<input type="text" class="form-control" name="description" value="{{myCaterogy.description}}">
+	</div>
+
+	<div class="form-group">
+		<label for="color">Color:</label>
+		<br>
+		<div data-toggle="buttons">
+			{% for color in validColors %}
+            {% if color == myCaterogy.color %}
+			<label class="btn btn-{{color}} btn-lg active"> 
+            <input type="radio" name="color" value="{{color}}" checked>
+                <span class="glyphicon glyphicon-adjust"></span>
+            </label>
+            {% else %}
+            <label class="btn btn-{{color}} btn-lg"> 
+            <input type="radio" name="color" value="{{color}}">
+                <span class="glyphicon glyphicon-adjust"></span>
+            </label>
+            {% endif %}
+            {% endfor %}
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="symbol">Symbol:</label>
+		<br>
+		<div data-toggle="buttons">
+                {% for symbol in validSymbols %}
+
+                <!-- Existing symbol is checked -->
+                {% if symbol == myCaterogy.symbol %} 
+                <label class="btn btn-default btn-lg active">
+                <input type="radio" id="symbol" name="symbol" value="{{symbol}}" checked>
+                    <span class="glyphicon glyphicon-{{symbol}}"></span>
+                </label>
+                {% else %}          
+                <label class="btn btn-default btn-lg">
+                <input type="radio" id="symbol" name="symbol" value="{{symbol}}">
+                    <span class="glyphicon glyphicon-{{symbol}}"></span>
+                </label>
+                {% endif %}
+
+                {% if loop.index is divisible by(5) %}
+				<br>
+                {% endif %}
+                {% endfor %}
+		</div>
+	</div>
+
+    <div class="form-group">
+			<button type="submit" class="btn btn-primary">Save category</button>
+    </div>
+</form>
+
+{% endblock %}

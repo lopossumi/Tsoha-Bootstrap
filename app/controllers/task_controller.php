@@ -47,7 +47,7 @@ class TaskController extends BaseController{
 
         if($task->checkOwner($human->id)){
             $Parsedown = new Parsedown();
-            $myDescription = $Parsedown->text($task->description);
+            $myDescription = $Parsedown->text(htmlspecialchars($task->description));
             View::make('task/view.html', array(
                 'myTasklists'       => Tasklist::allByOwner($human->id),
                 'myCategories'      => Category::allByOwner($human->id),

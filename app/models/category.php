@@ -175,4 +175,20 @@ class Category extends BaseModel{
         "globe",
         "wrench");
     }
+
+    public function update($id){
+        $query = DB::connection()->prepare('
+            UPDATE category 
+               SET name         =:name,
+                   description  =:description, 
+                   color        =:color, 
+                   symbol       =:symbol, 
+             WHERE id           =:id');
+        $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
+        $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
+        $query->bindValue(':color',         $this->color,       PDO::PARAM_STR);
+        $query->bindValue(':symbol',        $this->symbol,      PDO::PARAM_STR);
+        $query->bindValue(':id',            $id,                PDO::PARAM_INT);
+        $query->execute();
+    }
 }
