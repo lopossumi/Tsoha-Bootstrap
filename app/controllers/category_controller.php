@@ -57,7 +57,7 @@ class CategoryController extends BaseController{
 
         if($myCategory->checkOwner($human->id)){
             View::make('category/edit.html', array(
-                'myCategory'    => $myCategory));
+                'myCategory'    => $myCategory,
                 'validColors'   => Category::validColors(),
                 'validSymbols'  => Category::validSymbols()));
         }
