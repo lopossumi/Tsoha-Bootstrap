@@ -63,7 +63,7 @@ class CategoryController extends BaseController{
         }
     }
 
-    public static function editCategory($id){
+    public static function updateCategory($id){
         $params = $_POST;
         $human = self::get_user_logged_in();
         $myCategory = new Category(array(
