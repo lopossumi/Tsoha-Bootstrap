@@ -97,14 +97,14 @@ class BaseModel{
 
   public function validate_color(){
     $color = $this->color;
-    if(!in_array($color, self::validColors)){
+    if(!in_array($color, self::validColors())){
       return array('Invalid color!');
     }
   }
 
   public function validate_symbol(){
   $symbol = $this->symbol;
-    if(!in_array($symbol, self::validSymbos()){
+    if(!in_array($symbol, self::validSymbos())){
       return array('Invalid symbol!');
     }
   }
