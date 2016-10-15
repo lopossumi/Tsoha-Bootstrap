@@ -73,9 +73,18 @@ class CategoryController extends BaseController{
             'symbol'        => $params['symbol'],
             'color'         => $params['color']));
         
-        if($myCategory->checkOwner($human->id)){
-            $myCategory->update($id);
-            Redirect::to('/categories');
+        $errors = $myCategory->errors();
+        if($errors){
+            View::make('category/edit.html', array(
+                'myCategory'    => $myCategory,
+                'validColors'   => Category::validColors(),
+                'validSymbols'  => Category::validSymbols(),
+                'errors'        => $errors));
+        } else {
+            if($myCategory->checkOwner($human->id)){
+                $myCategory->update($id);
+                Redirect::to('/categories');
+            }
         }
     }
 
