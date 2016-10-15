@@ -14,13 +14,13 @@ class LoginController extends BaseController{
         $params = $_POST;
 
         $user = Human::authenticate(
-            $params['email'],
+            $params['user'],
             $params['password']);
 
         if(!$user){
             View::make('login/login.html', array(
-                'error'     => 'Invalid e-mail or password!', 
-                'email'     => $params['email']));
+                'error'     => 'Invalid user account or password!', 
+                'user'      => $params['user']));
         }else{
             $_SESSION['user'] = $user->id;
             Redirect::to('/index', array(

@@ -43,9 +43,13 @@ class Human extends BaseModel{
         return $humans;
     }
 
-    public static function authenticate($email, $inputPassword){
-        $query = DB::connection()->prepare('SELECT * FROM human WHERE email = :email');
-        $query->bindValue(':email',     $email,     PDO::PARAM_STR);
+    public static function authenticate($inputUser, $inputPassword){
+        $query = DB::connection()->prepare('
+            SELECT * 
+              FROM human 
+             WHERE email = :inputUser
+                OR username = :inputUser');
+        $query->bindValue(':inputUser', $inputUser, PDO::PARAM_STR);
         $query->execute();
         $row = $query->fetch();
 
