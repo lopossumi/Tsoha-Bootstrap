@@ -104,7 +104,7 @@ class BaseModel{
 
   public function validate_symbol(){
   $symbol = $this->symbol;
-    if(!in_array($symbol, self::validSymbos())){
+    if(!in_array($symbol, self::validSymbols())){
       return array('Invalid symbol!');
     }
   }
