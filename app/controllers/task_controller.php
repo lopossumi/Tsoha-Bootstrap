@@ -70,6 +70,7 @@ class TaskController extends BaseController{
     }
 
     public static function updateTask($id){
+        $human = self::get_user_logged_in();
         $params = $_POST;
         $task = new Task(array(
             'id_tasklist'   => $params['id_tasklist'],
