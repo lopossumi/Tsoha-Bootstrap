@@ -45,5 +45,5 @@ $routes->get('/newcategory',        'checkLogin',   function(){     CategoryCont
 $routes->post('/newcategory',       'checkLogin',   function(){     CategoryController::storeCategory();});
 $routes->get('/category/:id/edit',  'checkLogin',   function($id){  CategoryController::editCategory($id);});
 $routes->post('/category/:id/edit', 'checkLogin',   function($id){  CategoryController::updateCategory($id);});
-$routes->get('/category/:id/list',  'checkLogin',   function($id){  CategoryController::listCategory($id);});
+$routes->get('/category/:id/view',  'checkLogin',   function($id){  CategoryController::viewCategory($id);});
 $routes->post('/category/:id/remove','checkLogin',  function($id){  CategoryController::removeCategory($id);});

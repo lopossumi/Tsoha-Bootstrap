@@ -39,7 +39,7 @@ class CategoryController extends BaseController{
         }
     }
 
-    public static function listCategory($id){
+    public static function viewCategory($id){
         $human = self::get_user_logged_in();
         $myCategory = Category::find($id);
         

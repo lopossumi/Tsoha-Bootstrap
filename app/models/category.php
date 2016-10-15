@@ -19,7 +19,11 @@ class Category extends BaseModel{
     }
 
     public static function find($id){
-        $query = DB::connection()->prepare('SELECT * FROM category WHERE id = :id LIMIT 1');
+        $query = DB::connection()->prepare(
+            'SELECT * 
+               FROM category 
+              WHERE id = :id 
+              LIMIT 1');
         $query->bindValue(':id', $id, PDO::PARAM_INT);
         $query->execute(); 
         $row = $query->fetch();
@@ -32,7 +36,12 @@ class Category extends BaseModel{
 
     public static function allByTask($id_task){
 		$query = DB::connection()->prepare(
-			'SELECT * FROM Category WHERE id IN (SELECT id_category FROM TaskCategory WHERE id_task = :id_task)');
+			'SELECT * 
+               FROM category 
+              WHERE id 
+                 IN (SELECT id_category 
+                       FROM taskcategory 
+                      WHERE id_task = :id_task)');
         $query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
@@ -46,7 +55,9 @@ class Category extends BaseModel{
 
     public static function idByTask($id_task){
 		$query = DB::connection()->prepare(
-			'SELECT id_category FROM TaskCategory WHERE id_task = :id_task');
+			'SELECT id_category 
+               FROM taskcategory 
+              WHERE id_task = :id_task');
         $query->bindValue(':id_task', $id_task, PDO::PARAM_INT);
         $query->execute();
         $rows = $query->fetchAll();
@@ -59,7 +70,11 @@ class Category extends BaseModel{
     }
 
     public static function allByOwner($id_owner){
-        $query = DB::connection()->prepare('SELECT * FROM category WHERE id_owner = :id_owner');
+        $query = DB::connection()->prepare(
+            'SELECT * 
+               FROM category 
+              WHERE id_owner = :id_owner
+           ORDER BY name ASC');
         $query->bindValue(':id_owner', $id_owner, PDO::PARAM_INT);
 
         $query->execute();
