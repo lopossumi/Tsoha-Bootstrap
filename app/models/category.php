@@ -182,7 +182,7 @@ class Category extends BaseModel{
                SET name         =:name,
                    description  =:description, 
                    color        =:color, 
-                   symbol       =:symbol, 
+                   symbol       =:symbol 
              WHERE id           =:id');
         $query->bindValue(':name',          $this->name,        PDO::PARAM_STR);
         $query->bindValue(':description',   $this->description, PDO::PARAM_STR);
