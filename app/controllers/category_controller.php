@@ -50,4 +50,33 @@ class CategoryController extends BaseController{
             Redirect::to('/categories');
         }
     }
+
+    public static function editCategory($id){
+        $human = self::get_user_logged_in();
+        $myCategory = Category::find($id);
+
+        if($myCategory->checkOwner($human->id)){
+            View::make('category/edit.html', array(
+                'myCategory'    => $myCategory));
+                'validColors'   => Category::validColors(),
+                'validSymbols'  => Category::validSymbols()));
+        }
+    }
+
+    public static function editCategory($id){
+        $params = $_POST;
+        $human = self::get_user_logged_in();
+        $myCategory = new Category(array(
+            'id'            => $id;
+            'name'          => $params['name'];
+            'description'   => $params['description'];
+            'symbol'        => $params['symbol'];
+            'color'         => $params['color']));
+        
+        if($myCategory->checkOwner($human->id)){
+            $myCategory->update($id);
+            Redirect::to('/categories');
+        }
+    }
+
 }
