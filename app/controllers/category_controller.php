@@ -30,8 +30,8 @@ class CategoryController extends BaseController{
         if($errors){
             View::make('category/new.html', array(
                 'myCategory'    => $myCategory,
-                'validColors'   => Category::validColors(),
-                'validSymbols'  => Category::validSymbols(),
+                'validColors'   => BaseModel::validColors(),
+                'validSymbols'  => BaseModel::validSymbols(),
                 'errors'        => $errors));
         } else {
             $myCategory->save();
@@ -67,8 +67,8 @@ class CategoryController extends BaseController{
         if($myCategory->checkOwner($human->id)){
             View::make('category/edit.html', array(
                 'myCategory'    => $myCategory,
-                'validColors'   => Category::validColors(),
-                'validSymbols'  => Category::validSymbols()));
+                'validColors'   => BaseModel::validColors(),
+                'validSymbols'  => BaseModel::validSymbols()));
         }
     }
 
@@ -86,8 +86,8 @@ class CategoryController extends BaseController{
         if($errors){
             View::make('category/edit.html', array(
                 'myCategory'    => $myCategory,
-                'validColors'   => Category::validColors(),
-                'validSymbols'  => Category::validSymbols(),
+                'validColors'   => BaseModel::validColors(),
+                'validSymbols'  => BaseModel::validSymbols(),
                 'errors'        => $errors));
         } else {
             if($myCategory->checkOwner($human->id)){

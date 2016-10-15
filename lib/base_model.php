@@ -97,15 +97,60 @@ class BaseModel{
 
   public function validate_color(){
     $color = $this->color;
-    if(!in_array($color, self::VALID_COLORS)){
+    if(!in_array($color, self::validColors)){
       return array('Invalid color!');
     }
   }
 
   public function validate_symbol(){
   $symbol = $this->symbol;
-    if(!in_array($symbol, self::VALID_SYMBOLS)){
+    if(!in_array($symbol, self::validSymbos()){
       return array('Invalid symbol!');
     }
   }
+
+  public static function validColors(){
+      return array(
+        "default",
+        "primary",
+        "success",
+        "info",
+        "warning",
+        "danger");
+  }
+
+  public static function validSymbols(){
+      return array(
+        "plus",
+        "minus",
+        "euro",
+        "cloud",
+        "envelope",
+        "glass",
+        "music",
+        "search",
+        "heart",
+        "star",
+        "star-empty",
+        "user",
+        "film",
+        "th-large",
+        "signal",
+        "cog",
+        "home",
+        "file",
+        "time",
+        "road",
+        "lock",
+        "flag",
+        "headphones",
+        "book",
+        "bookmark",
+        "camera",
+        "adjust",
+        "tint",
+        "globe",
+        "wrench");
+    }
+
 }
