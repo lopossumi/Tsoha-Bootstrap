@@ -51,8 +51,15 @@ class TasklistController extends BaseController{
             'myTasklist'        => $tasklist));
     }
     
-    public static function removeList(){
-        Redirect::to('/index', array('message' => 'NOTHING DONE!'));
+    public static function removeList($id){
+        $human = self::get_user_logged_in();
+        $tasklist = Tasklist::find($id);
+        
+        if($tasklist->id_owner == $human->id){
+            $tasklist->destroy();
+            Redirect::to('/index', array(
+                'message' => 'Tasklist removed!'));
+        }
     }
     
     public static function updateList($id){

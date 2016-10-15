@@ -78,4 +78,10 @@ class Tasklist extends BaseModel{
         $query->bindValue(':id',            $id,                PDO::PARAM_INT);
         $query->execute();
     }
+
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM tasklist WHERE id = :id');
+        $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $query->execute();
+    }
 }

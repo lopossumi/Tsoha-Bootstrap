@@ -1,114 +1,111 @@
-{% extends "base.html" %} {% import "macros/forms.html" as forms %} {% block content %}
+{% extends "base.html" %} {% import "macros/forms.html" as forms %} {% block content %} {% for tasklist in myTasklists %}
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading{{tasklist.id}}">
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-	{% for tasklist in myTasklists %}
-	<div class="panel panel-default">
-		<div class="panel-heading" role="tab" id="heading{{tasklist.id}}">
+        <container>
+            <div class="row">
+                <div class="col-xs-3">
+                    <h3><a role="button" data-toggle="collapse" href="#collapse{{tasklist.id}}" aria-expanded="true" aria-controls="collapse{{tasklist.id}}">{{tasklist.name}}</a></h3>
+                </div>
+                <div class="col-xs-7">
+                    <h3><small>{{tasklist.description}}</small></h3>
+                </div>
+                <div class="col-xs-2 btn-toolbar">
+                    {{ forms.edit_button("#{base_path}/list/#{tasklist.id}/edit","Edit list")}} 
+                    <!--{{ forms.remove_button("#{base_path}/list/#{tasklist.id}/remove","Remove list")}} -->
+                    <form class = "destroy-form"
+                         method = "post" 
+                         action = "{{base_path}}/list/{{tasklist.id}}/remove" 
+                          style = "display: inline-block;" 
+                   data-confirm = "Removing the list will also remove all tasks in the list. Remove list?">
+                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Remove list"> 
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </container>
+    </div>
+    <!-- panel-heading-->
 
-			<container>
-				<div class="row">
-			<div class="col-xs-3"><h3><a role="button" data-toggle="collapse" href="#collapse{{tasklist.id}}" aria-expanded="true" aria-controls="collapse{{tasklist.id}}">{{tasklist.name}}</a></h3></div>
-			<div class="col-xs-7"><h3><small>{{tasklist.description}}</small></h3></div>
-			<div class="col-xs-2 btn-toolbar">
-				{{ forms.edit_button("#{base_path}/list/#{tasklist.id}/edit","Edit list")}} 
-				{{ forms.remove_button("#{base_path}/list/#{tasklist.id}/remove","Remove list")}}
-			</div>
-				</div>
-			</container>
-		</div><!-- panel-heading-->	
-		
-		<div id="collapse{{tasklist.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{tasklist.id}}">
-			<div class="panel-body">
-						
-				<table class="table" id="datatable{{tasklist.id}}">
-					<!-- Headers -->
-					<thead>
-						<tr>
-							<th class="col-xs-1">Status</th>
-							<th class="col-xs-1">Due</th>
-							<th class="col-xs-2">Priority</th>
-							<th class="col-xs-6">Name</th>
-							<th class="col-xs-2">Categories</th>
-						</tr>
-					</thead>
-					<tbody>
+    <div id="collapse{{tasklist.id}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{tasklist.id}}">
+        <div class="panel-body">
 
-						{% for task in tasklist.tasks %}
-						<tr class="
+            <table class="table datatable" id="datatable{{tasklist.id}}">
+                <!-- Headers -->
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Status</th>
+                        <th class="col-xs-1">Due</th>
+                        <th class="col-xs-2">Priority</th>
+                        <th class="col-xs-6">Name</th>
+                        <th class="col-xs-2">Categories</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for task in tasklist.tasks %}
+                    <tr class="
         {% if task.status == 2 %}success{% endif %}
         {% if task.status == 1 %}info{% endif %} 
         {% if task.archived %} hidden{% endif %}">
-							<!-- status -->
-							<td data-order="{{task.status}}">
-								{% if task.status == 2 %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/archive", "Archive task", "success",
-								"ok") }} {% elseif task.status == 1 %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/complete", "Complete
-								task", "info", "play") }} {% else %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start
-								task", "default", "play") }} {% endif %}
-							</td>
+                        <!-- status -->
+                        <td data-order="{{task.status}}">
+                            {% if task.status == 2 %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/archive", "Archive task", "success",
+                            "ok") }} {% elseif task.status == 1 %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/complete", "Complete
+                            task", "info", "play") }} {% else %} {{ forms.action_button("post", "#{base_path}/task/#{task.id}/start", "Start task",
+                            "default", "play") }} {% endif %}
+                        </td>
 
-							<!-- due deadline -->
-							<td>
-								{% if task.duedate and task.status == 0 %} {{ forms.due_label(task.duedate) }} {% endif %}
-							</td>
+                        <!-- due deadline -->
+                        <td>
+                            {% if task.duedate and task.status == 0 %} {{ forms.due_label(task.duedate) }} {% endif %}
+                        </td>
 
-							<!-- priority stars -->
-							<td data-order="{{task.priority}}">
-								
-								{% for i in 1..4 %}
-								{% if task.priority < i %}
-									{{ forms.action_button("post", "#{base_path}/task/#{task.id}/setpriority/#{i}","", "default", "star-empty", "btn-xs")}}
-								{% else %}
-									{{ forms.action_button("post", "#{base_path}/task/#{task.id}/setpriority/#{i}","", "warning", "star", "btn-xs")}}
-								{% endif %}
-								<!--
-								<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>
-								-->
-								{% endfor %}
-								 
-							</td>
+                        <!-- priority stars -->
+                        <td data-order="{{task.priority}}">
 
-							<!-- task name -->
-							<td>
-								<a href="{{base_path}}/task/{{task.id}}/view">
-									<div style="height:100%;width:100%">
-										{{task.name}}
-									</div>
-								</a>
-							</td>
+                            {% for i in 1..4 %} {% if task.priority
+                            < i %} {{ forms.action_button( "post",
+                                "#{base_path}/task/#{task.id}/setpriority/#{i}", "", "default", "star-empty", "btn-xs")}} {% else %} {{ forms.action_button( "post",
+                                "#{base_path}/task/#{task.id}/setpriority/#{i}", "", "warning", "star", "btn-xs")}} {% endif %} <!-- <span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>
+                                --> {% endfor %}
 
-							<!-- category -->
-							<td>
-								{% for category in task.categories %} {{ forms.category_button_xs("#{base_path}/category/#{category.id}/view","#{category.name}",
-								"#{category.color}", "#{category.symbol}") }} {% endfor %}
-							</td>
+                        </td>
 
-							<!-- edit & remove buttons DISABLED
-							<td>
-								<div class="btn-toolbar">
-									{{ forms.edit_button("#{base_path}/task/#{task.id}/edit","Edit task")}} 
-									{{ forms.remove_button("#{base_path}/task/#{task.id}/remove","Remove task") }}
-								</div>
-							</td>
-							-->
-						</tr>
-						{% endfor %}
+                        <!-- task name -->
+                        <td>
+                            <a href="{{base_path}}/task/{{task.id}}/view">
+                                <div style="height:100%;width:100%">
+                                    {{task.name}}
+                                </div>
+                            </a>
+                        </td>
 
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div><!-- panel -->
-	<script type="text/javascript">
-	$(document).ready(function() {
-    $('#datatable{{tasklist.id}}').DataTable({
-        paging: false,
-        searching: false,
-        info: false,
-		"order": [[ 2, "desc" ]]
-    });});
-	</script>
-	{% endfor %}
-</div><!-- panel-group -->
+                        <!-- category -->
+                        <td>
+                            {% for category in task.categories %} {{ forms.category_button_xs("#{base_path}/category/#{category.id}/view","#{category.name}",
+                            "#{category.color}", "#{category.symbol}") }} {% endfor %}
+                        </td>
 
-<!-- enable collapse -->
+                        <!-- edit & remove buttons DISABLED
+                            <td>
+                                <div class="btn-toolbar">
+                                    {{ forms.edit_button("#{base_path}/task/#{task.id}/edit","Edit task")}} 
+                                    {{ forms.remove_button("#{base_path}/task/#{task.id}/remove","Remove task") }}
+                                </div>
+                            </td>
+                            -->
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- panel -->
+
+{% endfor %}
+
 {% endblock %}
