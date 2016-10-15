@@ -132,49 +132,6 @@ class Category extends BaseModel{
         return $row['id_owner'] == $id_human;
     }
     
-  public static function validColors(){
-      return array(
-        "default",
-        "primary",
-        "success",
-        "info",
-        "warning",
-        "danger");
-  }
-
-  public static function validSymbols(){
-      return array(
-        "plus",
-        "minus",
-        "euro",
-        "cloud",
-        "envelope",
-        "glass",
-        "music",
-        "search",
-        "heart",
-        "star",
-        "star-empty",
-        "user",
-        "film",
-        "th-large",
-        "signal",
-        "cog",
-        "home",
-        "file",
-        "time",
-        "road",
-        "lock",
-        "flag",
-        "headphones",
-        "book",
-        "bookmark",
-        "camera",
-        "adjust",
-        "tint",
-        "globe",
-        "wrench");
-    }
 
     public function update($id){
         $query = DB::connection()->prepare('
