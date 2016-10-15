@@ -19,7 +19,7 @@
     {% for category in myCategories %}
     <tr>
         <td>
-            {{ forms.category_button("#{base_path}/category/#{category.id}/list","#{category.name}", 
+            {{ forms.category_button("#{base_path}/category/#{category.id}/view","#{category.name}", 
             "#{category.color}", "#{category.symbol}") }}
         </td>
         <td>{{category.name}}</td>
