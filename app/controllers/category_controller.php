@@ -3,7 +3,7 @@ class CategoryController extends BaseController{
 
     public static function categories(){
         $human = self::get_user_logged_in();
-        View::make('categories.html', array(
+        View::make('category/list.html', array(
             'myCategories' => Category::allByOwner($human->id)));
     }
 
