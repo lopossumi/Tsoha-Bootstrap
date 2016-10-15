@@ -73,33 +73,43 @@ class TaskController extends BaseController{
         $human = self::get_user_logged_in();
         $params = $_POST;
         $task = new Task(array(
+            'id'            => $id,
             'id_tasklist'   => $params['id_tasklist'],
             'name'          => $params['name'],
             'description'   => $params['description'],
             'duedate'       => $params['duedate'],
             'priority'      => $params['priority'],
             'status'        => '0'));
-        $task->update($id);
+        
+        // User privilege check
+        if($task->checkOwner($human->id)){
+            $errors = $task->errors();
+            if(count($errors) == 0){
+                // Credentials and validation ok, update DB
+                $task->update($id);
 
-        //Error checking
-        $errors = $task->errors();
-        if(count($errors) == 0){
-            // Clean existing categories and add updated to junction table
-            Category::clean($id);
-            if(isset ($params['categories'])){
-                foreach($params['categories'] as $id_category){
-                    Category::insert($id, $id_category);
+                // Clean existing categories and add updated to junction table
+                Category::clean($id);
+                if(isset ($params['categories'])){
+                    foreach($params['categories'] as $id_category){
+                        Category::insert($id, $id_category);
+                    }
                 }
+                
+                // Redirect to task details view
+                Redirect::to('/task/' . $id . '/view', array(
+                    'message' => 'Task updated!'));
+            } else {
+                // Credentials ok but errors in validation; show editor with error messages
+                View::make('task/edit.html', array(
+                    'myTasklists'       => Tasklist::allByOwner($human->id),
+                    'myCategories'      => Category::allByOwner($human->id),
+                    'myTask'            => $task,
+                    'myTaskCategories'  => Category::idByTask($task->id),
+                    'errors'            => $errors));
             }
-            Redirect::to('/task/' . $id . '/view', array(
-                'message' => 'Task updated!'));
-        }else{
-            View::make('task/edit.html', array(
-                'myTasklists'       => Tasklist::allByOwner($human->id),
-                'myCategories'      => Category::allByOwner($human->id),
-                'myTask'            => $task,
-                'myTaskCategories'  => Category::idByTask($task->id),
-                'errors'            => $errors));
+        } else {
+            //Credentials not ok; empty page
         }
     }
 
