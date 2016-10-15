@@ -19,15 +19,24 @@ class CategoryController extends BaseController{
         $params = $_POST;
         $human = self::get_user_logged_in();
 
-        $category = new Category(array(
+        $myCategory = new Category(array(
             'id_owner'      => $human->id,
             'name'          => $params['name'],
             'description'   => $params['description'],
             'color'         => $params['color'],
             'symbol'        => $params['symbol']));
-        $category->save();
-
-        Redirect::to('/categories', array('message' => 'Category added!'));
+        $errors = $myCategory->errors();
+        
+        if($errors){
+            View::make('category/new.html', array(
+                'myCategory'    => $myCategory,
+                'validColors'   => Category::validColors(),
+                'validSymbols'  => Category::validSymbols(),
+                'errors'        => $errors));
+        } else {
+            $myCategory->save();
+            Redirect::to('/categories', array('message' => 'Category added!'));
+        }
     }
 
     public static function listCategory($id){
@@ -83,9 +92,9 @@ class CategoryController extends BaseController{
         } else {
             if($myCategory->checkOwner($human->id)){
                 $myCategory->update($id);
-                Redirect::to('/categories');
+                Redirect::to('/category/' . $id . '/view', array(
+                    'message'   => 'Category updated!'));
             }
         }
     }
 
-}
