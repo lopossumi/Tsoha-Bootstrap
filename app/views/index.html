@@ -78,7 +78,7 @@
 
 							<!-- category -->
 							<td>
-								{% for category in task.categories %} {{ forms.category_button_xs("#{base_path}/category/#{category.id}/list","#{category.name}",
+								{% for category in task.categories %} {{ forms.category_button_xs("#{base_path}/category/#{category.id}/view","#{category.name}",
 								"#{category.color}", "#{category.symbol}") }} {% endfor %}
 							</td>
 
