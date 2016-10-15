@@ -99,6 +99,8 @@ class BaseModel{
     $color = $this->color;
     if(!in_array($color, self::validColors())){
       return array('Invalid color!');
+    } else {
+      return array();
     }
   }
 
@@ -106,6 +108,8 @@ class BaseModel{
   $symbol = $this->symbol;
     if(!in_array($symbol, self::validSymbols())){
       return array('Invalid symbol!');
+    } else {
+      return array();
     }
   }
 
