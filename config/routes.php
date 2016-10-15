@@ -43,7 +43,7 @@ $routes->post(
 $routes->get('/categories',         'checkLogin',   function(){     CategoryController::categories();});
 $routes->get('/newcategory',        'checkLogin',   function(){     CategoryController::newCategory();});
 $routes->post('/newcategory',       'checkLogin',   function(){     CategoryController::storeCategory();});
-$routes->get('/category/:id/edit',  'checkLogin',   function(){     CategoryController::editCategory();});
-$routes->post('/category/:id/edit', 'checkLogin',   function(){     CategoryController::updateCategory();});
+$routes->get('/category/:id/edit',  'checkLogin',   function($id){  CategoryController::editCategory($id);});
+$routes->post('/category/:id/edit', 'checkLogin',   function($id){  CategoryController::updateCategory($id);});
 $routes->get('/category/:id/list',  'checkLogin',   function($id){  CategoryController::listCategory($id);});
 $routes->post('/category/:id/remove','checkLogin',  function($id){  CategoryController::removeCategory($id);});
