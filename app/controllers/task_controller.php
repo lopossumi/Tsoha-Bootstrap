@@ -21,10 +21,8 @@ class TaskController extends BaseController{
         $task = new Task($attributes);
         $errors = $task->errors();
 
-        if(count($errors) == 0){
-        
+        if(count($errors) == 0){  
             $task->save();
-
             // Add categories to junction table
             if(isset ($params['categories'])){
                 foreach($params['categories'] as $id_category){
@@ -32,7 +30,8 @@ class TaskController extends BaseController{
                 }
             }
             Redirect::to('/index', array('message' => 'Task added!'));
-        }else{
+
+        } else {
             View::make('task/new.html', array(
                 'errors' => $errors,
                 'attributes' => $attributes,
@@ -82,16 +81,25 @@ class TaskController extends BaseController{
         $task->update($id);
 
         //Error checking
-
-        // Clean existing categories and add updated to junction table
-        Category::clean($id);
-        if(isset ($params['categories'])){
-            foreach($params['categories'] as $id_category){
-                Category::insert($id, $id_category);
+        $errors = $task->errors();
+        if(count($errors) == 0){
+            // Clean existing categories and add updated to junction table
+            Category::clean($id);
+            if(isset ($params['categories'])){
+                foreach($params['categories'] as $id_category){
+                    Category::insert($id, $id_category);
+                }
             }
+            Redirect::to('/task/' . $id . '/view', array(
+                'message' => 'Task updated!'));
+        }else{
+            View::make('task/edit.html', array(
+                'myTasklists'       => Tasklist::allByOwner($human->id),
+                'myCategories'      => Category::allByOwner($human->id),
+                'myTask'            => $task,
+                'myTaskCategories'  => Category::idByTask($task->id),
+                'errors'            => $errors));
         }
-        Redirect::to('/task/' . $id . '/view', array(
-            'message' => 'Task updated!'));
     }
 
     public function startTask($id){
