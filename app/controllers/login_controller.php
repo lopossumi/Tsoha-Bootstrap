@@ -62,4 +62,8 @@ class LoginController extends BaseController{
             'attributes' => $attributes));
         }
     }
+
+    public static function account(){
+        //TODO
+    }
 }

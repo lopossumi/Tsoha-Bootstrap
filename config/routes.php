@@ -10,6 +10,7 @@ $routes->post('/login',                             function(){     LoginControl
 $routes->post('/logout',                            function(){     LoginController::logout();});
 $routes->get('/signup',                             function(){     LoginController::newHuman();});
 $routes->post('/signup',                            function(){     LoginController::storeHuman();});
+$routes->get('/account',            'checkLogin',   function(){     LoginController::account();});
 
 //TasklistController
 $routes->get('/',                   'checkLogin',   function(){     TasklistController::index();});
