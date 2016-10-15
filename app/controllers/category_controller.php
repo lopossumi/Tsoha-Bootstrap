@@ -67,10 +67,10 @@ class CategoryController extends BaseController{
         $params = $_POST;
         $human = self::get_user_logged_in();
         $myCategory = new Category(array(
-            'id'            => $id;
-            'name'          => $params['name'];
-            'description'   => $params['description'];
-            'symbol'        => $params['symbol'];
+            'id'            => $id,
+            'name'          => $params['name'],
+            'description'   => $params['description'],
+            'symbol'        => $params['symbol'],
             'color'         => $params['color']));
         
         if($myCategory->checkOwner($human->id)){
