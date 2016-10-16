@@ -52,6 +52,7 @@
 {% endmacro %}
 
 {% macro priority_stars(base_path, id, priority) %}
+    {% import _self as forms %}
 <td data-order="{{priority}}">
     {% for i in 1..4 %} 
 	{% if priority < i %} 
