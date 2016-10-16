@@ -23,6 +23,7 @@ CREATE TABLE task(
     duedate     timestamp,
     completed   timestamp,
     priority    INTEGER,
+    repeat      INTEGER,
     status      INTEGER         DEFAULT 0,
     archived    boolean         DEFAULT FALSE,
     deleted     boolean         DEFAULT FALSE
