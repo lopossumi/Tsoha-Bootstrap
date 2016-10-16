@@ -19,7 +19,7 @@ class LoginController extends BaseController{
 
         if(!$user){
             View::make('login/login.html', array(
-                'errors'     => 'Invalid user account or password!', 
+                'errors'     => array('Invalid user account or password!'), 
                 'user'      => $params['user']));
         }else{
             $_SESSION['user'] = $user->id;
