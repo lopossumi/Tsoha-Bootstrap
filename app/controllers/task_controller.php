@@ -3,9 +3,17 @@ class TaskController extends BaseController{
 
     public static function newTask(){
         $human = self::get_user_logged_in();
+        $myTasklists => Tasklist::allByOwner($human->id);
+
+        // More than one task list; show normal view
+        if(count($myTasklists) != 0){
         View::make('task/new.html', array(
-            'myTasklists'   => Tasklist::allByOwner($human->id),
+            'myTasklists'   => $myTasklists,
             'myCategories'  => Category::allByOwner($human->id)));
+        } else {
+            Rediret::to('newlist', array(
+                'message'   => 'Please create a task list first!'));
+        }
     }
 
     public static function storeTask(){
