@@ -55,6 +55,7 @@
 		</form>
 	</div>
 
+	<!-- Registration modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -62,9 +63,11 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					<h4 class="modal-title">Sign up! <small>It's free! (for now)</h4>
                 </div>
+
+				<form class="form-horizontal" method="post" action="{{base_path}}/signup">
+
                 <div class="modal-body">
 		
-						<form class="form-horizontal" method="post" action="{{base_path}}/signup">
 							<div class="form-group">
 								<input type="text" id="username" class="form-control" name="username" value="{{attributes.username}}" placeholder="Username">
 							</div>
@@ -94,8 +97,10 @@
                 
                 <div class="modal-footer">
                   <button type="button" id="cancelButton" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button type="button" id="registerButton" class="btn btn-success">Register</button>
+                  <button type="submit" id="registerButton" class="btn btn-success">Register</button>
                 </div>
+				
+				</form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
