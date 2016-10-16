@@ -1,5 +1,5 @@
 INSERT INTO Human (username, fullname, password, email)     
-VALUES('spede1', 'Pertti Pasanen', 'spede123', 'spede@spe.de');
+VALUES('spede1', 'Pertti Pasanen', '1$1$gKUeZMLh$m7nafpgoNSgH.aAQrRZ6p1', 'spede@spe.de');
 
 INSERT INTO TaskList (id_owner, name, description) VALUES ('1', 'Koti', 'Ruoka, sisustus ja muu paskartelu');
 INSERT INTO TaskList (id_owner, name, description) VALUES ('1', 'Lomamatka', 'Lomareissu Teneriffalle');
