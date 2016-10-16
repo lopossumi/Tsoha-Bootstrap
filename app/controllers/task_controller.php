@@ -12,7 +12,7 @@ class TaskController extends BaseController{
             'myCategories'  => Category::allByOwner($human->id)));
         } else {
             Redirect::to('/newlist', array(
-                'message'   => 'Please create a task list first!'));
+                'errors'   => array('Please create a task list first!')));
         }
     }
 
