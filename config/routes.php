@@ -8,7 +8,7 @@ function checkLogin(){
 $routes->get('/login',                              function(){     LoginController::login();});
 $routes->post('/login',                             function(){     LoginController::handleLogin();});
 $routes->post('/logout',                            function(){     LoginController::logout();});
-$routes->get('/signup',                             function(){     LoginController::newHuman();});
+//$routes->get('/signup',                             function(){     LoginController::newHuman();});
 $routes->post('/signup',                            function(){     LoginController::storeHuman();});
 $routes->get('/account',            'checkLogin',   function(){     LoginController::account();});
 

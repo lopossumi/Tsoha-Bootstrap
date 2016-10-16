@@ -5,8 +5,8 @@ class LoginController extends BaseController{
          if(!isset($_SESSION['user'])){
             View::make('login/login.html');
         }else{
-            View::make('login/logged_in.html', array(
-                'username'     => self::get_user_logged_in()->username));
+            View::make('login/login.html', array(
+                'user'      => self::get_user_logged_in()->username));
         }
     }
 
@@ -34,9 +34,11 @@ class LoginController extends BaseController{
             'message' => 'You have successfully logged out.'));
     }
 
+    /*
     public static function newHuman(){
         View::make('login/signup.html');
     }
+    */
 
     public static function storeHuman(){
         $params = $_POST;
@@ -57,7 +59,7 @@ class LoginController extends BaseController{
             $_SESSION['user'] = $newuser->id;
             Redirect::to('/index', array('message' => 'Welcome to askare, ' . $newuser->username . '!'));
         }else{
-            View::make('login/signup.html', array(
+            View::make('login/login.html', array(
             'errors' => $errors,
             'attributes' => $attributes));
         }
