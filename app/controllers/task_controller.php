@@ -11,7 +11,7 @@ class TaskController extends BaseController{
             'myTasklists'   => $myTasklists,
             'myCategories'  => Category::allByOwner($human->id)));
         } else {
-            Rediret::to('newlist', array(
+            Redirect::to('newlist', array(
                 'message'   => 'Please create a task list first!'));
         }
     }
