@@ -3,7 +3,7 @@ class TaskController extends BaseController{
 
     public static function newTask(){
         $human = self::get_user_logged_in();
-        $myTasklists => Tasklist::allByOwner($human->id);
+        $myTasklists = Tasklist::allByOwner($human->id);
 
         // More than one task list; show normal view
         if(count($myTasklists) != 0){
