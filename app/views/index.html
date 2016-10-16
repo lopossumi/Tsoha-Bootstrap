@@ -70,17 +70,7 @@
                         </td>
 
                         <!-- priority stars -->
-                        <td data-order="{{task.priority}}">
-
-                            {% for i in 1..4 %} 
-							{% if task.priority < i %} 
-								{{ forms.action_button( "post", "#{base_path}/task/#{task.id}/setpriority/#{i}", "", "default", "star-empty", "btn-xs")}} 
-							{% else %} 
-								{{ forms.action_button( "post", "#{base_path}/task/#{task.id}/setpriority/#{i}", "", "warning", "star", "btn-xs")}} 
-							{% endif %} 
-							{% endfor %}
-
-                        </td>
+						{{ forms.priority_stars(base_path, task.id, task.priority) }}
 
                         <!-- task name -->
                         <td>
