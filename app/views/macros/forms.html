@@ -54,7 +54,7 @@
 {% macro priority_stars(base_path, id, priority) %}
 <td data-order="{{priority}}">
     {% for i in 1..4 %} 
-	{% if task.priority < i %} 
+	{% if priority < i %} 
         {{ forms.action_button( "post", base_path ~ "/task/" ~ id ~ "/setpriority/" ~ i, "", "default", "star-empty", "btn-xs")}} 
 	{% else %} 
         {{ forms.action_button( "post", base_path ~ "/task/" ~ id ~ "/setpriority/" ~ i, "", "warning", "star", "btn-xs")}}  
