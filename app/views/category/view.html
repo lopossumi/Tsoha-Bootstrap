@@ -71,7 +71,7 @@
             </td>
 
             <!-- priority stars -->
-            <td>{% for i in 1..4 %}<span class="warning glyphicon glyphicon-star{% if i>task.priority %}-empty{% endif %}"></span>{% endfor %}</td>
+			{{ forms.priority_stars(base_path, task.id, task.priority) }}
 
             <!-- task name -->
             <td>{{task.name}}</td>
