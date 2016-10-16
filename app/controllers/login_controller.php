@@ -60,8 +60,9 @@ class LoginController extends BaseController{
             Redirect::to('/index', array('message' => 'Welcome to askare, ' . $newuser->username . '!'));
         }else{
             View::make('login/login.html', array(
-            'errors' => $errors,
-            'attributes' => $attributes));
+            'errors'        => $errors,
+            'attributes'    => $attributes,
+            'showmodal'     => true));
         }
     }
 
