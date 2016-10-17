@@ -56,7 +56,7 @@ class TaskController extends BaseController{
             $Parsedown = new Parsedown();
             $myDescription = $Parsedown->text(htmlspecialchars($task->description));
             View::make('task/view.html', array(
-                'myTasklists'       => Tasklist::allByOwner($human->id),
+                'myTasklist'        => Tasklist::find($task->id_tasklist),
                 'myCategories'      => Category::allByOwner($human->id),
                 'myTask'            => $task,
                 'myTaskCategories'  => Category::idByTask($task->id),

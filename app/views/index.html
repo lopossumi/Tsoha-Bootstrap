@@ -2,11 +2,13 @@
 {% import "macros/forms.html" as forms %}
 {% block content %}
 
+
 {% for tasklist in myTasklists %}
+
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="heading{{tasklist.id}}">
 
-        <container>
+        <div class="container">
             <div class="row">
                 <div class="col-xs-3">
                     <h3><a role="button" data-toggle="collapse" href="#collapse{{tasklist.id}}" aria-expanded="true" aria-controls="collapse{{tasklist.id}}">{{tasklist.name}}</a></h3>
@@ -27,8 +29,8 @@
                         </button>
                     </form>
                 </div>
-            </div>
-        </container>
+            </div><!-- row -->
+        </div><!-- container -->
     </div>
     <!-- panel-heading-->
 
@@ -104,7 +106,6 @@
     </div>
 </div>
 <!-- panel -->
-
 {% endfor %}
 
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+<h2>My Account</h2>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" value="{{myAccount.username}}" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="fullname">Full name:</label>
+        <input type="text" class="form-control" name="fullname" value="{{myAccount.fullname}}" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="text" class="form-control" name="email" value="{{myAccount.email}}" disabled>
+    </div>
+</div></div></div><!-- col row container -->
+
+{% endblock %}
