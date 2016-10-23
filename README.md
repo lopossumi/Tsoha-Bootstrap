@@ -6,7 +6,7 @@
 Tietokantasovellus-kurssin harjoitustyö, syksy 2016.
 
 * [Linkki sovellukseen](https://milo.users.cs.helsinki.fi/askare/)
-* Linkki dokumentaatioon: [MD](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md) [PDF](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md.pdf)
+* Linkki dokumentaatioon: [MD](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.md) [PDF](https://github.com/lopossumi/askare-tsoha/blob/master/doc/askare_dokumentaatio.pdf)
 * Kirjautuminen: spede@spe.de / spede123
 
 ## Työn aihe
