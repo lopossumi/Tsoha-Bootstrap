@@ -3,26 +3,40 @@
 1. A chore (daily routine task), normally used in plural (askaret or askareet)
 
 ## 1. Johdanto
-Askare on helppokäyttöinen usean käyttäjän muistilistaohjelma, johon voit lisätä ja luokitella erilaisia tehtäviä asioita (askareita). Vanhoja askareita voi uudelleenluokitella ja priorisoida, valmiit askareet voi kuitata tehdyiksi ja tehtävälistoja voi jakaa toisille käyttäjille. Voit myös luoda toistuvia askareita.
+Askare on helppokäyttöinen usean käyttäjän muistilistaohjelma, johon voit lisätä ja luokitella erilaisia tehtäviä asioita (askareita). 
+Olemassaolevia askareita voi uudelleenluokitella ja priorisoida, niille voi antaa deadlinen, kuitata aloitetuiksi/tehdyiksi ja lopulta
+arkistoida. Myöhemmissä versioissa tehtävälistoja voi myös jakaa toisille käyttäjille.
 
 Ohjelma soveltuu esimerkiksi yksityishenkilöiden muistikirjaksi, perheiden taloudenpitoon ja pienille projekteille.
 
-Järjestelmä käyttää Apache-, PostgreSQL- ja PHP-teknologioita ja vaatii selaimelta Javascript-tuen.
+Järjestelmä on toteutettu PHP:lla Apache-palvelimelle ja käyttää tietokantanaan PostgreSQL:ää. Askare vaatii selaimelta Javascript-tuen.
 
 ## 2. Yleiskuva järjestelmästä
-Käyttäjät ovat järjestelmän sisällä tasa-arvoisia: kuka tahansa voi luoda, muokata, poistaa ja jakaa askareita.
+Tavallinen käyttäjä voi luoda, katsella, muokata ja poistaa omia tehtäviään. Tehtävät, kategoriat ja listat ovat henkilökohtaisia.
+
+Pääkäyttäjä* voi lisäksi selata muita käyttäjiä ja esimerkiksi palauttaa toisen käyttäjän salasanan. 
+
+*Huom. Pääkäyttäjän erityisoikeuksia ei ole vielä toteutettu palautusversiossa*.
+
+![Käyttötapaukset](kayttotapauskaavio.png)
+
+* Kuva 1. Käyttötapaukset.
 
 ### Käyttötapausesimerkkejä
 
-Lenni Latva-Laho, viherkasvien kauhu, kuulee järjestelmästä ensimmäistä kertaa sosiaalisessa mediassa ja arvelee sen soveltuvan mainiosti arkipäiväisten asioiden muistamiseen. Lenni surffaa aloitussivulle, luo uuden käyttäjätunnuksen ja saa vahvistuslinkin sähköpostitse. Hän luo ensimmäisen askareensa, ”kastele kukat”, ja asettaa sen toistuvaksi tehtäväksi prioriteetilla Erittäin Tärkeä.
+Lenni Latva-Laho, viherkasvien kauhu, kuulee järjestelmästä ensimmäistä kertaa sosiaalisessa mediassa ja arvelee sen soveltuvan mainiosti arkipäiväisten 
+asioiden muistamiseen. Lenni surffaa aloitussivulle, luo uuden käyttäjätunnuksen ja saa vahvistuslinkin sähköpostitse. Hän luo ensimmäisen askareensa, 
+”kastele kukat”, ja asettaa sen deadlineksi seuraavan keskiviikon prioriteetilla Erittäin Tärkeä. Nyt Lenni muistaa kerrankin kastella kukkasensa ja ne kukoistavat.
 
-Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan käyttää sitä autobiografista levykokoelmaansa varten. Ville pitää ohjelman luokittelu- ja järjestelyominaisuuksista, ja merkitsee jokaisen rakkaan vinyylilevynsä omaksi ”tehtäväkseen” luokitellen ne genren ja hankkimispäivämäärän mukaan. Villeä ei haittaa, että ohjelman tietokantaa ei missään tapauksessa ole suunniteltu levykokoelman ylläpitoon.
+Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan käyttää sitä autobiografista levykokoelmaansa varten. Ville pitää ohjelman luokittelu- 
+ja järjestelyominaisuuksista, ja merkitsee jokaisen rakkaan vinyylilevynsä omaksi ”tehtäväkseen”, nimeää kategoriat genrejen mukaan ja käyttää deadlinea
+hankkimispäivämäärän muistamiseen. Villeä ei haittaa, että ohjelmaa ei missään tapauksessa ole suunniteltu levykokoelman ylläpitoon.
 
 ### Järjestelmän tietosisältö
 
 ![Tietosisältö](askare_kasitekaavio.png)
 
-*Kuva 1. Käsitekaavio*
+*Kuva 2. Käsitekaavio*
 
 #### Tietokohde: Human
 
@@ -35,7 +49,7 @@ Ville Väärinkäyttäjä ei piittaa ohjelman tekijän tarkoitusperistä, vaan k
 | IsPrivate   | boolean      | Piilotetaanko käyttäjä ystävähausta   |
 | IsAdmin     | boolean      | Pääkäyttäjä (voi muokata käyttäjiä)   |
 
-Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla.
+Järjestelmän käyttäjä, joka kirjautuu käyttäjätunnuksella/sähköpostiosoitteella ja salasanalla. Salasana kryptataan tietokantaan.
 
 #### Tietokohde: TaskList
 
@@ -53,12 +67,19 @@ Tehtävälista. Käyttäjä voi luoda useita tehtävälistoja, joista jokainen v
 | Description   | varchar(50)   | Tehtävän nimi
 | Description   | varchar(2000) | Tehtävän tarkempi kuvaus
 | Duedate       | timestamp     | Tehtävän deadline
+| Completed     | timestamp     | Milloin tehtävä on merkitty suoritetuksi
 | Priority      | integer       | Tehtävän tärkeysaste (Low...Highest)
+| Repeat        | integer       | Tehtävän toistuvuus
 | Status        | integer       | Ei aloitettu / aloitettu / Suoritettu
 | Archived      | boolean       | Tehtävä on arkistossa
 | Deleted       | boolean       | Tehtävä on roskakorissa
 
-Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prioriteetin (Low, **Normal**, High, Highest) ja useita luokkia. Deadline ilmaistaan jäljelläolevana aikana, mutta sen määrittäminen ei ole pakollista.
+Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prioriteetin (Low, **Normal**, High, Highest) ja useita luokkia.
+Deadline ilmaistaan jäljelläolevana aikana, mutta sen määrittäminen ei ole pakollista. Tehtävä voidaan merkitä aloitetuksi ja suoritetuksi,
+sekä siirtää arkistoon. Deleted-bitti on tarkoitettu soft deleten (roskakorin) toteuttamista varten.
+
+Completed ja repeat ovat valmiina tulevia ominaisuuksia varten: tehtäviä voi vastaisuudessa asettaa toistuviksi tiettyinä viikonpäivinä ja
+arkistoa selata kuukausinäkymän avulla. 
 
 #### Tietokohde: Category
 
@@ -69,11 +90,11 @@ Tehtävälistan alkio eli suoritettava tehtävä. Tehtävälle voi asettaa prior
 | Symbol        | varchar(20)  | Kategorian tunnus (glyphicon)
 | Color         | varchar(20)  | Kategorian väri (bootstrap)
 
-Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli valitaan annetusta kirjastosta.
+Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli ja väri valitaan annetusta kirjastosta.
 
 ![Tietokantakaavio](askare_database.png)
 
-*Kuva 2. Tietokantakaavio*
+*Kuva 3. Tietokantakaavio*
 
 ### Järjestelmän yleisrakenne
 
@@ -86,7 +107,7 @@ Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty
 
 ![Järjestelmän komponentit](components.png)
 
-*Kuva 3. Järjestelmän komponentit*
+*Kuva 4. Järjestelmän komponentit*
 
 ### Järjestelmän käyttöohje
 

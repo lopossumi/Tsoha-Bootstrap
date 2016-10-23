@@ -38,7 +38,7 @@
 <br>
     {% for category in myCategories %}
         {% if category.id in myTaskCategories %}
-                {{ forms.category_button_xs("#{base_path}/category/#{category.id}/list","#{category.name}", 
+                {{ forms.category_button_xs("#{base_path}/category/#{category.id}/view","#{category.name}", 
                 "#{category.color}", "#{category.symbol}") }}
         {% endif %}
     {% endfor %}     
@@ -59,7 +59,7 @@
             sideBySide:true,
             format:'YYYY-MM-DD HH:mm',
             defaultDate: '{{myTask.duedate}}',
-            //disabled: true
+            disabled: true
         });
     });
 </script>
