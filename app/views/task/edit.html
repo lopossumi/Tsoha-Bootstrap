@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
 <h2>Edit task</h2>
 <form method="post" action="{{base_path}}/task/{{myTask.id}}/edit">
 
@@ -36,15 +40,15 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="duedate">Due date:</label>
-        <div class='input-group date' id='duedate'>
-            <input type='text' class="form-control" name='duedate' />
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
+<div class="form-group">
+    <label for="duedate">Due date:</label>
+    <div class='input-group date' id='duedate'>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+        <input type='text' class="form-control" name='duedate' />
     </div>
+</div>
 
     <div class="form-group">
         <label for="categories[]">Categories:</label>
@@ -61,6 +65,8 @@
     <button type="submit" class="btn btn-primary">Save task</button>
 
 </form>
+
+</div></div></div><!-- col row container -->
 
 <!-- Enable and initialize Datetime picker -->
 <script type="text/javascript">
