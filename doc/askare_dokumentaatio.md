@@ -20,7 +20,7 @@ Pääkäyttäjä* voi lisäksi selata muita käyttäjiä ja esimerkiksi palautta
 
 ![Käyttötapaukset](kayttotapauskaavio.png)
 
-* Kuva 1. Käyttötapaukset.
+*Kuva 1. Käyttötapaukset*
 
 ### Käyttötapausesimerkkejä
 
@@ -153,7 +153,7 @@ Kirjaudu lopuksi ulos järjestelmästä painamalla oikean yläkulman logout-napp
 
 ### Tunnettuja puutteita ja kehityskohteita
 
-Järjestelmä on palautushetkellä käyttövalmis eikä tunnettuja kriittisiä bugeja ole, mutta kehitettävää vielä riittää:
+Järjestelmä on palautushetkellä käyttövalmis eikä tunnettuja kriittisiä bugeja ole tiedossa, mutta kehitettävää vielä riittää:
 - Ohjelmaa on kurja käyttää mobiililaitteilla; joillain puhelimilla käyttö kuitenkin onnistuu joten kuten vaakatasossa.
 - Kategorianäkymä poikkeaa jonkin verran päänäkymästä; tehtäviä ei esimerkiksi voi järjestää. Molemmat näkymät menevät uusiksi ja optimoidaan myös mobiililaitteille.
 - Tunnuksia ei voi poistaa eikä salasanaa vaihtaa ilman suoraa pääsyä tietokantaan
