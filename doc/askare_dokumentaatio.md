@@ -109,8 +109,54 @@ Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty
 
 *Kuva 4. Järjestelmän komponentit*
 
+### Asennusohje
+
+Askare on testattu PHP:n versiolla 5.3.2 ja PostgreSQL:n versiolla 8.4.22. 
+
+Asenna Composer, kloonaa repositorio ja konfiguroi tietokanta (config/database.php).
+Luo sitten tietokantataulut ajamalla sql/create_tables.php. Otettuasi järjestelmän käyttöön varmista, että tietokantayhteys
+on kytketty pois päältä kommentoimalla index.php:stä siihen liittyvä route-komento: muutoin osoitteesta {asennushakemisto}/tietokantayhteys pääsee
+selaamaan kaikkien käyttäjien tietoja.
+
 ### Järjestelmän käyttöohje
 
-#### Staattiset sivut
+Surffaa aloitussivulle [http://milo.users.cs.helsinki.fi/askare] ja klikkaa "Sign Me up" -nappia, jolloin pääset täyttämään
+käyttäjätietosi. Rekisteröidyttyäsi voit kirjautua joko käyttäjätunnuksella tai sähköpostiosoitteella ja salasanalla. 
+Voit myös kokeilla testitunnuksia (käyttäjä "spede1", salasana "spede123").
 
-Järjestelmän etusivu sijaitsee osoitteessa [http://milo.users.cs.helsinki.fi/askare]. Kirjautumalla pääset etusivunäkymään, josta näkee todo-listat ja niiden sisältämät tehtävät. Tehtävien kategoriat ilmaistaan värillisellä symbolilla, jota klikkaamalla näytetään kaikki saman kategorian tehtävät omana listanaan. Uusia tehtäviä, kategorioita ja listoja voi luoda yläpalkin New-alasvetovalikosta.
+Aloita luomalla uusi kategoria klikkaamalla ylävalikosta New->Category. Nimeä kategoria, kirjoita lyhyt kuvaus ja valitse sitä
+kuvaava värin ja symbolin yhdistelmä; esimerkiksi "Opiskelu2016", "Syyslukukauden opinnot" ja sinisen kirjan kuva.
+
+Luo seuraavaksi uusi tehtävälista klikkaamalla New->List, anna sillekin nimi ja lyhyt kuvaus.
+
+Nyt voit lisätä listaan tehtäviä (jos yrität luoda tehtävän ilman ainuttakaan listaa, sinut ohjataan uuden listan luontiin). Valitse ylävalikosta
+New->Task ja anna tehtävälle nimi. Kuvaukseen (Description) voit kirjoittaa pidemmän sepustuksen käyttäen muotoiluun MarkDown-syntaksia; lyhyt kuvaus
+käytettävistä komennoista löydät osoitteesta [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]. MarkDownin avulla voit
+liittää tehtäviin jopa linkkejä kuviin, jolloin ne näkyvät tehtävän tarkastelussa.
+
+Aseta tehtävälle prioriteetti neliportaisella asteikolla sekä deadline-päivämäärä muodossa **YYYY-MM-DD hh:mm:ss** (päivämäärän saat asetettua helpoiten klikkaamalla
+kalenterin kuvaa). Deadline-päivämäärän voi myös jättää tyhjäksi.
+
+Valitse lopulta kaikki ne luomasi kategoriat joihin tehtävä kuuluu klikkaamalla kyseistä symbolia. Näet kategorian nimen siirtämällä kursorin symbolin päälle.
+
+Luotuasi muutamia kategorioita, listoja ja tehtäviä voit selailla niitä navigoimalla päänäkymään klikkaamalla Askare-logoa. Voit järjestää listoja
+nimen, prioriteetin ja deadline-päivämäärän perusteella. Klikkaamalla valkoista play-nappia voit merkitä tehtävän aloitetuksi, toinen klikkaus merkitsee sen
+suoritetuksi ja kolmas siirtää tehtävän arkistoon. Päänäkymässä voit myös suoraan nostaa tai laskea tehtävän prioriteettia klikkaamalla tähtiä. Klikkaamalla tehtävän nimeä 
+pääset tarkastelemaan tehtävän pidempää kuvausta sekä pääset joko muokkaamaan tehtävää tai poistamaan sen. Tehtävän muokkaaminen palauttaa sen statuksen takaisin aloittamattomaksi.
+
+Pääset selaamaan kategorioita valitsemalla ylävalikosta "Categories". Voit selata kuhunkin kategoriaan liittyviä tehtäviä klikkaamalla tässä näkymässä valitsemasi kategorian 
+symbolia. Klikkaamalla lyijykynää voit muokata kategorian tietoja, roskakori poistaa kategorian.
+
+Archive-näkymästä näet kaikki arkistoidut tehtävät. Voit palauttaa arkistoituja tehtäviä samaan tapaan kuin merkitsit niitä suoritetuiksi. 
+
+Kirjaudu lopuksi ulos järjestelmästä painamalla oikean yläkulman logout-nappia.
+
+### Tunnettuja puutteita ja kehityskohteita
+
+Järjestelmä on palautushetkellä käyttövalmis eikä tunnettuja kriittisiä bugeja ole, mutta kehitettävää vielä riittää:
+- Ohjelmaa on kurja käyttää mobiililaitteilla; joillain puhelimilla käyttö kuitenkin onnistuu joten kuten vaakatasossa.
+- Kategorianäkymä poikkeaa jonkin verran päänäkymästä; tehtäviä ei esimerkiksi voi järjestää. Molemmat näkymät menevät uusiksi ja optimoidaan myös mobiililaitteille.
+- Tunnuksia ei voi poistaa eikä salasanaa vaihtaa ilman suoraa pääsyä tietokantaan
+- Bootstrapin nappuloiden CSS-muotoilua ei ole paranneltu, joten niistä ei tahdo nähdä ovatko ne valittuja. Tämä aiheuttaa käytettävyysongelmia erityisesti tehtävää muokatessa.
+- View task -näytössä tulee klikattua päivämääränmuokkainta, mutta se ei vaikuta mihinkään ennekuin Edit taskia on painettu.
+- Ohjelma ei juuri pitele kädestä rekisteröitymisen jälkeen; tutoriaali olisi hyvä toteuttaa.
