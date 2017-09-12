@@ -111,12 +111,11 @@ Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty
 
 ### Asennusohje
 
-Askare on testattu PHP:n versiolla 5.3.2 ja PostgreSQL:n versiolla 8.4.22. 
+Askare on luotu kurssin aikaan PHP:n versiolla 5.3.2 ja PostgreSQL:n versiolla 8.4.22 (ennen syyskuuta 2017). Nykyinen versio käyttää PHP 7.0.22 ja PSQL 9.5.8, mutta on todennäköisesti edelleen yhteensopiva vanhempien versioiden kanssa.
 
-Asenna Composer, kloonaa repositorio ja konfiguroi tietokanta (config/database.php).
-Luo sitten tietokantataulut ajamalla sql/create_tables.php. Otettuasi järjestelmän käyttöön varmista, että tietokantayhteys
-on kytketty pois päältä kommentoimalla index.php:stä siihen liittyvä route-komento: muutoin osoitteesta {asennushakemisto}/tietokantayhteys pääsee
-selaamaan kaikkien käyttäjien tietoja.
+Luo PostgreSQL-tietokanta, asenna [Composer](https://getcomposer.org/download/), kloonaa repositorio ja konfiguroi tietokanta (config/database.php). Luo sitten tietokantataulut ajamalla sql/create_tables.php. 
+
+Otettuasi järjestelmän käyttöön varmista, että tietokantayhteys on kytketty pois päältä kommentoimalla index.php:stä siihen liittyvä route-komento: muutoin osoitteesta {asennushakemisto}/tietokantayhteys pääsee selaamaan kaikkien käyttäjien tietoja.
 
 ### Järjestelmän käyttöohje
 
