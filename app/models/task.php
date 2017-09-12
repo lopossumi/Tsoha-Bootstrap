@@ -178,7 +178,7 @@ class Task extends BaseModel{
         $query->execute();
     }
 
-    public function activeByCategory($id_category){
+    public static function activeByCategory($id_category){
         $query = DB::connection()->prepare('
             SELECT * 
               FROM task 

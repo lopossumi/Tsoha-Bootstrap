@@ -121,7 +121,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function startTask($id){
+    public static function startTask($id){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 
@@ -132,7 +132,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function completeTask($id){
+    public static function completeTask($id){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 
@@ -143,7 +143,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function removeTask($id){
+    public static function removeTask($id){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 
@@ -154,7 +154,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function archiveTask($id){
+    public static function archiveTask($id){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 
@@ -165,7 +165,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function revertTask($id){
+    public static function revertTask($id){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 
@@ -176,7 +176,7 @@ class TaskController extends BaseController{
         }
     }
 
-    public function setPriority($id, $priority){
+    public static function setPriority($id, $priority){
         $human = self::get_user_logged_in();        
         $task = Task::find($id);
 

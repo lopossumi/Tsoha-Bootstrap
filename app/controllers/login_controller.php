@@ -47,7 +47,8 @@ class LoginController extends BaseController{
             'username'  => $params['username'],
             'fullname'  => $params['fullname'],
             'email'     => $params['email'],
-            'password'  => crypt($params['password']));
+            //'password'  => crypt($params['password']));
+            'password'  => password_hash($params['password'], PASSWORD_DEFAULT));
         $newuser = new Human($attributes);
         $errors = $newuser->errors();
         if($params['password'] != $params['password2']){
