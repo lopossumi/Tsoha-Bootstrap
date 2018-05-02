@@ -34,7 +34,7 @@ hankkimispäivämäärän muistamiseen. Villeä ei haittaa, että ohjelmaa ei mi
 
 ### Järjestelmän tietosisältö
 
-![Tietosisältö](askare_kasitekaavio.png)
+![Tietosisältö](doc/askare_kasitekaavio.png)
 
 *Kuva 2. Käsitekaavio*
 
@@ -92,7 +92,7 @@ arkistoa selata kuukausinäkymän avulla.
 
 Tehtävälle annettava luokittelumääre, joita voi olla useita per tehtävä. Luokittelumääreet ovat käyttäjäkohtaisia. Kategoriaa ilmaiseva symboli ja väri valitaan annetusta kirjastosta.
 
-![Tietokantakaavio](askare_database.png)
+![Tietokantakaavio](doc/askare_database.png)
 
 *Kuva 3. Tietokantakaavio*
 
@@ -105,7 +105,7 @@ Ulkopuoliset kirjastot (esim. Bootstrap) sijaitsevat hakemistossa /vendor. Sovel
 
 Kaikki tiedostonimet on kirjoitettu pienellä ja koodin luettavuuteen on pyritty kiinnittämään huomiota.
 
-![Järjestelmän komponentit](components.png)
+![Järjestelmän komponentit](doc/components.png)
 
 *Kuva 4. Järjestelmän komponentit*
 
